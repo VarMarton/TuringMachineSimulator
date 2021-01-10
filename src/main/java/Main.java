@@ -19,7 +19,7 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("mainView.fxml"));
         primaryStage.setTitle("TuringMachineSimulator");
-        Scene scene = new Scene(root, 1500, 750);
+        Scene scene = new Scene(root, 1500, 900);
         scene.getStylesheets().add("mainView.css");
         primaryStage.setScene(scene);
         primaryStage.setMinHeight(600);
