@@ -22,8 +22,8 @@ public class Main extends Application {
         Scene scene = new Scene(root, 1500, 750);
         scene.getStylesheets().add("mainView.css");
         primaryStage.setScene(scene);
-        primaryStage.setMinHeight(500);
-        primaryStage.setMinWidth(700);
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
         primaryStage.setMaximized(true);
         primaryStage.show();
 
