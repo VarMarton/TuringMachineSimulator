@@ -5,7 +5,8 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="mainPane" stylesheets="@mainView.css" fx:controller="controller.MainController" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="mainPane" minHeight="800" minWidth="1500" stylesheets="@mainView.css" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
     <top>
         <AnchorPane fx:id="menuBar" styleClass="section" BorderPane.alignment="CENTER_LEFT">
             <Button layoutX="3.0" layoutY="3.0" text="_Config"/>

@@ -1,4 +1,4 @@
-.root {
+.root{
     -fx-background-color: #283B48;
 }
 
@@ -13,6 +13,10 @@
 #menuBar {
     -fx-max-width: 295.0;
     -fx-pref-height: 38.0;
+}
+
+#configPane{
+    -fx-pref-width: 1000;
 }
 
 .button {

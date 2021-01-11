@@ -15,6 +15,10 @@
     -fx-pref-height: 38.0;
 }
 
+#configPane{
+    -fx-pref-width: 1000;
+}
+
 .button {
     -fx-background-color: #39556A;
     -fx-text-fill: #D2D2D2;
