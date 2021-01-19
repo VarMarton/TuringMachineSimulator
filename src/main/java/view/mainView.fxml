@@ -81,7 +81,7 @@
                                 </GridPane.margin>
                                 <Label text="States"/>
                                 <Label text="Start state" GridPane.rowIndex="1"/>
-                                <Label text="End state" GridPane.rowIndex="2"/>
+                                <Label text="End states" GridPane.rowIndex="2"/>
                                 <TextField fx:id="statesInput" GridPane.columnIndex="1"/>
                                 <TextField fx:id="startStateInput" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                                 <TextField fx:id="endStatesInput" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
