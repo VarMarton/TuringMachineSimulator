@@ -1,4 +1,4 @@
-.root{
+.root {
     -fx-background-color: #283B48;
 }
 
@@ -15,7 +15,7 @@
     -fx-pref-height: 38.0;
 }
 
-#configPane{
+#configPane {
     -fx-pref-width: 1000;
 }
 
@@ -111,4 +111,17 @@
     -fx-min-width: 45.0;
     -fx-pref-height: 45.0;
     -fx-pref-width: 45.0;
+}
+
+.tapeSettingBtn {
+    -fx-border-radius: 100;
+    -fx-background-radius: 100;
+    -fx-min-height: 35.0;
+    -fx-min-width: 35.0;
+    -fx-pref-height: 35.0;
+    -fx-pref-width: 35.0;
+}
+
+.tapeContainer {
+    -fx-background-color: #1D2B35;
 }
