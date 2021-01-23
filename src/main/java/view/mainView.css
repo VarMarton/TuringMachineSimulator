@@ -122,6 +122,20 @@
     -fx-pref-width: 35.0;
 }
 
-.tapeContainer {
+.tapeContainers {
     -fx-background-color: #1D2B35;
+}
+
+.tapeContainer {
+    -fx-border-color: #D2D2D2;
+    -fx-border-width: 0 0 1 0;
+}
+
+.headPositionSetting .label {
+    -fx-padding: 0 5 0 0;
+}
+
+.headPositionSetting .text-field {
+    -fx-max-width: 50;
+    -fx-alignment: center-right;
 }

@@ -5,436 +5,515 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="mainPane" minHeight="800" minWidth="1500" stylesheets="@mainView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<BorderPane fx:id="mainPane" stylesheets="@mainView.css" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
     <top>
         <AnchorPane fx:id="menuBar" styleClass="section" BorderPane.alignment="CENTER_LEFT">
-            <Button layoutX="3.0" layoutY="3.0" text="_Config" />
-            <Button layoutX="76.0" layoutY="3.0" text="_Export" />
-            <Button layoutX="149.0" layoutY="3.0" text="_Import" />
-            <Button fx:id="helpButton" layoutX="222.0" layoutY="3.0" text="_Help" />
+            <Button layoutX="3.0" layoutY="3.0" text="_Config"/>
+            <Button layoutX="76.0" layoutY="3.0" text="_Export"/>
+            <Button layoutX="149.0" layoutY="3.0" text="_Import"/>
+            <Button fx:id="helpButton" layoutX="222.0" layoutY="3.0" text="_Help"/>
         </AnchorPane>
     </top>
     <center>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <GridPane>
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                 </rowConstraints>
                 <GridPane.margin>
-                    <Insets bottom="5.0" top="5.0" />
+                    <Insets bottom="5.0" top="5.0"/>
                 </GridPane.margin>
                 <BorderPane styleClass="section">
                     <GridPane.margin>
-                        <Insets right="1.0" />
+                        <Insets right="1.0"/>
                     </GridPane.margin>
                     <top>
-                        <Label alignment="CENTER" text="Info" BorderPane.alignment="CENTER" />
+                        <Label alignment="CENTER" text="Info" BorderPane.alignment="CENTER"/>
                     </top>
                     <center>
                         <TextArea fx:id="infoTextArea" editable="false" text="Test string" wrapText="true" BorderPane.alignment="CENTER">
                             <BorderPane.margin>
-                                <Insets bottom="10.0" left="10.0" right="10.0" />
+                                <Insets bottom="10.0" left="10.0" right="10.0"/>
                             </BorderPane.margin>
                         </TextArea>
                     </center>
                 </BorderPane>
                 <BorderPane styleClass="section" GridPane.columnIndex="1">
                     <GridPane.margin>
-                        <Insets left="1.0" right="1.0" />
+                        <Insets left="1.0" right="1.0"/>
                     </GridPane.margin>
                     <top>
-                        <Label alignment="CENTER" text="Settings" BorderPane.alignment="CENTER" />
+                        <Label alignment="CENTER" text="Settings" BorderPane.alignment="CENTER"/>
                     </top>
                     <center>
                         <GridPane BorderPane.alignment="CENTER">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints maxHeight="149" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="149" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <GridPane fx:id="stateSettingContainer" GridPane.vgrow="SOMETIMES">
                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0"/>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                 </columnConstraints>
                                 <rowConstraints>
-                                    <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never" />
-                                    <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never" />
-                                    <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never" />
+                                    <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never"/>
+                                    <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never"/>
+                                    <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never"/>
                                 </rowConstraints>
                                 <GridPane.margin>
-                                    <Insets left="10.0" right="10.0" />
+                                    <Insets left="10.0" right="10.0"/>
                                 </GridPane.margin>
-                                <Label text="States" />
-                                <Label text="Start state" GridPane.rowIndex="1" />
-                                <Label text="End state" GridPane.rowIndex="2" />
-                                <TextField fx:id="statesInput" GridPane.columnIndex="1" />
-                                <TextField fx:id="startStateInput" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <TextField fx:id="endStatesInput" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="States"/>
+                                <Label text="Start state" GridPane.rowIndex="1"/>
+                                <Label text="End state" GridPane.rowIndex="2"/>
+                                <TextField fx:id="statesInput" GridPane.columnIndex="1"/>
+                                <TextField fx:id="startStateInput" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                <TextField fx:id="endStatesInput" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                             </GridPane>
                             <ScrollPane fitToWidth="true" GridPane.rowIndex="1">
-                                <GridPane styleClass="tapeContainer">
+                                <GridPane styleClass="tapeContainers">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints />
+                                        <RowConstraints vgrow="SOMETIMES"/>
+                                        <RowConstraints vgrow="SOMETIMES"/>
+                                        <RowConstraints vgrow="SOMETIMES"/>
                                     </rowConstraints>
-                           <GridPane minHeight="250.0" GridPane.halignment="CENTER">
-                              <columnConstraints>
-                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                              </columnConstraints>
-                              <rowConstraints>
-                                 <RowConstraints maxHeight="35.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                                 <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                                 <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                                 <RowConstraints maxHeight="90.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                              </rowConstraints>
-                              <children>
-                                           <Label text="Tape &quot;A&quot;" GridPane.halignment="CENTER" />
-                                           <GridPane GridPane.rowIndex="1">
-                                               <columnConstraints>
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                               </columnConstraints>
-                                               <rowConstraints>
-                                                   <RowConstraints minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                                               </rowConstraints>
-                                               <children>
-                                                   <Label text="Content">
-                                                       <GridPane.margin>
-                                                           <Insets left="10.0" />
-                                                       </GridPane.margin>
-                                                   </Label>
-                                                   <TextField GridPane.columnIndex="1">
-                                                       <GridPane.margin>
-                                                           <Insets left="10.0" />
-                                                       </GridPane.margin>
-                                                   </TextField>
-                                               </children>
-                                           </GridPane>
-                                           <GridPane GridPane.rowIndex="2">
-                                               <columnConstraints>
-                                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" />
-                                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                               </columnConstraints>
-                                               <rowConstraints>
-                                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                               </rowConstraints>
-                                               <children>
-                                                   <Label text="Heads and start positions">
-                                                       <GridPane.margin>
-                                                           <Insets left="10.0" />
-                                                       </GridPane.margin>
-                                                   </Label>
-                                                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                                                       <children>
-                                                           <Button layoutX="5.0" layoutY="10.0" mnemonicParsing="false" styleClass="tapeSettingBtn">
-                                                               <graphic>
-                                                                   <ImageView pickOnBounds="true" preserveRatio="true">
-                                                                       <Image url="@icons/plus.png" />
-                                                                   </ImageView>
-                                                               </graphic>
-                                                           </Button>
-                                                           <Button layoutX="50.0" layoutY="10.0" mnemonicParsing="false" styleClass="tapeSettingBtn">
-                                                               <graphic>
-                                                                   <ImageView pickOnBounds="true" preserveRatio="true">
-                                                                       <Image url="@icons/minus.png" />
-                                                                   </ImageView>
-                                                               </graphic>
-                                                           </Button>
-                                                       </children>
-                                                   </AnchorPane>
-                                               </children>
-                                           </GridPane>
-                                           <GridPane minHeight="-Infinity" prefHeight="0.0" GridPane.rowIndex="3">
-                                               <columnConstraints>
-                                                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-                                                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-                                                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-                                               </columnConstraints>
-                                               <rowConstraints>
-                                                   <RowConstraints maxHeight="500.0" minHeight="70.0" prefHeight="500.0" vgrow="SOMETIMES" />
-                                                   <RowConstraints minHeight="70.0" vgrow="SOMETIMES" />
-                                               </rowConstraints>
-                                               <children>
-                                       <GridPane layoutX="99.0" layoutY="10.0">
-                                          <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" />
-                                          </columnConstraints>
-                                          <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          </rowConstraints>
-                                          <children>
-                                             <Label text="A1 :">
-                                                <padding>
-                                                   <Insets left="30.0" />
-                                                </padding>
-                                             </Label>
-                                             <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1" />
-                                          </children>
-                                       </GridPane>
-                                       <GridPane GridPane.columnIndex="1">
-                                         <columnConstraints>
-                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" />
-                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" />
-                                         </columnConstraints>
-                                         <rowConstraints>
-                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                         </rowConstraints>
-                                          <children>
-                                                           <Label text="A1 :">
-                                                               <padding>
-                                                                   <Insets left="30.0" />
-                                                               </padding>
-                                                           </Label>
-                                                           <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1" />
-                                          </children>
-                                       </GridPane>
-                                       <GridPane layoutX="135.0" layoutY="10.0" GridPane.columnIndex="2">
-                                          <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" />
-                                          </columnConstraints>
-                                          <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          </rowConstraints>
-                                          <children>
-                                             <Label text="A1 :">
-                                                <padding>
-                                                   <Insets left="30.0" />
-                                                </padding>
-                                             </Label>
-                                             <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1" />
-                                          </children>
-                                       </GridPane>
-                                       <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="1">
-                                          <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" />
-                                          </columnConstraints>
-                                          <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          </rowConstraints>
-                                          <children>
-                                             <Label text="A1 :">
-                                                <padding>
-                                                   <Insets left="30.0" />
-                                                </padding>
-                                             </Label>
-                                             <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1" />
-                                          </children>
-                                       </GridPane>
-                                       <GridPane layoutX="169.0" layoutY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                          <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" />
-                                          </columnConstraints>
-                                          <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          </rowConstraints>
-                                          <children>
-                                             <Label text="A1 :">
-                                                <padding>
-                                                   <Insets left="30.0" />
-                                                </padding>
-                                             </Label>
-                                             <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1" />
-                                          </children>
-                                       </GridPane>
-                                               </children>
-                                           </GridPane>
-                              </children>
-                           </GridPane>
-                           <GridPane layoutX="10.0" layoutY="10.0" minHeight="300.0" GridPane.rowIndex="1">
-                              <columnConstraints>
-                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                              </columnConstraints>
-                              <rowConstraints>
-                                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              </rowConstraints>
-                              <children>
-                                 <Label text="Tape &quot;A&quot;" GridPane.halignment="CENTER" />
-                                 <GridPane GridPane.rowIndex="1">
-                                    <columnConstraints>
-                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" />
-                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                       <RowConstraints minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <children>
-                                       <Label text="Content">
-                                          <GridPane.margin>
-                                             <Insets left="10.0" />
-                                          </GridPane.margin>
-                                       </Label>
-                                       <TextField GridPane.columnIndex="1">
-                                          <GridPane.margin>
-                                             <Insets left="10.0" />
-                                          </GridPane.margin>
-                                       </TextField>
-                                    </children>
-                                 </GridPane>
-                                 <GridPane GridPane.rowIndex="2">
-                                    <columnConstraints>
-                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" />
-                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <children>
-                                       <Label text="Heads and start positions">
-                                          <GridPane.margin>
-                                             <Insets left="10.0" />
-                                          </GridPane.margin>
-                                       </Label>
-                                       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                                          <children>
-                                             <Button layoutX="5.0" layoutY="10.0" mnemonicParsing="false" styleClass="tapeSettingBtn">
-                                                <graphic>
-                                                   <ImageView pickOnBounds="true" preserveRatio="true">
-                                                      <image>
-                                                         <Image url="@icons/plus.png" />
-                                                      </image>
-                                                   </ImageView>
-                                                </graphic>
-                                             </Button>
-                                             <Button layoutX="50.0" layoutY="10.0" mnemonicParsing="false" styleClass="tapeSettingBtn">
-                                                <graphic>
-                                                   <ImageView pickOnBounds="true" preserveRatio="true">
-                                                      <image>
-                                                         <Image url="@icons/minus.png" />
-                                                      </image>
-                                                   </ImageView>
-                                                </graphic>
-                                             </Button>
-                                          </children>
-                                       </AnchorPane>
-                                    </children>
-                                 </GridPane>
-                                 <GridPane minHeight="-Infinity" prefHeight="0.0" GridPane.rowIndex="3">
-                                    <columnConstraints>
-                                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-                                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-                                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                       <RowConstraints maxHeight="500.0" minHeight="70.0" prefHeight="500.0" vgrow="SOMETIMES" />
-                                       <RowConstraints minHeight="70.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <children>
-                                       <GridPane layoutX="99.0" layoutY="10.0">
-                                          <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" />
-                                          </columnConstraints>
-                                          <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          </rowConstraints>
-                                          <children>
-                                             <Label text="A1 :">
-                                                <padding>
-                                                   <Insets left="30.0" />
-                                                </padding>
-                                             </Label>
-                                             <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1" />
-                                          </children>
-                                       </GridPane>
-                                       <GridPane GridPane.columnIndex="1">
-                                          <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" />
-                                          </columnConstraints>
-                                          <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          </rowConstraints>
-                                          <children>
-                                             <Label text="A1 :">
-                                                <padding>
-                                                   <Insets left="30.0" />
-                                                </padding>
-                                             </Label>
-                                             <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1" />
-                                          </children>
-                                       </GridPane>
-                                       <GridPane layoutX="135.0" layoutY="10.0" GridPane.columnIndex="2">
-                                          <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" />
-                                          </columnConstraints>
-                                          <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          </rowConstraints>
-                                          <children>
-                                             <Label text="A1 :">
-                                                <padding>
-                                                   <Insets left="30.0" />
-                                                </padding>
-                                             </Label>
-                                             <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1" />
-                                          </children>
-                                       </GridPane>
-                                       <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="1">
-                                          <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" />
-                                          </columnConstraints>
-                                          <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          </rowConstraints>
-                                          <children>
-                                             <Label text="A1 :">
-                                                <padding>
-                                                   <Insets left="30.0" />
-                                                </padding>
-                                             </Label>
-                                             <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1" />
-                                          </children>
-                                       </GridPane>
-                                       <GridPane layoutX="169.0" layoutY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                          <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0" />
-                                          </columnConstraints>
-                                          <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          </rowConstraints>
-                                          <children>
-                                             <Label text="A1 :">
-                                                <padding>
-                                                   <Insets left="30.0" />
-                                                </padding>
-                                             </Label>
-                                             <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1" />
-                                          </children>
-                                       </GridPane>
-                                    </children>
-                                 </GridPane>
-                              </children>
-                           </GridPane>
+                                    <GridPane minHeight="200.0" styleClass="tapeContainer" GridPane.halignment="CENTER">
+                                        <columnConstraints>
+                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                                        </columnConstraints>
+                                        <rowConstraints>
+                                            <RowConstraints maxHeight="35.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                            <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                            <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                            <RowConstraints maxHeight="90.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                        </rowConstraints>
+                                        <Label text="Tape &quot;A&quot;" GridPane.halignment="CENTER"/>
+                                        <GridPane GridPane.rowIndex="1">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES"/>
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                            </rowConstraints>
+                                            <Label text="Content">
+                                                <GridPane.margin>
+                                                    <Insets left="10.0"/>
+                                                </GridPane.margin>
+                                            </Label>
+                                            <TextField GridPane.columnIndex="1">
+                                                <GridPane.margin>
+                                                    <Insets left="10.0" right="10.0"/>
+                                                </GridPane.margin>
+                                            </TextField>
+                                        </GridPane>
+                                        <GridPane GridPane.rowIndex="2">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES"/>
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints vgrow="SOMETIMES"/>
+                                            </rowConstraints>
+                                            <Label text="Heads and start positions">
+                                                <GridPane.margin>
+                                                    <Insets left="10.0"/>
+                                                </GridPane.margin>
+                                            </Label>
+                                            <AnchorPane GridPane.columnIndex="1">
+                                                <Button layoutX="5.0" layoutY="10.0" mnemonicParsing="false" styleClass="tapeSettingBtn">
+                                                    <graphic>
+                                                        <ImageView pickOnBounds="true" preserveRatio="true">
+                                                            <Image url="@icons/plus.png"/>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                                <Button layoutX="50.0" layoutY="10.0" mnemonicParsing="false" styleClass="tapeSettingBtn">
+                                                    <graphic>
+                                                        <ImageView pickOnBounds="true" preserveRatio="true">
+                                                            <Image url="@icons/minus.png"/>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                            </AnchorPane>
+                                        </GridPane>
+                                        <GridPane prefHeight="0.0" GridPane.rowIndex="3">
+                                            <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints vgrow="SOMETIMES"/>
+                                            </rowConstraints>
+                                            <GridPane styleClass="headPositionSetting">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0"/>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0"/>
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints vgrow="SOMETIMES"/>
+                                                </rowConstraints>
+                                                <Label text="A1 :" GridPane.halignment="RIGHT"/>
+                                                <TextField text="0" GridPane.columnIndex="1"/>
+                                            </GridPane>
+                                            <GridPane styleClass="headPositionSetting" GridPane.columnIndex="1">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0"/>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0"/>
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints vgrow="SOMETIMES"/>
+                                                </rowConstraints>
+                                                <Label text="A2 :" GridPane.halignment="RIGHT"/>
+                                                <TextField text="0" GridPane.columnIndex="1"/>
+                                            </GridPane>
+                                            <GridPane styleClass="headPositionSetting" GridPane.columnIndex="2">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0"/>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0"/>
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints vgrow="SOMETIMES"/>
+                                                </rowConstraints>
+                                                <Label text="A3 :" GridPane.halignment="RIGHT"/>
+                                                <TextField text="0" GridPane.columnIndex="1"/>
+                                            </GridPane>
+                                            <GridPane styleClass="headPositionSetting" GridPane.columnIndex="3">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0"/>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0"/>
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints vgrow="SOMETIMES"/>
+                                                </rowConstraints>
+                                                <Label text="A4 :" GridPane.halignment="RIGHT"/>
+                                                <TextField text="0" GridPane.columnIndex="1"/>
+                                            </GridPane>
+                                        </GridPane>
+                                    </GridPane>
+                                    <GridPane minHeight="200.0" styleClass="tapeContainer" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                        <columnConstraints>
+                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                                        </columnConstraints>
+                                        <rowConstraints>
+                                            <RowConstraints maxHeight="35.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                            <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                            <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                            <RowConstraints maxHeight="90.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                        </rowConstraints>
+                                        <Label text="Tape &quot;B&quot;" GridPane.halignment="CENTER"/>
+                                        <GridPane GridPane.rowIndex="1">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES"/>
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                            </rowConstraints>
+                                            <Label text="Content">
+                                                <GridPane.margin>
+                                                    <Insets left="10.0"/>
+                                                </GridPane.margin>
+                                            </Label>
+                                            <TextField GridPane.columnIndex="1">
+                                                <GridPane.margin>
+                                                    <Insets left="10.0" right="10.0"/>
+                                                </GridPane.margin>
+                                            </TextField>
+                                        </GridPane>
+                                        <GridPane GridPane.rowIndex="2">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES"/>
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints vgrow="SOMETIMES"/>
+                                            </rowConstraints>
+                                            <Label text="Heads and start positions">
+                                                <GridPane.margin>
+                                                    <Insets left="10.0"/>
+                                                </GridPane.margin>
+                                            </Label>
+                                            <AnchorPane GridPane.columnIndex="1">
+                                                <Button layoutX="5.0" layoutY="10.0" mnemonicParsing="false" styleClass="tapeSettingBtn">
+                                                    <graphic>
+                                                        <ImageView pickOnBounds="true" preserveRatio="true">
+                                                            <Image url="@icons/plus.png"/>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                                <Button layoutX="50.0" layoutY="10.0" mnemonicParsing="false" styleClass="tapeSettingBtn">
+                                                    <graphic>
+                                                        <ImageView pickOnBounds="true" preserveRatio="true">
+                                                            <Image url="@icons/minus.png"/>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                            </AnchorPane>
+                                        </GridPane>
+                                        <GridPane prefHeight="0.0" GridPane.rowIndex="3">
+                                            <columnConstraints>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints vgrow="SOMETIMES"/>
+                                            </rowConstraints>
+                                            <GridPane styleClass="headPositionSetting">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0"/>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0"/>
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints vgrow="SOMETIMES"/>
+                                                </rowConstraints>
+                                                <Label text="B1 :" GridPane.halignment="RIGHT"/>
+                                                <TextField text="0" GridPane.columnIndex="1"/>
+                                            </GridPane>
+                                            <GridPane styleClass="headPositionSetting" GridPane.columnIndex="1">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0"/>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0"/>
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints vgrow="SOMETIMES"/>
+                                                </rowConstraints>
+                                                <Label text="B2 :" GridPane.halignment="RIGHT"/>
+                                                <TextField text="0" GridPane.columnIndex="1"/>
+                                            </GridPane>
+                                            <GridPane styleClass="headPositionSetting" GridPane.columnIndex="2">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0"/>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0"/>
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints vgrow="SOMETIMES"/>
+                                                </rowConstraints>
+                                                <Label text="B3 :" GridPane.halignment="RIGHT"/>
+                                                <TextField text="0" GridPane.columnIndex="1"/>
+                                            </GridPane>
+                                            <GridPane styleClass="headPositionSetting" GridPane.columnIndex="3">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0"/>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0"/>
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints vgrow="SOMETIMES"/>
+                                                </rowConstraints>
+                                                <Label text="B4 :" GridPane.halignment="RIGHT"/>
+                                                <TextField text="0" GridPane.columnIndex="1"/>
+                                            </GridPane>
+                                            <GridPane styleClass="headPositionSetting" GridPane.columnIndex="4">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0"/>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0"/>
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints vgrow="SOMETIMES"/>
+                                                </rowConstraints>
+                                                <Label text="B5 :" GridPane.halignment="RIGHT"/>
+                                                <TextField text="0" GridPane.columnIndex="1"/>
+                                            </GridPane>
+                                        </GridPane>
+                                    </GridPane>
+                                    <GridPane layoutX="10.0" layoutY="200.0" minHeight="190.0" styleClass="tapeContainer" GridPane.rowIndex="2">
+                                        <columnConstraints>
+                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                                        </columnConstraints>
+                                        <rowConstraints>
+                                            <RowConstraints maxHeight="35.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                            <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                            <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                            <RowConstraints maxHeight="90.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                        </rowConstraints>
+                                        <children>
+                                            <Label text="Tape &quot;B&quot;" GridPane.halignment="CENTER"/>
+                                            <GridPane GridPane.rowIndex="1">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0"/>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+                                                </rowConstraints>
+                                                <children>
+                                                    <Label text="Content">
+                                                        <GridPane.margin>
+                                                            <Insets left="10.0"/>
+                                                        </GridPane.margin>
+                                                    </Label>
+                                                    <TextField GridPane.columnIndex="1">
+                                                        <GridPane.margin>
+                                                            <Insets left="10.0" right="10.0"/>
+                                                        </GridPane.margin>
+                                                    </TextField>
+                                                </children>
+                                            </GridPane>
+                                            <GridPane GridPane.rowIndex="2">
+                                                <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0"/>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                </rowConstraints>
+                                                <children>
+                                                    <Label text="Heads and start positions">
+                                                        <GridPane.margin>
+                                                            <Insets left="10.0"/>
+                                                        </GridPane.margin>
+                                                    </Label>
+                                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                                        <children>
+                                                            <Button layoutX="5.0" layoutY="10.0" mnemonicParsing="false" styleClass="tapeSettingBtn">
+                                                                <graphic>
+                                                                    <ImageView pickOnBounds="true" preserveRatio="true">
+                                                                        <image>
+                                                                            <Image url="@icons/plus.png"/>
+                                                                        </image>
+                                                                    </ImageView>
+                                                                </graphic>
+                                                            </Button>
+                                                            <Button layoutX="50.0" layoutY="10.0" mnemonicParsing="false" styleClass="tapeSettingBtn">
+                                                                <graphic>
+                                                                    <ImageView pickOnBounds="true" preserveRatio="true">
+                                                                        <image>
+                                                                            <Image url="@icons/minus.png"/>
+                                                                        </image>
+                                                                    </ImageView>
+                                                                </graphic>
+                                                            </Button>
+                                                        </children>
+                                                    </AnchorPane>
+                                                </children>
+                                            </GridPane>
+                                            <GridPane minHeight="-Infinity" prefHeight="0.0" GridPane.rowIndex="3">
+                                                <columnConstraints>
+                                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="96.0"/>
+                                                </columnConstraints>
+                                                <rowConstraints>
+                                                    <RowConstraints vgrow="SOMETIMES"/>
+                                                </rowConstraints>
+                                                <children>
+                                                    <GridPane layoutX="99.0" layoutY="10.0">
+                                                        <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0"/>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0"/>
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                        </rowConstraints>
+                                                        <children>
+                                                            <Label text="A1 :" GridPane.halignment="RIGHT">
+                                                                <padding>
+                                                                    <Insets right="5.0"/>
+                                                                </padding>
+                                                            </Label>
+                                                            <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1"/>
+                                                        </children>
+                                                    </GridPane>
+                                                    <GridPane GridPane.columnIndex="1">
+                                                        <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0"/>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0"/>
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                        </rowConstraints>
+                                                        <children>
+                                                            <Label text="A1 :" GridPane.halignment="RIGHT">
+                                                                <padding>
+                                                                    <Insets right="5.0"/>
+                                                                </padding>
+                                                            </Label>
+                                                            <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1"/>
+                                                        </children>
+                                                    </GridPane>
+                                                    <GridPane layoutX="135.0" layoutY="10.0" GridPane.columnIndex="2">
+                                                        <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0"/>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0"/>
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                        </rowConstraints>
+                                                        <children>
+                                                            <Label text="A1 :" GridPane.halignment="RIGHT">
+                                                                <padding>
+                                                                    <Insets right="5.0"/>
+                                                                </padding>
+                                                            </Label>
+                                                            <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1"/>
+                                                        </children>
+                                                    </GridPane>
+                                                    <GridPane layoutX="10.0" layoutY="10.0" GridPane.columnIndex="3">
+                                                        <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0"/>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0"/>
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                        </rowConstraints>
+                                                        <children>
+                                                            <Label text="A1 :" GridPane.halignment="RIGHT">
+                                                                <padding>
+                                                                    <Insets right="5.0"/>
+                                                                </padding>
+                                                            </Label>
+                                                            <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1"/>
+                                                        </children>
+                                                    </GridPane>
+                                                    <GridPane layoutX="169.0" layoutY="10.0" GridPane.columnIndex="4">
+                                                        <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0"/>
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="55.0" minWidth="10.0"/>
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                        </rowConstraints>
+                                                        <children>
+                                                            <Label text="A1 :" GridPane.halignment="RIGHT">
+                                                                <padding>
+                                                                    <Insets right="5.0"/>
+                                                                </padding>
+                                                            </Label>
+                                                            <TextField alignment="CENTER_RIGHT" maxWidth="50.0" text="0" GridPane.columnIndex="1"/>
+                                                        </children>
+                                                    </GridPane>
+                                                </children>
+                                            </GridPane>
+                                        </children>
+                                    </GridPane>
 
                                 </GridPane>
                             </ScrollPane>
@@ -443,61 +522,61 @@
                     <bottom>
                         <Button fx:id="newTapeBtn" text="New _tape" BorderPane.alignment="BOTTOM_LEFT">
                             <BorderPane.margin>
-                                <Insets bottom="10.0" left="10.0" top="5.0" />
+                                <Insets bottom="10.0" left="10.0" top="5.0"/>
                             </BorderPane.margin>
                         </Button>
                     </bottom>
                 </BorderPane>
                 <BorderPane styleClass="section" GridPane.columnIndex="2">
                     <GridPane.margin>
-                        <Insets left="1.0" />
+                        <Insets left="1.0"/>
                     </GridPane.margin>
                     <top>
-                        <Label alignment="CENTER" text="Rules" BorderPane.alignment="CENTER" />
+                        <Label alignment="CENTER" text="Rules" BorderPane.alignment="CENTER"/>
                     </top>
                     <center>
                         <TextArea fx:id="ruleInputTextArea" BorderPane.alignment="CENTER">
                             <BorderPane.margin>
-                                <Insets bottom="5.0" left="10.0" right="10.0" />
+                                <Insets bottom="5.0" left="10.0" right="10.0"/>
                             </BorderPane.margin>
                         </TextArea>
                     </center>
                     <bottom>
                         <GridPane BorderPane.alignment="CENTER">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <BorderPane.margin>
-                                <Insets bottom="10.0" left="10.0" right="10.0" />
+                                <Insets bottom="10.0" left="10.0" right="10.0"/>
                             </BorderPane.margin>
                             <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                <Button styleClass="rulesControlBtns" text="_New" />
-                                <Button layoutX="76.0" styleClass="rulesControlBtns" text="_Check" />
+                                <Button styleClass="rulesControlBtns" text="_New"/>
+                                <Button layoutX="76.0" styleClass="rulesControlBtns" text="_Check"/>
                             </AnchorPane>
-                            <Button text="_Initialise" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                            <Button text="_Initialise" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
                         </GridPane>
                     </bottom>
                 </BorderPane>
             </GridPane>
             <GridPane styleClass="section" GridPane.rowIndex="1">
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                 </rowConstraints>
                 <BorderPane GridPane.valignment="TOP">
                     <center>
                         <GridPane>
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                         </GridPane>
                     </center>
@@ -507,7 +586,7 @@
                                 <graphic>
                                     <ImageView pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@icons/restart.png" />
+                                            <Image url="@icons/restart.png"/>
                                         </image>
                                     </ImageView>
                                 </graphic>
@@ -516,7 +595,7 @@
                                 <graphic>
                                     <ImageView pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@icons/prevStep.png" />
+                                            <Image url="@icons/prevStep.png"/>
                                         </image>
                                     </ImageView>
                                 </graphic>
@@ -525,7 +604,7 @@
                                 <graphic>
                                     <ImageView pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@icons/nextStep.png" />
+                                            <Image url="@icons/nextStep.png"/>
                                         </image>
                                     </ImageView>
                                 </graphic>
@@ -534,13 +613,13 @@
                                 <graphic>
                                     <ImageView pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@icons/finish.png" />
+                                            <Image url="@icons/finish.png"/>
                                         </image>
                                     </ImageView>
                                 </graphic>
                             </Button>
                             <BorderPane.margin>
-                                <Insets bottom="3.0" />
+                                <Insets bottom="3.0"/>
                             </BorderPane.margin>
                         </AnchorPane>
                     </bottom>
@@ -549,6 +628,6 @@
         </GridPane>
     </center>
     <padding>
-        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
     </padding>
 </BorderPane>
