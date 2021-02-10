@@ -124,11 +124,13 @@
 
 .tapeContainers {
     -fx-background-color: #1D2B35;
+    -fx-min-height: 232.0;
 }
 
 .tapeContainer {
     -fx-border-color: #D2D2D2;
     -fx-border-width: 0 0 1 0;
+    -fx-min-height: 200.0;
 }
 
 .headPositionSetting .label {
