@@ -15,6 +15,10 @@
     -fx-pref-height: 38.0;
 }
 
+#configPane {
+    -fx-pref-width: 1000;
+}
+
 .button {
     -fx-background-color: #39556A;
     -fx-text-fill: #D2D2D2;
@@ -107,4 +111,33 @@
     -fx-min-width: 45.0;
     -fx-pref-height: 45.0;
     -fx-pref-width: 45.0;
+}
+
+.tapeSettingBtn {
+    -fx-border-radius: 100;
+    -fx-background-radius: 100;
+    -fx-min-height: 35.0;
+    -fx-min-width: 35.0;
+    -fx-pref-height: 35.0;
+    -fx-pref-width: 35.0;
+}
+
+.tapeContainers {
+    -fx-background-color: #1D2B35;
+    -fx-min-height: 232.0;
+}
+
+.tapeContainer {
+    -fx-border-color: #D2D2D2;
+    -fx-border-width: 0 0 1 0;
+    -fx-min-height: 200.0;
+}
+
+.headPositionSetting .label {
+    -fx-padding: 0 5 0 0;
+}
+
+.headPositionSetting .text-field {
+    -fx-max-width: 50;
+    -fx-alignment: center-right;
 }

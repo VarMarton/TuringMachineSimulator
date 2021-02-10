@@ -5,7 +5,8 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="mainPane" stylesheets="@mainView.css" fx:controller="controller.MainController" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="mainPane" stylesheets="@mainView.css" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
     <top>
         <AnchorPane fx:id="menuBar" styleClass="section" BorderPane.alignment="CENTER_LEFT">
             <Button layoutX="3.0" layoutY="3.0" text="_Config"/>
@@ -86,14 +87,23 @@
                                 <TextField fx:id="startStateInput" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                                 <TextField fx:id="endStatesInput" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                             </GridPane>
+                            <ScrollPane fitToWidth="true" GridPane.rowIndex="1">
+                                <GridPane fx:id="tapesSettingContainer" styleClass="tapeContainers">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES"/>
+                                    </columnConstraints>
+                                </GridPane>
+                            </ScrollPane>
                         </GridPane>
                     </center>
                     <bottom>
-                        <Button text="New _tape" BorderPane.alignment="BOTTOM_LEFT">
+                        <AnchorPane >
+                            <Button fx:id="newTapeBtn" text="New _tape"/>
+                            <Button fx:id="deleteTapeBtn" layoutX="97.0" text="_Delete tape" disable="true"/>
                             <BorderPane.margin>
-                                <Insets bottom="10.0" left="10.0"/>
+                                <Insets bottom="10.0" left="10.0" top="10.0"/>
                             </BorderPane.margin>
-                        </Button>
+                        </AnchorPane>
                     </bottom>
                 </BorderPane>
                 <BorderPane styleClass="section" GridPane.columnIndex="2">
