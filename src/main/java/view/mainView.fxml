@@ -9,10 +9,9 @@
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
     <top>
         <AnchorPane fx:id="menuBar" styleClass="section" BorderPane.alignment="CENTER_LEFT">
-            <Button layoutX="3.0" layoutY="3.0" text="_Config"/>
-            <Button layoutX="76.0" layoutY="3.0" text="_Export"/>
-            <Button layoutX="149.0" layoutY="3.0" text="_Import"/>
-            <Button fx:id="helpButton" layoutX="222.0" layoutY="3.0" text="_Help"/>
+            <Button layoutX="3.0" layoutY="3.0" text="_Export"/>
+            <Button layoutX="76.0" layoutY="3.0" text="_Import"/>
+            <Button fx:id="helpButton" layoutX="149.0" layoutY="3.0" text="_Help"/>
         </AnchorPane>
     </top>
     <center>

@@ -1,4 +1,4 @@
-.root{
+.root {
     -fx-background-color: #283B48;
 }
 
@@ -11,7 +11,7 @@
 }
 
 #menuBar {
-    -fx-max-width: 295.0;
+    -fx-max-width: 222.0;
     -fx-pref-height: 38.0;
 }
 
