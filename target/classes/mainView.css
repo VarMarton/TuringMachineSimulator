@@ -141,3 +141,29 @@
     -fx-max-width: 50;
     -fx-alignment: center-right;
 }
+
+.link {
+    -fx-underline: false;
+}
+
+.link:hover {
+    -fx-background-color: #39556A;
+    -fx-cursor: default;
+}
+
+.headBtn{
+    -fx-text-fill: #39556A;
+    -fx-background-color: #D2D2D2;
+    -fx-underline: false;
+    -fx-wrap-text: true;
+    -fx-effect: none;
+}
+
+.headBtn:hover{
+    -fx-background-color: #D2D2D2;
+    -fx-cursor: default;
+}
+
+#tapesContainer {
+    -fx-min-height: 419;
+}
