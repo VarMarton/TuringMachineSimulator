@@ -1,5 +1,3 @@
-import com.sun.javaws.IconUtil;
-import controller.GeneratedUIKeys;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,5 +30,9 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(e -> {
             LOGGER.info("TuringMachineSimulator has finished.");
         });
+/*
+        primaryStage.widthProperty().addListener((obs, oldVal, newVal) -> {
+            System.out.println(newVal);
+        });*/
     }
 }

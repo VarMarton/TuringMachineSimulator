@@ -1,5 +1,6 @@
 .root {
     -fx-background-color: #283B48;
+    -fx-font-size: 5;
 }
 
 .section {
@@ -144,6 +145,8 @@
 
 .link {
     -fx-underline: false;
+    -fx-min-width: 35;
+    -fx-max-width: 35;
 }
 
 .link:hover {
@@ -151,7 +154,7 @@
     -fx-cursor: default;
 }
 
-.headBtn{
+.normalHeadBtn {
     -fx-text-fill: #39556A;
     -fx-background-color: #D2D2D2;
     -fx-underline: false;
@@ -159,11 +162,34 @@
     -fx-effect: none;
 }
 
-.headBtn:hover{
-    -fx-background-color: #D2D2D2;
+.normalHeadBtn:hover {
+    -fx-background-color: #d2d2d2;
+    -fx-cursor: default;
+}
+
+.higherHeadBtn {
+    -fx-text-fill: #39556A;
+    -fx-background-color: #bdbdbd;
+    -fx-underline: false;
+    -fx-wrap-text: true;
+    -fx-effect: none;
+}
+
+.higherHeadBtn:hover {
+    -fx-background-color: #bdbdbd;
     -fx-cursor: default;
 }
 
 #tapesContainer {
     -fx-min-height: 419;
+    -fx-padding: 0 20 0 20;
+}
+
+.tape {
+    -fx-padding: 0 0 0 0;
+    -fx-background-color: #1D2B35;
+}
+
+.shadowedPane {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 20, 0.5, 5, 0);
 }

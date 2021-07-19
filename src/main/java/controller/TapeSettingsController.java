@@ -10,8 +10,6 @@ import java.util.ArrayList;
 public class TapeSettingsController {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private final String[] TAPE_SETTING_NAMES = {"A", "B", "C", "D", "E"};
-
     private GridPane root;
     private ArrayList<OneTapeSettingController> tapeSettingControllers;
     private Button newTapeBtn;
@@ -25,9 +23,9 @@ public class TapeSettingsController {
     }
 
     public void addNewTapeSetting() {
-        OneTapeSettingController tapeSetting = new OneTapeSettingController(this.root, tapeSettingControllers.size(), TAPE_SETTING_NAMES[tapeSettingControllers.size()]);
+        OneTapeSettingController tapeSetting = new OneTapeSettingController(this.root, tapeSettingControllers.size(), TapeController.TAPE_NAMES[tapeSettingControllers.size()]);
         tapeSettingControllers.add(tapeSetting);
-        if (tapeSettingControllers.size() == TAPE_SETTING_NAMES.length) {
+        if (tapeSettingControllers.size() == TapeController.TAPE_NAMES.length) {
             this.newTapeBtn.setDisable(true);
         }
         if(tapeSettingControllers.size() > 1){
@@ -41,7 +39,7 @@ public class TapeSettingsController {
         if (tapeSettingControllers.size() == 1) {
             this.deleteTapeBtn.setDisable(true);
         }
-        if (tapeSettingControllers.size() < TAPE_SETTING_NAMES.length) {
+        if (tapeSettingControllers.size() < TapeController.TAPE_NAMES.length) {
             this.newTapeBtn.setDisable(false);
         }
     }
