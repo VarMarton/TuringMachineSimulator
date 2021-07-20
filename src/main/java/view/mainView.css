@@ -11,9 +11,12 @@
     -fx-border-color: #D2D2D2;
 }
 
-#menuBar {
-    -fx-max-width: 222.0;
-    -fx-pref-height: 38.0;
+.menuBarBtn {
+    -fx-pref-width: 70.0;
+}
+
+.languageBtn {
+    -fx-pref-width: 50.0;
 }
 
 #configPane {

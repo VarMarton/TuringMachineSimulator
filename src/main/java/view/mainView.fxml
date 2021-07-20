@@ -5,14 +5,61 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="mainPane" minHeight="900" minWidth="1500" stylesheets="@mainView.css" xmlns="http://javafx.com/javafx/8.0.291"
+<?import java.lang.Double?>
+<BorderPane fx:id="mainPane" minHeight="900" minWidth="1500" stylesheets="@mainView.css"
+            xmlns="http://javafx.com/javafx/8.0.291"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+    <fx:define>
+        <Double fx:id="HORIZONTAL_MARGIN" fx:value="3"/>
+        <Double fx:id="VERTICAL_MARGIN" fx:value="2"/>
+    </fx:define>
     <top>
-        <AnchorPane fx:id="menuBar" styleClass="section" BorderPane.alignment="CENTER_LEFT">
-            <Button layoutX="3.0" layoutY="3.0" text="_Export"/>
-            <Button layoutX="76.0" layoutY="3.0" text="_Import"/>
-            <Button fx:id="helpButton" layoutX="149.0" layoutY="3.0" text="_Help"/>
-        </AnchorPane>
+        <BorderPane>
+            <left>
+                <GridPane styleClass="section">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES"/>
+                        <ColumnConstraints hgrow="SOMETIMES"/>
+                        <ColumnConstraints hgrow="SOMETIMES"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <Button fx:id="export" styleClass="menuBarBtn" text="_Export">
+                        <GridPane.margin>
+                            <Insets left="$HORIZONTAL_MARGIN" right="$HORIZONTAL_MARGIN" top="$VERTICAL_MARGIN" bottom="$VERTICAL_MARGIN"/>
+                        </GridPane.margin>
+                    </Button>
+                    <Button fx:id="import" styleClass="menuBarBtn" GridPane.columnIndex="1" text="_Import"/>
+                    <Button fx:id="help" styleClass="menuBarBtn" GridPane.columnIndex="2" text="_Help">
+                        <GridPane.margin>
+                            <Insets left="$HORIZONTAL_MARGIN" right="$HORIZONTAL_MARGIN"/>
+                        </GridPane.margin>
+                    </Button>
+                </GridPane>
+            </left>
+            <right>
+                <GridPane styleClass="section">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES"/>
+                        <ColumnConstraints hgrow="SOMETIMES"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <Button fx:id="hun" styleClass="languageBtn" text="_HU">
+                        <GridPane.margin>
+                            <Insets left="$HORIZONTAL_MARGIN" right="$HORIZONTAL_MARGIN"/>
+                        </GridPane.margin>
+                    </Button>
+                    <Button fx:id="eng" styleClass="languageBtn" GridPane.columnIndex="1" text="_EN">
+                        <GridPane.margin>
+                            <Insets right="$HORIZONTAL_MARGIN"/>
+                        </GridPane.margin>
+                    </Button>
+                </GridPane>
+            </right>
+        </BorderPane>
     </top>
     <center>
         <GridPane>
@@ -21,182 +68,197 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
-            <GridPane>
+            <GridPane GridPane.rowIndex="0" GridPane.columnIndex="0">
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                 </columnConstraints>
                 <rowConstraints>
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                 </rowConstraints>
-                <GridPane.margin>
-                    <Insets bottom="5.0" top="5.0"/>
-                </GridPane.margin>
-                <BorderPane styleClass="section">
+                <GridPane>
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
                     <GridPane.margin>
-                        <Insets right="1.0"/>
+                        <Insets bottom="5.0" top="5.0"/>
                     </GridPane.margin>
-                    <top>
-                        <Label alignment="CENTER" text="Info" BorderPane.alignment="CENTER"/>
-                    </top>
-                    <center>
-                        <TextArea fx:id="infoTextArea" editable="false" text="Test string" wrapText="true" BorderPane.alignment="CENTER">
-                            <BorderPane.margin>
-                                <Insets bottom="10.0" left="10.0" right="10.0"/>
-                            </BorderPane.margin>
-                        </TextArea>
-                    </center>
-                </BorderPane>
-                <BorderPane styleClass="section" GridPane.columnIndex="1">
-                    <GridPane.margin>
-                        <Insets left="1.0" right="1.0"/>
-                    </GridPane.margin>
-                    <top>
-                        <Label alignment="CENTER" text="Settings" BorderPane.alignment="CENTER"/>
-                    </top>
-                    <center>
-                        <GridPane BorderPane.alignment="CENTER">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints maxHeight="149" vgrow="SOMETIMES"/>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                            </rowConstraints>
-                            <GridPane fx:id="stateSettingContainer" GridPane.vgrow="SOMETIMES">
+                    <BorderPane styleClass="section">
+                        <GridPane.margin>
+                            <Insets right="1.0"/>
+                        </GridPane.margin>
+                        <top>
+                            <Label alignment="CENTER" text="Info" BorderPane.alignment="CENTER"/>
+                        </top>
+                        <center>
+                            <TextArea fx:id="infoTextArea" editable="false" text="Test string" wrapText="true"
+                                      BorderPane.alignment="CENTER">
+                                <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0"/>
+                                </BorderPane.margin>
+                            </TextArea>
+                        </center>
+                    </BorderPane>
+                    <BorderPane styleClass="section" GridPane.columnIndex="1">
+                        <GridPane.margin>
+                            <Insets left="1.0" right="1.0"/>
+                        </GridPane.margin>
+                        <top>
+                            <Label alignment="CENTER" text="Settings" BorderPane.alignment="CENTER"/>
+                        </top>
+                        <center>
+                            <GridPane BorderPane.alignment="CENTER">
                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0"/>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                 </columnConstraints>
                                 <rowConstraints>
-                                    <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never"/>
-                                    <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never"/>
-                                    <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never"/>
+                                    <RowConstraints maxHeight="149" vgrow="SOMETIMES"/>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                 </rowConstraints>
-                                <GridPane.margin>
-                                    <Insets left="10.0" right="10.0"/>
-                                </GridPane.margin>
-                                <Label text="States"/>
-                                <Label text="Start state" GridPane.rowIndex="1"/>
-                                <Label text="End states" GridPane.rowIndex="2"/>
-                                <TextField fx:id="statesInput" GridPane.columnIndex="1"/>
-                                <TextField fx:id="startStateInput" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                                <TextField fx:id="endStatesInput" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                <GridPane fx:id="stateSettingContainer" GridPane.vgrow="SOMETIMES">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never"/>
+                                        <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never"/>
+                                        <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never"/>
+                                    </rowConstraints>
+                                    <GridPane.margin>
+                                        <Insets left="10.0" right="10.0"/>
+                                    </GridPane.margin>
+                                    <Label text="States"/>
+                                    <Label text="Start state" GridPane.rowIndex="1"/>
+                                    <Label text="End states" GridPane.rowIndex="2"/>
+                                    <TextField fx:id="statesInput" GridPane.columnIndex="1"/>
+                                    <TextField fx:id="startStateInput" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                    <TextField fx:id="endStatesInput" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                </GridPane>
+                                <ScrollPane fitToWidth="true" GridPane.rowIndex="1">
+                                    <GridPane fx:id="tapesSettingContainer" styleClass="tapeContainers">
+                                        <columnConstraints>
+                                            <ColumnConstraints hgrow="SOMETIMES"/>
+                                        </columnConstraints>
+                                    </GridPane>
+                                </ScrollPane>
                             </GridPane>
+                        </center>
+                        <bottom>
+                            <AnchorPane>
+                                <Button fx:id="newTapeBtn" text="New _tape"/>
+                                <Button fx:id="deleteTapeBtn" disable="true" layoutX="97.0" text="_Delete tape"/>
+                                <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" top="10.0"/>
+                                </BorderPane.margin>
+                            </AnchorPane>
+                        </bottom>
+                    </BorderPane>
+                    <BorderPane styleClass="section" GridPane.columnIndex="2">
+                        <GridPane.margin>
+                            <Insets left="1.0"/>
+                        </GridPane.margin>
+                        <top>
+                            <Label alignment="CENTER" text="Rules" BorderPane.alignment="CENTER"/>
+                        </top>
+                        <center>
+                            <TextArea fx:id="ruleInputTextArea" BorderPane.alignment="CENTER">
+                                <BorderPane.margin>
+                                    <Insets bottom="5.0" left="10.0" right="10.0"/>
+                                </BorderPane.margin>
+                            </TextArea>
+                        </center>
+                        <bottom>
+                            <GridPane BorderPane.alignment="CENTER">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                </rowConstraints>
+                                <BorderPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0"/>
+                                </BorderPane.margin>
+                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                    <Button styleClass="rulesControlBtns" text="_New"/>
+                                    <Button layoutX="76.0" styleClass="rulesControlBtns" text="_Check"/>
+                                </AnchorPane>
+                                <Button fx:id="initialiseBtn" text="_Initialise" GridPane.columnIndex="1"
+                                        GridPane.halignment="RIGHT"/>
+                            </GridPane>
+                        </bottom>
+                    </BorderPane>
+                </GridPane>
+                <GridPane styleClass="section" GridPane.rowIndex="1">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <BorderPane GridPane.valignment="TOP">
+                        <center>
                             <ScrollPane fitToWidth="true" GridPane.rowIndex="1">
-                                <GridPane fx:id="tapesSettingContainer" styleClass="tapeContainers">
+                                <GridPane fx:id="tapesContainer" styleClass="tapeContainers">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES"/>
                                     </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints/>
+                                        <RowConstraints/>
+                                    </rowConstraints>
                                 </GridPane>
                             </ScrollPane>
-                        </GridPane>
-                    </center>
-                    <bottom>
-                        <AnchorPane>
-                            <Button fx:id="newTapeBtn" text="New _tape"/>
-                            <Button fx:id="deleteTapeBtn" disable="true" layoutX="97.0" text="_Delete tape"/>
-                            <BorderPane.margin>
-                                <Insets bottom="10.0" left="10.0" top="10.0"/>
-                            </BorderPane.margin>
-                        </AnchorPane>
-                    </bottom>
-                </BorderPane>
-                <BorderPane styleClass="section" GridPane.columnIndex="2">
-                    <GridPane.margin>
-                        <Insets left="1.0"/>
-                    </GridPane.margin>
-                    <top>
-                        <Label alignment="CENTER" text="Rules" BorderPane.alignment="CENTER"/>
-                    </top>
-                    <center>
-                        <TextArea fx:id="ruleInputTextArea" BorderPane.alignment="CENTER">
-                            <BorderPane.margin>
-                                <Insets bottom="5.0" left="10.0" right="10.0"/>
-                            </BorderPane.margin>
-                        </TextArea>
-                    </center>
-                    <bottom>
-                        <GridPane BorderPane.alignment="CENTER">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                            </rowConstraints>
-                            <BorderPane.margin>
-                                <Insets bottom="10.0" left="10.0" right="10.0"/>
-                            </BorderPane.margin>
-                            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                <Button styleClass="rulesControlBtns" text="_New"/>
-                                <Button layoutX="76.0" styleClass="rulesControlBtns" text="_Check"/>
+                        </center>
+                        <bottom>
+                            <AnchorPane fx:id="runtimeControlPanel" maxHeight="51.0" maxWidth="250.0"
+                                        BorderPane.alignment="CENTER">
+                                <Button fx:id="restartRuntimeControlBtn" layoutX="20.0" layoutY="3.0"
+                                        styleClass="runtimeControlBtn">
+                                    <graphic>
+                                        <ImageView pickOnBounds="true" preserveRatio="true">
+                                            <Image url="@icons/restart.png"/>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="prevStepRuntimeControlBtn" layoutX="75.0" layoutY="3.0"
+                                        styleClass="runtimeControlBtn">
+                                    <graphic>
+                                        <ImageView pickOnBounds="true" preserveRatio="true">
+                                            <Image url="@icons/prevStep.png"/>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="nextStepRuntimeControlBtn" layoutX="130.0" layoutY="3.0"
+                                        styleClass="runtimeControlBtn">
+                                    <graphic>
+                                        <ImageView pickOnBounds="true" preserveRatio="true">
+                                            <Image url="@icons/nextStep.png"/>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button fx:id="finishRuntimeControlBtn" layoutX="185.0" layoutY="3.0"
+                                        styleClass="runtimeControlBtn">
+                                    <graphic>
+                                        <ImageView pickOnBounds="true" preserveRatio="true">
+                                            <Image url="@icons/finish.png"/>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <BorderPane.margin>
+                                    <Insets bottom="3.0"/>
+                                </BorderPane.margin>
                             </AnchorPane>
-                            <Button fx:id="initialiseBtn" text="_Initialise" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
-                        </GridPane>
-                    </bottom>
-                </BorderPane>
-            </GridPane>
-            <GridPane styleClass="section" GridPane.rowIndex="1">
-                <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                </columnConstraints>
-                <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                </rowConstraints>
-                <BorderPane GridPane.valignment="TOP">
-                    <center>
-                        <ScrollPane fitToWidth="true" GridPane.rowIndex="1">
-                            <GridPane fx:id="tapesContainer" styleClass="tapeContainers">
-                                <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES"/>
-                                </columnConstraints>
-                                <rowConstraints>
-                                    <RowConstraints/>
-                                    <RowConstraints/>
-                                </rowConstraints>
-                            </GridPane>
-                        </ScrollPane>
-                    </center>
-                    <bottom>
-                        <AnchorPane fx:id="runtimeControlPanel" maxHeight="51.0" maxWidth="250.0" BorderPane.alignment="CENTER">
-                            <Button fx:id="restartRuntimeControlBtn" layoutX="20.0" layoutY="3.0" styleClass="runtimeControlBtn">
-                                <graphic>
-                                    <ImageView pickOnBounds="true" preserveRatio="true">
-                                        <Image url="@icons/restart.png"/>
-                                    </ImageView>
-                                </graphic>
-                            </Button>
-                            <Button fx:id="prevStepRuntimeControlBtn" layoutX="75.0" layoutY="3.0" styleClass="runtimeControlBtn">
-                                <graphic>
-                                    <ImageView pickOnBounds="true" preserveRatio="true">
-                                        <Image url="@icons/prevStep.png"/>
-                                    </ImageView>
-                                </graphic>
-                            </Button>
-                            <Button fx:id="nextStepRuntimeControlBtn" layoutX="130.0" layoutY="3.0" styleClass="runtimeControlBtn">
-                                <graphic>
-                                    <ImageView pickOnBounds="true" preserveRatio="true">
-                                        <Image url="@icons/nextStep.png"/>
-                                    </ImageView>
-                                </graphic>
-                            </Button>
-                            <Button fx:id="finishRuntimeControlBtn" layoutX="185.0" layoutY="3.0" styleClass="runtimeControlBtn">
-                                <graphic>
-                                    <ImageView pickOnBounds="true" preserveRatio="true">
-                                        <Image url="@icons/finish.png"/>
-                                    </ImageView>
-                                </graphic>
-                            </Button>
-                            <BorderPane.margin>
-                                <Insets bottom="3.0"/>
-                            </BorderPane.margin>
-                        </AnchorPane>
-                    </bottom>
-                </BorderPane> <!--TODO: EZ MINEK VAN ITT???-->
+                        </bottom>
+                    </BorderPane> <!--TODO: EZ MINEK VAN ITT???-->
+                </GridPane>
             </GridPane>
         </GridPane>
     </center>
