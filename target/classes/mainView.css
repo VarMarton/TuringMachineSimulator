@@ -1,6 +1,5 @@
 .root {
     -fx-background-color: #283B48;
-    -fx-font-size: 5;
 }
 
 .section {
@@ -9,18 +8,6 @@
     -fx-background-radius: 10;
     -fx-border-width: 1;
     -fx-border-color: #D2D2D2;
-}
-
-.menuBarBtn {
-    -fx-pref-width: 70.0;
-}
-
-.languageBtn {
-    -fx-pref-width: 50.0;
-}
-
-#configPane {
-    -fx-pref-width: 1000;
 }
 
 .button {
@@ -37,16 +24,20 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 10, 0, 0, 1);
 }
 
-#menuBar .button {
-    -fx-pref-width: 70;
-}
-
-.rulesControlBtns {
-    -fx-pref-width: 70;
-}
-
 .button:hover {
     -fx-background-color: #496a86;
+}
+
+.unified-width-setting-btn {
+    -fx-pref-width: 70;
+}
+
+.language-btn {
+    -fx-pref-width: 50.0;
+}
+
+#settingsSectionBtnHolder {
+    -fx-max-width: -1;
 }
 
 .label {
@@ -55,26 +46,33 @@
     -fx-font-size: 20;
 }
 
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .content {
+    -fx-background-color: transparent;
+}
+
 .text-area {
     -fx-text-fill: #D2D2D2;
     -fx-font-size: 18;
-    -fx-border-color: #D2D2D2;
-    -fx-border-width: 1 1 1 1;
-    -fx-border-radius: 10;
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-    -fx-text-box-border: transparent;
+    -fx-background-color: transparent;
 }
 
 .text-area .content {
     -fx-background-radius: 10;
 }
 
-#infoTextArea .content {
+#info .content {
     -fx-background-color: #1D2B35;
 }
 
-#ruleInputTextArea .content {
+#rule .content {
     -fx-background-color: #39556A;
 }
 
@@ -95,7 +93,7 @@
     -fx-padding: 5 0 5 0;
 }
 
-#startStateInput {
+#startState {
     -fx-max-width: 200;
 }
 
@@ -107,7 +105,7 @@
     -fx-border-color: #D2D2D2;
 }
 
-.runtimeControlBtn {
+.runtime-control {
     -fx-background-color: #1D2B35;
     -fx-border-radius: 100;
     -fx-background-radius: 100;
@@ -115,6 +113,14 @@
     -fx-min-width: 45.0;
     -fx-pref-height: 45.0;
     -fx-pref-width: 45.0;
+}
+
+#makeRuleSectionBigBtn {
+    -fx-pref-height: 30.0;
+    -fx-pref-width: 40.0;
+    -fx-background-radius: 10;
+    -fx-underline: false;
+    -fx-effect: none;
 }
 
 .tapeSettingBtn {
@@ -126,15 +132,14 @@
     -fx-pref-width: 35.0;
 }
 
-.tapeContainers {
-    -fx-background-color: #1D2B35;
-    -fx-min-height: 232.0;
-}
-
-.tapeContainer {
+#tapeSettingsContainer {
     -fx-border-color: #D2D2D2;
     -fx-border-width: 0 0 1 0;
-    -fx-min-height: 200.0;
+    -fx-background-color: #1D2B35;
+}
+
+.tape-container {
+    -fx-background-color: #1D2B35;
 }
 
 .headPositionSetting .label {
@@ -157,7 +162,7 @@
     -fx-cursor: default;
 }
 
-.normalHeadBtn {
+.normal-head {
     -fx-text-fill: #39556A;
     -fx-background-color: #D2D2D2;
     -fx-underline: false;
@@ -165,12 +170,12 @@
     -fx-effect: none;
 }
 
-.normalHeadBtn:hover {
+.normal-Head:hover {
     -fx-background-color: #d2d2d2;
     -fx-cursor: default;
 }
 
-.higherHeadBtn {
+.higher-Head {
     -fx-text-fill: #39556A;
     -fx-background-color: #bdbdbd;
     -fx-underline: false;
@@ -178,21 +183,12 @@
     -fx-effect: none;
 }
 
-.higherHeadBtn:hover {
+.higher-head:hover {
     -fx-background-color: #bdbdbd;
     -fx-cursor: default;
-}
-
-#tapesContainer {
-    -fx-min-height: 419;
-    -fx-padding: 0 20 0 20;
 }
 
 .tape {
     -fx-padding: 0 0 0 0;
     -fx-background-color: #1D2B35;
-}
-
-.shadowedPane {
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 20, 0.5, 5, 0);
 }

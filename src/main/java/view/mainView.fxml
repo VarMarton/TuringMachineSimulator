@@ -6,12 +6,24 @@
 <?import javafx.scene.layout.*?>
 
 <?import java.lang.Double?>
-<BorderPane fx:id="mainPane" minHeight="900" minWidth="1500" stylesheets="@mainView.css"
+<BorderPane fx:id="mainPane" stylesheets="@mainView.css"
             xmlns="http://javafx.com/javafx/8.0.291"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
     <fx:define>
         <Double fx:id="HORIZONTAL_MARGIN" fx:value="3"/>
         <Double fx:id="VERTICAL_MARGIN" fx:value="2"/>
+        <Double fx:id="DISTANCE_BETWEEN_CENTER_PART" fx:value="5"/>
+        <Double fx:id="TEXT_AREA_MARGIN" fx:value="5"/>
+        <Double fx:id="SECTION_MARGIN" fx:value="1"/>
+        <Double fx:id="SETTINGS_FIRST_COLUMN_WIDTH" fx:value="105"/>
+        <Double fx:id="SETTINGS_ROW_HEIGHT" fx:value="46"/>
+        <Double fx:id="SETTINGS_FIRST_ROW_MARGIN" fx:value="5"/>
+        <Double fx:id="FIRST_ROW_DEFAULT_HEIGHT" fx:value="350"/>
+        <Double fx:id="SETTINGS_SECTION_BTN_HOLDER_MARGIN" fx:value="10"/>
+        <Double fx:id="UNIFIED_BTN_WIDTH" fx:value="70"/>
+        <Double fx:id="RUNTIME_CONTROL_HEIGHT" fx:value="51"/>
+        <Double fx:id="RUNTIME_CONTROL_WIDTH" fx:value="250"/>
+        <Double fx:id="PADDING" fx:value="5"/>
     </fx:define>
     <top>
         <BorderPane>
@@ -25,13 +37,15 @@
                     <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES"/>
                     </rowConstraints>
-                    <Button fx:id="export" styleClass="menuBarBtn" text="_Export">
+                    <Button fx:id="export" styleClass="unified-width-setting-btn" text="_Export">
                         <GridPane.margin>
-                            <Insets left="$HORIZONTAL_MARGIN" right="$HORIZONTAL_MARGIN" top="$VERTICAL_MARGIN" bottom="$VERTICAL_MARGIN"/>
+                            <Insets left="$HORIZONTAL_MARGIN" right="$HORIZONTAL_MARGIN" top="$VERTICAL_MARGIN"
+                                    bottom="$VERTICAL_MARGIN"/>
                         </GridPane.margin>
                     </Button>
-                    <Button fx:id="import" styleClass="menuBarBtn" GridPane.columnIndex="1" text="_Import"/>
-                    <Button fx:id="help" styleClass="menuBarBtn" GridPane.columnIndex="2" text="_Help">
+                    <Button fx:id="import" styleClass="unified-width-setting-btn" GridPane.columnIndex="1"
+                            text="_Import"/>
+                    <Button fx:id="help" styleClass="unified-width-setting-btn" GridPane.columnIndex="2" text="_Help">
                         <GridPane.margin>
                             <Insets left="$HORIZONTAL_MARGIN" right="$HORIZONTAL_MARGIN"/>
                         </GridPane.margin>
@@ -39,7 +53,7 @@
                 </GridPane>
             </left>
             <right>
-                <GridPane styleClass="section">
+                <GridPane styleClass="section" visible="false">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES"/>
                         <ColumnConstraints hgrow="SOMETIMES"/>
@@ -47,12 +61,12 @@
                     <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES"/>
                     </rowConstraints>
-                    <Button fx:id="hun" styleClass="languageBtn" text="_HU">
+                    <Button fx:id="hun" styleClass="language-btn" text="_HU">
                         <GridPane.margin>
                             <Insets left="$HORIZONTAL_MARGIN" right="$HORIZONTAL_MARGIN"/>
                         </GridPane.margin>
                     </Button>
-                    <Button fx:id="eng" styleClass="languageBtn" GridPane.columnIndex="1" text="_EN">
+                    <Button fx:id="eng" styleClass="language-btn" GridPane.columnIndex="1" text="_EN">
                         <GridPane.margin>
                             <Insets right="$HORIZONTAL_MARGIN"/>
                         </GridPane.margin>
@@ -60,209 +74,229 @@
                 </GridPane>
             </right>
         </BorderPane>
+        <BorderPane.margin>
+            <Insets bottom="$DISTANCE_BETWEEN_CENTER_PART"/>
+        </BorderPane.margin>
     </top>
     <center>
-        <GridPane>
+        <GridPane fx:id="center">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints vgrow="SOMETIMES" maxHeight="$FIRST_ROW_DEFAULT_HEIGHT"/>
+                <RowConstraints vgrow="SOMETIMES"/>
             </rowConstraints>
-            <GridPane GridPane.rowIndex="0" GridPane.columnIndex="0">
+            <GridPane GridPane.valignment="TOP">
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints percentWidth="33.33"/>
+                    <ColumnConstraints percentWidth="33.33"/>
+                    <ColumnConstraints hgrow="SOMETIMES"/>
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints vgrow="NEVER"/>
                 </rowConstraints>
-                <GridPane>
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                    </rowConstraints>
-                    <GridPane.margin>
-                        <Insets bottom="5.0" top="5.0"/>
-                    </GridPane.margin>
-                    <BorderPane styleClass="section">
-                        <GridPane.margin>
-                            <Insets right="1.0"/>
-                        </GridPane.margin>
-                        <top>
-                            <Label alignment="CENTER" text="Info" BorderPane.alignment="CENTER"/>
-                        </top>
-                        <center>
-                            <TextArea fx:id="infoTextArea" editable="false" text="Test string" wrapText="true"
-                                      BorderPane.alignment="CENTER">
-                                <BorderPane.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0"/>
-                                </BorderPane.margin>
-                            </TextArea>
-                        </center>
-                    </BorderPane>
-                    <BorderPane styleClass="section" GridPane.columnIndex="1">
-                        <GridPane.margin>
-                            <Insets left="1.0" right="1.0"/>
-                        </GridPane.margin>
-                        <top>
-                            <Label alignment="CENTER" text="Settings" BorderPane.alignment="CENTER"/>
-                        </top>
-                        <center>
-                            <GridPane BorderPane.alignment="CENTER">
+                <BorderPane styleClass="section" GridPane.valignment="TOP" minHeight="$FIRST_ROW_DEFAULT_HEIGHT"
+                            maxHeight="$FIRST_ROW_DEFAULT_HEIGHT">
+                    <top>
+                        <Label BorderPane.alignment="CENTER" text="Information"/>
+                    </top>
+                    <center>
+                        <TextArea fx:id="info" editable="false" wrapText="true">
+                            <BorderPane.margin>
+                                <Insets bottom="$TEXT_AREA_MARGIN" left="$TEXT_AREA_MARGIN" right="$TEXT_AREA_MARGIN"/>
+                            </BorderPane.margin>
+                        </TextArea>
+                    </center>
+                </BorderPane>
+                <BorderPane styleClass="section" GridPane.columnIndex="1" GridPane.valignment="TOP"
+                            minHeight="$FIRST_ROW_DEFAULT_HEIGHT"
+                            maxHeight="$FIRST_ROW_DEFAULT_HEIGHT">
+                    <top>
+                        <Label BorderPane.alignment="CENTER" text="Settings"/>
+                    </top>
+                    <center>
+                        <GridPane BorderPane.alignment="CENTER">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES"/>
+                                <RowConstraints vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <GridPane id="stateSettingContainer" GridPane.vgrow="SOMETIMES">
                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    <ColumnConstraints prefWidth="$SETTINGS_FIRST_COLUMN_WIDTH"/>
+                                    <ColumnConstraints hgrow="SOMETIMES"/>
                                 </columnConstraints>
                                 <rowConstraints>
-                                    <RowConstraints maxHeight="149" vgrow="SOMETIMES"/>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                    <RowConstraints prefHeight="$SETTINGS_ROW_HEIGHT"/>
+                                    <RowConstraints prefHeight="$SETTINGS_ROW_HEIGHT"/>
+                                    <RowConstraints prefHeight="$SETTINGS_ROW_HEIGHT"/>
                                 </rowConstraints>
-                                <GridPane fx:id="stateSettingContainer" GridPane.vgrow="SOMETIMES">
-                                    <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0"/>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never"/>
-                                        <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never"/>
-                                        <RowConstraints minHeight="46.0" prefHeight="46.0" vgrow="never"/>
-                                    </rowConstraints>
-                                    <GridPane.margin>
-                                        <Insets left="10.0" right="10.0"/>
-                                    </GridPane.margin>
-                                    <Label text="States"/>
-                                    <Label text="Start state" GridPane.rowIndex="1"/>
-                                    <Label text="End states" GridPane.rowIndex="2"/>
-                                    <TextField fx:id="statesInput" GridPane.columnIndex="1"/>
-                                    <TextField fx:id="startStateInput" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                                    <TextField fx:id="endStatesInput" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                                </GridPane>
-                                <ScrollPane fitToWidth="true" GridPane.rowIndex="1">
-                                    <GridPane fx:id="tapesSettingContainer" styleClass="tapeContainers">
-                                        <columnConstraints>
-                                            <ColumnConstraints hgrow="SOMETIMES"/>
-                                        </columnConstraints>
-                                    </GridPane>
-                                </ScrollPane>
+                                <Label text="States"/>
+                                <Label text="Start state" GridPane.rowIndex="1"/>
+                                <Label text="End states" GridPane.rowIndex="2"/>
+                                <TextField fx:id="states" GridPane.columnIndex="1"/>
+                                <TextField fx:id="startState" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                <TextField fx:id="endStates" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                <GridPane.margin>
+                                    <Insets left="$SETTINGS_FIRST_ROW_MARGIN" right="$SETTINGS_FIRST_ROW_MARGIN"/>
+                                </GridPane.margin>
                             </GridPane>
-                        </center>
-                        <bottom>
-                            <AnchorPane>
-                                <Button fx:id="newTapeBtn" text="New _tape"/>
-                                <Button fx:id="deleteTapeBtn" disable="true" layoutX="97.0" text="_Delete tape"/>
-                                <BorderPane.margin>
-                                    <Insets bottom="10.0" left="10.0" top="10.0"/>
-                                </BorderPane.margin>
-                            </AnchorPane>
-                        </bottom>
-                    </BorderPane>
-                    <BorderPane styleClass="section" GridPane.columnIndex="2">
-                        <GridPane.margin>
-                            <Insets left="1.0"/>
-                        </GridPane.margin>
-                        <top>
-                            <Label alignment="CENTER" text="Rules" BorderPane.alignment="CENTER"/>
-                        </top>
-                        <center>
-                            <TextArea fx:id="ruleInputTextArea" BorderPane.alignment="CENTER">
-                                <BorderPane.margin>
-                                    <Insets bottom="5.0" left="10.0" right="10.0"/>
-                                </BorderPane.margin>
-                            </TextArea>
-                        </center>
-                        <bottom>
-                            <GridPane BorderPane.alignment="CENTER">
-                                <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                </columnConstraints>
-                                <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                </rowConstraints>
-                                <BorderPane.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0"/>
-                                </BorderPane.margin>
-                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                    <Button styleClass="rulesControlBtns" text="_New"/>
-                                    <Button layoutX="76.0" styleClass="rulesControlBtns" text="_Check"/>
-                                </AnchorPane>
-                                <Button fx:id="initialiseBtn" text="_Initialise" GridPane.columnIndex="1"
-                                        GridPane.halignment="RIGHT"/>
-                            </GridPane>
-                        </bottom>
-                    </BorderPane>
-                </GridPane>
-                <GridPane styleClass="section" GridPane.rowIndex="1">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                    </rowConstraints>
-                    <BorderPane GridPane.valignment="TOP">
-                        <center>
                             <ScrollPane fitToWidth="true" GridPane.rowIndex="1">
-                                <GridPane fx:id="tapesContainer" styleClass="tapeContainers">
+                                <GridPane fx:id="tapeSettingsContainer">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES"/>
                                     </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints/>
-                                        <RowConstraints/>
-                                    </rowConstraints>
                                 </GridPane>
                             </ScrollPane>
-                        </center>
-                        <bottom>
-                            <AnchorPane fx:id="runtimeControlPanel" maxHeight="51.0" maxWidth="250.0"
-                                        BorderPane.alignment="CENTER">
-                                <Button fx:id="restartRuntimeControlBtn" layoutX="20.0" layoutY="3.0"
-                                        styleClass="runtimeControlBtn">
-                                    <graphic>
-                                        <ImageView pickOnBounds="true" preserveRatio="true">
-                                            <Image url="@icons/restart.png"/>
-                                        </ImageView>
-                                    </graphic>
-                                </Button>
-                                <Button fx:id="prevStepRuntimeControlBtn" layoutX="75.0" layoutY="3.0"
-                                        styleClass="runtimeControlBtn">
-                                    <graphic>
-                                        <ImageView pickOnBounds="true" preserveRatio="true">
-                                            <Image url="@icons/prevStep.png"/>
-                                        </ImageView>
-                                    </graphic>
-                                </Button>
-                                <Button fx:id="nextStepRuntimeControlBtn" layoutX="130.0" layoutY="3.0"
-                                        styleClass="runtimeControlBtn">
-                                    <graphic>
-                                        <ImageView pickOnBounds="true" preserveRatio="true">
-                                            <Image url="@icons/nextStep.png"/>
-                                        </ImageView>
-                                    </graphic>
-                                </Button>
-                                <Button fx:id="finishRuntimeControlBtn" layoutX="185.0" layoutY="3.0"
-                                        styleClass="runtimeControlBtn">
-                                    <graphic>
-                                        <ImageView pickOnBounds="true" preserveRatio="true">
-                                            <Image url="@icons/finish.png"/>
-                                        </ImageView>
-                                    </graphic>
-                                </Button>
-                                <BorderPane.margin>
-                                    <Insets bottom="3.0"/>
-                                </BorderPane.margin>
-                            </AnchorPane>
-                        </bottom>
-                    </BorderPane> <!--TODO: EZ MINEK VAN ITT???-->
-                </GridPane>
+                        </GridPane>
+                    </center>
+                    <bottom>
+                        <GridPane id="settingsSectionBtnHolder">
+                            <Button fx:id="newTape" text="New _tape">
+                                <GridPane.margin>
+                                    <Insets right="$HORIZONTAL_MARGIN"/>
+                                </GridPane.margin>
+                            </Button>
+                            <Button GridPane.columnIndex="1" fx:id="deleteTape" disable="true"
+                                    layoutX="97.0" text="_Delete tape"/>
+                            <BorderPane.margin>
+                                <Insets bottom="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"
+                                        left="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"
+                                        top="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"/>
+                            </BorderPane.margin>
+                        </GridPane>
+                    </bottom>
+                    <GridPane.margin>
+                        <Insets left="$SECTION_MARGIN" right="$SECTION_MARGIN"/>
+                    </GridPane.margin>
+                </BorderPane>
+                <BorderPane fx:id="ruleSection" styleClass="section" GridPane.columnIndex="2" GridPane.valignment="TOP">
+                    <top>
+                        <GridPane>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="33.33"/>
+                                <ColumnConstraints hgrow="SOMETIMES"/>
+                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="33.33"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <Button fx:id="makeRuleSectionBigBtn" text="[ ]">
+                                <GridPane.margin>
+                                    <Insets top="$VERTICAL_MARGIN" bottom="$VERTICAL_MARGIN" left="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"/>
+                                </GridPane.margin>
+                            </Button>
+                            <Label GridPane.columnIndex="1" GridPane.halignment="CENTER" text="Rules"/>
+                        </GridPane>
+                    </top>
+                    <center>
+                        <TextArea fx:id="rule">
+                            <BorderPane.margin>
+                                <Insets bottom="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"
+                                        left="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"
+                                        right="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"/>
+                            </BorderPane.margin>
+                        </TextArea>
+                    </center>
+                    <bottom>
+                        <GridPane BorderPane.alignment="CENTER">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="$UNIFIED_BTN_WIDTH"/>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="$UNIFIED_BTN_WIDTH"/>
+                                <ColumnConstraints hgrow="SOMETIMES"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <Button styleClass="unified-width-setting-btn" text="_New">
+                                <GridPane.margin>
+                                    <Insets right="$HORIZONTAL_MARGIN"/>
+                                </GridPane.margin>
+                            </Button>
+                            <Button GridPane.columnIndex="1" styleClass="unified-width-setting-btn" text="_Check"/>
+                            <Button fx:id="initialise" GridPane.columnIndex="2" text="_Initialise"
+                                    GridPane.halignment="RIGHT"/>
+                            <BorderPane.margin>
+                                <Insets bottom="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"
+                                        left="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"
+                                        right="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"/>
+                            </BorderPane.margin>
+                        </GridPane>
+                    </bottom>
+                    <GridPane.margin>
+                        <Insets left="$SECTION_MARGIN"/>
+                    </GridPane.margin>
+                </BorderPane>
+            </GridPane>
+            <GridPane fx:id="tapeSection" GridPane.rowIndex="1" styleClass="section" GridPane.valignment="TOP">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints vgrow="SOMETIMES"/>
+                    <RowConstraints vgrow="SOMETIMES" maxHeight="$RUNTIME_CONTROL_HEIGHT"/>
+                </rowConstraints>
+                <ScrollPane fitToWidth="true">
+                    <GridPane fx:id="tapeContainer" styleClass="tape-container">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                        </rowConstraints>
+                    </GridPane>
+                    <GridPane.margin>
+                        <Insets top="$SECTION_MARGIN"/>
+                    </GridPane.margin>
+                </ScrollPane>
+                <AnchorPane id="runtimeControlPanel" maxHeight="$RUNTIME_CONTROL_HEIGHT"
+                            maxWidth="$RUNTIME_CONTROL_WIDTH" GridPane.rowIndex="1"
+                            GridPane.halignment="CENTER">
+                    <Button fx:id="restart" layoutX="20.0" layoutY="3.0"
+                            styleClass="runtime-control">
+                        <graphic>
+                            <ImageView pickOnBounds="true" preserveRatio="true">
+                                <Image url="@icons/restart.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="prevStep" layoutX="75.0" layoutY="3.0"
+                            styleClass="runtime-control">
+                        <graphic>
+                            <ImageView pickOnBounds="true" preserveRatio="true">
+                                <Image url="@icons/prevStep.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="nextStep" layoutX="130.0" layoutY="3.0"
+                            styleClass="runtime-control">
+                        <graphic>
+                            <ImageView pickOnBounds="true" preserveRatio="true">
+                                <Image url="@icons/nextStep.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="finish" layoutX="185.0" layoutY="3.0"
+                            styleClass="runtime-control">
+                        <graphic>
+                            <ImageView pickOnBounds="true" preserveRatio="true">
+                                <Image url="@icons/finish.png"/>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                    <GridPane.margin>
+                        <Insets bottom="3"/>
+                    </GridPane.margin>
+                </AnchorPane>
+                <GridPane.margin>
+                    <Insets top="$SECTION_MARGIN"/>
+                </GridPane.margin>
             </GridPane>
         </GridPane>
     </center>
     <padding>
-        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+        <Insets bottom="$PADDING" left="$PADDING" right="$PADDING" top="$PADDING"/>
     </padding>
 </BorderPane>

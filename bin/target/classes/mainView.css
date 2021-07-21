@@ -103,7 +103,7 @@
     -fx-border-color: #D2D2D2;
 }
 
-.runtimeControlBtn {
+.runtime-control {
     -fx-background-color: #1D2B35;
     -fx-border-radius: 100;
     -fx-background-radius: 100;
@@ -113,7 +113,7 @@
     -fx-pref-width: 45.0;
 }
 
-.tapeSettingBtn {
+.tape-setting {
     -fx-border-radius: 100;
     -fx-background-radius: 100;
     -fx-min-height: 35.0;
@@ -133,11 +133,11 @@
     -fx-min-height: 200.0;
 }
 
-.headPositionSetting .label {
+.head-position-setting .label {
     -fx-padding: 0 5 0 0;
 }
 
-.headPositionSetting .text-field {
+.head-position-setting .text-field {
     -fx-max-width: 50;
     -fx-alignment: center-right;
 }

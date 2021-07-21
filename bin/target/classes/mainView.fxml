@@ -163,28 +163,28 @@
                     </center>
                     <bottom>
                         <AnchorPane fx:id="runtimeControlPanel" maxHeight="51.0" maxWidth="250.0" BorderPane.alignment="CENTER">
-                            <Button fx:id="restartRuntimeControlBtn" layoutX="20.0" layoutY="3.0" styleClass="runtimeControlBtn">
+                            <Button fx:id="restartRuntimeControlBtn" layoutX="20.0" layoutY="3.0" styleClass="runtime-control">
                                 <graphic>
                                     <ImageView pickOnBounds="true" preserveRatio="true">
                                         <Image url="@icons/restart.png"/>
                                     </ImageView>
                                 </graphic>
                             </Button>
-                            <Button fx:id="prevStepRuntimeControlBtn" layoutX="75.0" layoutY="3.0" styleClass="runtimeControlBtn">
+                            <Button fx:id="prevStepRuntimeControlBtn" layoutX="75.0" layoutY="3.0" styleClass="runtime-control">
                                 <graphic>
                                     <ImageView pickOnBounds="true" preserveRatio="true">
                                         <Image url="@icons/prevStep.png"/>
                                     </ImageView>
                                 </graphic>
                             </Button>
-                            <Button fx:id="nextStepRuntimeControlBtn" layoutX="130.0" layoutY="3.0" styleClass="runtimeControlBtn">
+                            <Button fx:id="nextStepRuntimeControlBtn" layoutX="130.0" layoutY="3.0" styleClass="runtime-control">
                                 <graphic>
                                     <ImageView pickOnBounds="true" preserveRatio="true">
                                         <Image url="@icons/nextStep.png"/>
                                     </ImageView>
                                 </graphic>
                             </Button>
-                            <Button fx:id="finishRuntimeControlBtn" layoutX="185.0" layoutY="3.0" styleClass="runtimeControlBtn">
+                            <Button fx:id="finishRuntimeControlBtn" layoutX="185.0" layoutY="3.0" styleClass="runtime-control">
                                 <graphic>
                                     <ImageView pickOnBounds="true" preserveRatio="true">
                                         <Image url="@icons/finish.png"/>
