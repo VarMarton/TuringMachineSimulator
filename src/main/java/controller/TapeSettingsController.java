@@ -10,37 +10,47 @@ import java.util.ArrayList;
 public class TapeSettingsController {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private GridPane root;
-    private ArrayList<OneTapeSettingController> tapeSettingControllers;
-    private Button newTapeBtn;
-    private Button deleteTapeBtn;
+    private final GridPane tapeSettingContainer;
+    private final ArrayList<OneTapeSettingController> tapeSettingControllers;
+    private final Button newTape;
+    private final Button deleteTape;
 
-    public TapeSettingsController(GridPane root, Button newTapeBtn, Button deleteTapeBtn) {
-        this.root = root;
-        this.newTapeBtn = newTapeBtn;
+    public TapeSettingsController(GridPane tapeSettingContainer, Button newTape, Button deleteTape) {
+        LOGGER.debug("Construct TapeSettingsController...");
+        LOGGER.debug("Maximum number of tapes: " + TapeController.TAPE_NAMES.length);
+
+        this.tapeSettingContainer = tapeSettingContainer;
+        this.newTape = newTape;
         this.tapeSettingControllers = new ArrayList<>();
-        this.deleteTapeBtn = deleteTapeBtn;
+        this.deleteTape = deleteTape;
+
+        LOGGER.debug("Adding one tapeSetting");
+        addNewTapeSetting();
+
+        LOGGER.debug("Construct TapeSettingsController has finished");
     }
 
     public void addNewTapeSetting() {
-        OneTapeSettingController tapeSetting = new OneTapeSettingController(this.root, tapeSettingControllers.size(), TapeController.TAPE_NAMES[tapeSettingControllers.size()]);
+        OneTapeSettingController tapeSetting = new OneTapeSettingController(tapeSettingContainer,
+                tapeSettingControllers.size(),
+                TapeController.TAPE_NAMES[tapeSettingControllers.size()]);
         tapeSettingControllers.add(tapeSetting);
         if (tapeSettingControllers.size() == TapeController.TAPE_NAMES.length) {
-            this.newTapeBtn.setDisable(true);
+            this.newTape.setDisable(true);
         }
-        if(tapeSettingControllers.size() > 1){
-            this.deleteTapeBtn.setDisable(false);
+        if (tapeSettingControllers.size() > 1) {
+            this.deleteTape.setDisable(false);
         }
     }
 
     public void removeTapeSetting() {
-        this.root.getChildren().remove(tapeSettingControllers.size() - 1);
+        this.tapeSettingContainer.getChildren().remove(tapeSettingControllers.size() - 1);
         tapeSettingControllers.remove(tapeSettingControllers.size() - 1);
         if (tapeSettingControllers.size() == 1) {
-            this.deleteTapeBtn.setDisable(true);
+            this.deleteTape.setDisable(true);
         }
         if (tapeSettingControllers.size() < TapeController.TAPE_NAMES.length) {
-            this.newTapeBtn.setDisable(false);
+            this.newTape.setDisable(false);
         }
     }
 

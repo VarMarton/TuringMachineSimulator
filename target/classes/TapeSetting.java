@@ -2,7 +2,6 @@ package view;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -11,32 +10,29 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class TapeSetting extends GridPane {
-    private String name;
 
-    private Label nameLbl = new Label();
-    private TextField content = new TextField();
-    private Button plusBtn = new Button();
-    private Button minusBtn = new Button();
-    private ArrayList<HeadPositionSetting> headPositions = new ArrayList<>();
+    private final String STYLE_CLASS_TAPE_CONTAINER = "tape-container";
+    private final String STYLE_CLASS_TAPE_SETTING = "tape-setting";
+
+    private final String ICON_PLUS_URL = "icons/plus.png";
+    private final String ICON_MINUS_URL = "icons/minus.png";
+
+    private final String name;
+    private final Label nameLbl = new Label();
+    private final TextField content = new TextField();
+    private final Button plusBtn = new Button();
+    private final Button minusBtn = new Button();
+    private final ArrayList<HeadPositionSetting> headPositions = new ArrayList<>();
 
     public TapeSetting(String name) {
         this.name = name;
-        this.getStyleClass().add("tapeContainer");
+        this.getStyleClass().add(STYLE_CLASS_TAPE_CONTAINER);
         this.nameLbl.setText("Tape \"" + this.name + "\"");
 
         this.generateBasicParts();
         this.formatBasicParts();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setStyleClass(String styleClass) {
-        this.getStyleClass().add(styleClass);
     }
 
     public TextField getContent() {
@@ -57,9 +53,9 @@ public class TapeSetting extends GridPane {
 
     private void generateBasicParts() {
         this.add(nameLbl, 0, 0);
-        this.add(this.generateContentPart(), 0, 1);
-        this.add(this.generateHeadsPart(), 0, 2);
-        this.add(this.generateHeadPositionsPart(), 0, 3);
+        this.add(generateContentPart(), 0, 1);
+        this.add(generateHeadsPart(), 0, 2);
+        this.add(generateHeadPositionsPart(), 0, 3);
     }
 
     private void formatBasicParts() {
@@ -79,7 +75,7 @@ public class TapeSetting extends GridPane {
         rowConstraints = new RowConstraints();
         rowConstraints.setMinHeight(0.0);
         rowConstraints.setPrefHeight(0.0);
-        rowConstraints.setMaxHeight(50.0);
+        rowConstraints.setMaxHeight(48.0);
         rowConstraints.setVgrow(Priority.SOMETIMES);
         this.getRowConstraints().add(1, rowConstraints);
 
@@ -97,13 +93,13 @@ public class TapeSetting extends GridPane {
         GridPane contentpart = new GridPane();
         Label text = new Label("Content");
         contentpart.add(text, 0, 0);
-        contentpart.add(this.content, 1, 0);
-        this.formatConentPart(contentpart, text, this.content);
+        contentpart.add(content, 1, 0);
+        this.formatContentPart(contentpart, text, content);
 
         return contentpart;
     }
 
-    private void formatConentPart(GridPane root, Label text, TextField content) {
+    private void formatContentPart(GridPane root, Label text, TextField content) {
         GridPane.setMargin(text, new Insets(0, 0, 0, 10));
         GridPane.setMargin(content, new Insets(0, 10, 0, 10));
 
@@ -134,23 +130,23 @@ public class TapeSetting extends GridPane {
         ImageView imageView = new ImageView();
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-        imageView.setImage(new Image("icons/plus.png"));
+        imageView.setImage(new Image(ICON_PLUS_URL));
         plusBtn.setGraphic(imageView);
         plusBtn.setLayoutX(5.0);
         plusBtn.setLayoutY(10.0);
         plusBtn.setMnemonicParsing(false);
-        plusBtn.getStyleClass().add("tapeSettingBtn");
+        plusBtn.getStyleClass().add(STYLE_CLASS_TAPE_SETTING);
         anchorPane.getChildren().add(plusBtn);
 
         imageView = new ImageView();
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
-        imageView.setImage(new Image("icons/minus.png"));
+        imageView.setImage(new Image(ICON_MINUS_URL));
         minusBtn.setGraphic(imageView);
         minusBtn.setLayoutX(50.0);
         minusBtn.setLayoutY(10.0);
         minusBtn.setMnemonicParsing(false);
-        minusBtn.getStyleClass().add("tapeSettingBtn");
+        minusBtn.getStyleClass().add(STYLE_CLASS_TAPE_SETTING);
         minusBtn.setDisable(true);
         anchorPane.getChildren().add(minusBtn);
         headsPart.add(anchorPane, 1, 0);

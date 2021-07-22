@@ -1,6 +1,8 @@
 package view;
 
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -16,17 +18,20 @@ import java.util.HashMap;
 public class Tape extends GridPane {
     private static final Logger LOGGER = LogManager.getLogger();
 
+    public static final String DEFAULT_LINK_CONTENT = " ";
+    public static final double OUTER_COLUMN_WIDTH = 50.0;
+    public static final double LINK_WIDTH = 35.0;
+
     private final String STYLE_CLASS_FOR_TAPE = "tape";
     private final String STYLE_CLASS_FOR_LINK = "link";
 
     private final double NORMAL_UPPER_ROW_HEIGHT = 105.0;
-
-    private final String DEFAULT_LINK_CONTENT = " ";
-    private final double OUTER_COLUMN_WIDTH = 50.0;
-    private final double LINK_WIDTH = 35.0;
     private final double NAME_LABEL_X_POS = 15.0;
     private final double HEAD_X_POS_SHIFT = 2.4;    // currentLink.getLayoutX() + LINK_WIDTH / 2 - defaultHeadWidth / 2
     private final double POINTER_X_POS_SHIFT = 7.5; // Similar to HEAD_X_POS_SHIFT calculation
+    private final double SIDE_MARGIN = 10.0;
+
+    private final double DEFAULT_SPACE = 0.0;
 
     private final String PREV_LINK_IMG_URL = "icons/prevLink.png";
     private final String NEXT_LINK_IMG_URL = "icons/nextLink.png";
@@ -51,6 +56,7 @@ public class Tape extends GridPane {
         this.setControlParts();
 
         this.widthProperty().addListener(this::widthChangeDefaultAction);
+        GridPane.setMargin(this, new Insets(0, SIDE_MARGIN, 0, SIDE_MARGIN));
     }
 
     public int getNumberOfVisibleLinks() {
@@ -65,40 +71,58 @@ public class Tape extends GridPane {
         Button head = this.getNewHead(position.getStyleClass());
         Label pointer = this.getNewPointer(position.getPointerImgUrl());
 
-        this.heads.put(index, head);
-        this.pointers.put(index, pointer);
+        heads.put(index, head);
+        pointers.put(index, pointer);
 
-        this.headPane.getChildren().add(head);
-        this.headPane.getChildren().add(pointer);
+        headPane.getChildren().add(head);
+        headPane.getChildren().add(pointer);
 
         pointer.toBack();
 
         head.setLayoutY(position.getHeadPosition());
         pointer.setLayoutY(position.getPointerPosition());
 
-        head.setLayoutX(this.chain.get(index).getLayoutX() + this.HEAD_X_POS_SHIFT);
-        pointer.setLayoutX(this.chain.get(index).getLayoutX() + this.POINTER_X_POS_SHIFT);
+        head.setLayoutX(chain.get(index).getLayoutX() + HEAD_X_POS_SHIFT);
+        pointer.setLayoutX(chain.get(index).getLayoutX() + POINTER_X_POS_SHIFT);
 
         this.heads.get(index).setText(name);
     }
 
     public void removeHead(int index) {
-        this.headPane.getChildren().remove(this.heads.get(index));
-        this.headPane.getChildren().remove(this.pointers.get(index));
+        this.headPane.getChildren().remove(heads.get(index));
+        this.headPane.getChildren().remove(pointers.get(index));
 
         this.heads.remove(index);
         this.pointers.remove(index);
     }
 
     public boolean isHeadExist(int index) {
-        return this.heads.get(index) != null;
+        return heads.get(index) != null;
     }
 
-    public void loadLinks(ArrayList<String> content, double space) {
+    public void widthChangeDefaultAction(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+        int width = newValue.intValue() - (int) Math.ceil(OUTER_COLUMN_WIDTH * 2);     // The multiplication by two is because there are two outer columns
+        this.numberOfVisibleLinks = width / (int) Math.ceil(LINK_WIDTH);
+        double space = (width - LINK_WIDTH * numberOfVisibleLinks) / (double) (numberOfVisibleLinks - 1);
         this.setLinks(space);
+    }
 
-        for (int i = 0; i < this.chain.size(); i++) {
-            this.chain.get(i).setText(content.get(i));
+    public void setLinks() {
+        setLinks(DEFAULT_SPACE);
+    }
+
+    public void setLinks(double space) {
+        this.getChildren().remove(this.chainPane);
+        this.chain.clear();
+        this.chainPane = new AnchorPane();
+        this.add(this.chainPane, 1, 1);
+
+        this.setLinkButtons(space);
+    }
+
+    public void setLinkTextAt(int index, String text) {
+        if (0 <= index && index < this.chain.size()) {
+            this.chain.get(index).setText(text);
         }
     }
 
@@ -109,11 +133,23 @@ public class Tape extends GridPane {
         this.getRowConstraints().add(rowConstraints);
     }
 
+    public Button getPrevLink() {
+        return prevLink;
+    }
+
+    public Button getNextLink() {
+        return nextLink;
+    }
+
+    public AnchorPane getChainPane() {
+        return chainPane;
+    }
+
     private void setOwnColumnConstraints() {
         ColumnConstraints outerColumnConstraints = new ColumnConstraints();
-        outerColumnConstraints.setMinWidth(this.OUTER_COLUMN_WIDTH);
-        outerColumnConstraints.setPrefWidth(this.OUTER_COLUMN_WIDTH);
-        outerColumnConstraints.setMaxWidth(this.OUTER_COLUMN_WIDTH);
+        outerColumnConstraints.setMinWidth(OUTER_COLUMN_WIDTH);
+        outerColumnConstraints.setPrefWidth(OUTER_COLUMN_WIDTH);
+        outerColumnConstraints.setMaxWidth(OUTER_COLUMN_WIDTH);
         outerColumnConstraints.setHgrow(Priority.SOMETIMES);
 
         ColumnConstraints middleColumnConstraints = new ColumnConstraints();
@@ -139,36 +175,12 @@ public class Tape extends GridPane {
         this.add(shiftBtnPane, 2, 1);
         shiftBtnPane.getChildren().add(this.nextLink);
 
-        this.name.setLayoutX(this.NAME_LABEL_X_POS);
+        GridPane.setHalignment(this.name, HPos.CENTER);
+        GridPane.setHalignment(this.prevLink, HPos.CENTER);
+        GridPane.setHalignment(this.nextLink, HPos.CENTER);
 
         this.setLinkControlBtnImage(this.prevLink, this.PREV_LINK_IMG_URL);
         this.setLinkControlBtnImage(this.nextLink, this.NEXT_LINK_IMG_URL);
-    }
-
-    private void widthChangeDefaultAction(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-        int width = newValue.intValue() - (int) Math.ceil(this.OUTER_COLUMN_WIDTH * 2);     // The multiplication by two is because there are two outer columns
-        this.numberOfVisibleLinks = width / (int) Math.ceil(this.LINK_WIDTH);
-        double space = (width - this.LINK_WIDTH * numberOfVisibleLinks) / (double) (numberOfVisibleLinks - 1);
-        this.setLinks(space);
-    }
-
-    private void chainPaneScrollAction(ScrollEvent event) {
-        if (event.getDeltaX() > 0) {
-            LOGGER.debug(event.getDeltaX());
-        } else if (event.getDeltaX() < 0) {
-            LOGGER.debug(event.getDeltaX());
-        }
-    }
-
-    private void setLinks(double space) {
-        this.getChildren().remove(this.chainPane);
-        this.chain.clear();
-        this.chainPane = new AnchorPane();
-        this.add(this.chainPane, 1, 1);
-
-        this.setLinkButtons(space);
-
-        this.chainPane.setOnScroll(this::chainPaneScrollAction);
     }
 
     private void setLinkButtons(double space) {
@@ -215,18 +227,6 @@ public class Tape extends GridPane {
         imageView.setImage(new Image(imageUrl));
 
         button.setGraphic(imageView);
-    }
-
-    public String getDefaultLinkContent() {
-        return this.DEFAULT_LINK_CONTENT;
-    }
-
-    public double getOuterColumnWidth() {
-        return this.OUTER_COLUMN_WIDTH;
-    }
-
-    public double getLinkWidth() {
-        return this.LINK_WIDTH;
     }
 
 }

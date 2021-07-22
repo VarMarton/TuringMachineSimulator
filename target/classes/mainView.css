@@ -123,7 +123,7 @@
     -fx-effect: none;
 }
 
-.tapeSettingBtn {
+.tape-setting {
     -fx-border-radius: 100;
     -fx-background-radius: 100;
     -fx-min-height: 35.0;
@@ -132,7 +132,7 @@
     -fx-pref-width: 35.0;
 }
 
-#tapeSettingsContainer {
+#tapeSettingContainer {
     -fx-border-color: #D2D2D2;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: #1D2B35;
@@ -140,21 +140,28 @@
 
 .tape-container {
     -fx-background-color: #1D2B35;
+    -fx-min-height: 190;
 }
 
-.headPositionSetting .label {
+.head-position-setting .label {
     -fx-padding: 0 5 0 0;
+    -fx-font-size: 16;
 }
 
-.headPositionSetting .text-field {
-    -fx-max-width: 50;
-    -fx-alignment: center-right;
+.head-position-setting {
+    -fx-padding: 10 0 10 0;
+}
+
+.head-position-setting .text-field {
+    -fx-font-size: 16;
+    -fx-max-width: 48;
 }
 
 .link {
     -fx-underline: false;
     -fx-min-width: 35;
     -fx-max-width: 35;
+    -fx-effect: none;
 }
 
 .link:hover {
@@ -186,9 +193,4 @@
 .higher-head:hover {
     -fx-background-color: #bdbdbd;
     -fx-cursor: default;
-}
-
-.tape {
-    -fx-padding: 0 0 0 0;
-    -fx-background-color: #1D2B35;
 }

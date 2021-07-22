@@ -9,8 +9,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import view.Tape;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -35,16 +38,34 @@ public class MainController implements Initializable {
     @FXML
     private Button makeRuleSectionBigBtn;
 
+    @FXML
+    private GridPane tapeSettingContainer;
+    @FXML
+    private Button newTape;
+    @FXML
+    private Button deleteTape;
+
+    @FXML
+    private GridPane tapeContainer;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.makeRuleSectionBigBtn.setOnMouseClicked(event -> {
             this.makeRuleSectionBigEvent();
         });
 
-        /*
-        newTapeBtn.setOnMouseClicked(event -> tapeSettingsController.addNewTapeSetting());
-        deleteTapeBtn.setOnMouseClicked(event -> tapeSettingsController.removeTapeSetting());
-        */
+        tapeSettingsController = new TapeSettingsController(tapeSettingContainer, newTape, deleteTape);
+        newTape.setOnMouseClicked(event -> tapeSettingsController.addNewTapeSetting());
+        deleteTape.setOnMouseClicked(event -> tapeSettingsController.removeTapeSetting());
+
+        ArrayList<String> content = new ArrayList<>();
+        content.add("1");
+        content.add("0");
+        content.add("1");
+        ArrayList<Integer> tmp = new ArrayList<>();
+        tmp.add(5);
+        new TapeController(tapeContainer,0, content, tmp);
+
     }
 
     private void setCentralListener(){

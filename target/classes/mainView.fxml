@@ -18,7 +18,7 @@
         <Double fx:id="SETTINGS_FIRST_COLUMN_WIDTH" fx:value="105"/>
         <Double fx:id="SETTINGS_ROW_HEIGHT" fx:value="46"/>
         <Double fx:id="SETTINGS_FIRST_ROW_MARGIN" fx:value="5"/>
-        <Double fx:id="FIRST_ROW_DEFAULT_HEIGHT" fx:value="350"/>
+        <Double fx:id="FIRST_ROW_DEFAULT_HEIGHT" fx:value="430"/>
         <Double fx:id="SETTINGS_SECTION_BTN_HOLDER_MARGIN" fx:value="10"/>
         <Double fx:id="UNIFIED_BTN_WIDTH" fx:value="70"/>
         <Double fx:id="RUNTIME_CONTROL_HEIGHT" fx:value="51"/>
@@ -130,9 +130,9 @@
                                     <ColumnConstraints hgrow="SOMETIMES"/>
                                 </columnConstraints>
                                 <rowConstraints>
-                                    <RowConstraints prefHeight="$SETTINGS_ROW_HEIGHT"/>
-                                    <RowConstraints prefHeight="$SETTINGS_ROW_HEIGHT"/>
-                                    <RowConstraints prefHeight="$SETTINGS_ROW_HEIGHT"/>
+                                    <RowConstraints minHeight="$SETTINGS_ROW_HEIGHT" prefHeight="$SETTINGS_ROW_HEIGHT"/>
+                                    <RowConstraints minHeight="$SETTINGS_ROW_HEIGHT" prefHeight="$SETTINGS_ROW_HEIGHT"/>
+                                    <RowConstraints minHeight="$SETTINGS_ROW_HEIGHT" prefHeight="$SETTINGS_ROW_HEIGHT"/>
                                 </rowConstraints>
                                 <Label text="States"/>
                                 <Label text="Start state" GridPane.rowIndex="1"/>
@@ -145,7 +145,7 @@
                                 </GridPane.margin>
                             </GridPane>
                             <ScrollPane fitToWidth="true" GridPane.rowIndex="1">
-                                <GridPane fx:id="tapeSettingsContainer">
+                                <GridPane fx:id="tapeSettingContainer">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES"/>
                                     </columnConstraints>
