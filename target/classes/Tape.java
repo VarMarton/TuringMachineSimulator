@@ -1,13 +1,11 @@
 package view;
 
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,19 +14,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Tape extends GridPane {
+
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static final String DEFAULT_LINK_CONTENT = " ";
     public static final double OUTER_COLUMN_WIDTH = 50.0;
-    public static final double LINK_WIDTH = 35.0;
+    public static final double LINK_WIDTH = 38.0;
 
     private final String STYLE_CLASS_FOR_TAPE = "tape";
     private final String STYLE_CLASS_FOR_LINK = "link";
 
-    private final double NORMAL_UPPER_ROW_HEIGHT = 105.0;
-    private final double NAME_LABEL_X_POS = 15.0;
-    private final double HEAD_X_POS_SHIFT = 2.4;    // currentLink.getLayoutX() + LINK_WIDTH / 2 - defaultHeadWidth / 2
-    private final double POINTER_X_POS_SHIFT = 7.5; // Similar to HEAD_X_POS_SHIFT calculation
+    private final double DEFAULT_ROW_HEIGHT = 105.0;
+    private final double DEFAULT_HEAD_WIDTH = 31.0; // DO NOT DELETE - It is not used however can be used to calculate manually HEAD_X_POS_SHIFT and POINTER_X_POS_SHIFT
+    private final double HEAD_X_POS_SHIFT = 3.5;    // LINK_WIDTH / 2 - defaultHeadWidth / 2
+    private final double POINTER_X_POS_SHIFT = 9; // Similar to HEAD_X_POS_SHIFT calculation
     private final double SIDE_MARGIN = 10.0;
 
     private final double DEFAULT_SPACE = 0.0;
@@ -40,10 +39,11 @@ public class Tape extends GridPane {
     private Button prevLink = new Button();
     private Button nextLink = new Button();
     private ArrayList<Button> chain = new ArrayList<>();
-    private HashMap<Integer, Button> heads = new HashMap<>();
+    private HashMap<Integer, HeadButton> heads = new HashMap<>();
     private HashMap<Integer, Label> pointers = new HashMap<>();
     private AnchorPane headPane;
     private AnchorPane chainPane;
+    private Double space;
 
     private int numberOfVisibleLinks;
 
@@ -55,7 +55,6 @@ public class Tape extends GridPane {
         this.setOwnColumnConstraints();
         this.setControlParts();
 
-        this.widthProperty().addListener(this::widthChangeDefaultAction);
         GridPane.setMargin(this, new Insets(0, SIDE_MARGIN, 0, SIDE_MARGIN));
     }
 
@@ -68,8 +67,8 @@ public class Tape extends GridPane {
     }
 
     public void addHead(int index, String name, HeadPosition position) {
-        Button head = this.getNewHead(position.getStyleClass());
-        Label pointer = this.getNewPointer(position.getPointerImgUrl());
+        HeadButton head = this.getNewHead(index, name, position);
+        Label pointer = this.getNewPointer(index, position);
 
         heads.put(index, head);
         pointers.put(index, pointer);
@@ -78,14 +77,18 @@ public class Tape extends GridPane {
         headPane.getChildren().add(pointer);
 
         pointer.toBack();
+        head.toBack();
+    }
 
-        head.setLayoutY(position.getHeadPosition());
-        pointer.setLayoutY(position.getPointerPosition());
-
-        head.setLayoutX(chain.get(index).getLayoutX() + HEAD_X_POS_SHIFT);
-        pointer.setLayoutX(chain.get(index).getLayoutX() + POINTER_X_POS_SHIFT);
-
-        this.heads.get(index).setText(name);
+    public void removeAllHeads() {
+        heads.forEach((index, head) -> {
+            this.headPane.getChildren().remove(head);
+        });
+        pointers.forEach((index, pointer) -> {
+            this.headPane.getChildren().remove(pointer);
+        });
+        heads.clear();
+        pointers.clear();
     }
 
     public void removeHead(int index) {
@@ -100,15 +103,20 @@ public class Tape extends GridPane {
         return heads.get(index) != null;
     }
 
-    public void widthChangeDefaultAction(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-        int width = newValue.intValue() - (int) Math.ceil(OUTER_COLUMN_WIDTH * 2);     // The multiplication by two is because there are two outer columns
-        this.numberOfVisibleLinks = width / (int) Math.ceil(LINK_WIDTH);
-        double space = (width - LINK_WIDTH * numberOfVisibleLinks) / (double) (numberOfVisibleLinks - 1);
-        this.setLinks(space);
+    public HeadButton getHead(int index) {
+        return heads.get(index);
+    }
+
+    public void setSpace(double space) {
+        this.space = space;
     }
 
     public void setLinks() {
-        setLinks(DEFAULT_SPACE);
+        if (this.space == null) {
+            setLinks(DEFAULT_SPACE);
+        } else {
+            setLinks(this.space);
+        }
     }
 
     public void setLinks(double space) {
@@ -121,16 +129,11 @@ public class Tape extends GridPane {
     }
 
     public void setLinkTextAt(int index, String text) {
-        if (0 <= index && index < this.chain.size()) {
+        try {
             this.chain.get(index).setText(text);
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.error("Tried to set link text at: " + index, e);
         }
-    }
-
-    private void setOwnRowConstraints() {
-        RowConstraints rowConstraints = new RowConstraints();
-        rowConstraints.setPrefHeight(NORMAL_UPPER_ROW_HEIGHT);
-
-        this.getRowConstraints().add(rowConstraints);
     }
 
     public Button getPrevLink() {
@@ -141,19 +144,21 @@ public class Tape extends GridPane {
         return nextLink;
     }
 
-    public AnchorPane getChainPane() {
-        return chainPane;
+    private void setOwnRowConstraints() {
+        RowConstraints rowConstraints = new RowConstraints();
+        rowConstraints.setPrefHeight(DEFAULT_ROW_HEIGHT);
+
+        this.getRowConstraints().add(rowConstraints);
     }
 
     private void setOwnColumnConstraints() {
         ColumnConstraints outerColumnConstraints = new ColumnConstraints();
         outerColumnConstraints.setMinWidth(OUTER_COLUMN_WIDTH);
-        outerColumnConstraints.setPrefWidth(OUTER_COLUMN_WIDTH);
         outerColumnConstraints.setMaxWidth(OUTER_COLUMN_WIDTH);
         outerColumnConstraints.setHgrow(Priority.SOMETIMES);
 
         ColumnConstraints middleColumnConstraints = new ColumnConstraints();
-        middleColumnConstraints.setMinWidth(0.0); // It has to be set in order to the tape work properly, but the value doesn't really matter.
+        middleColumnConstraints.setMinWidth(0.0); // It has to be set in order to the tape work properly.
         middleColumnConstraints.setHgrow(Priority.SOMETIMES);
 
         this.getColumnConstraints().add(outerColumnConstraints);
@@ -188,45 +193,61 @@ public class Tape extends GridPane {
             Button link = this.getNewLink();
             this.chain.add(link);
             this.chainPane.getChildren().add(link);
-            link.setLayoutX(i * (this.LINK_WIDTH + space));
+            link.setLayoutX(i * (LINK_WIDTH + space));
         }
     }
 
     private Button getNewLink() {
-        Button link = new Button(this.DEFAULT_LINK_CONTENT);
+        Button link = new Button(DEFAULT_LINK_CONTENT);
         link.getStyleClass().add(this.STYLE_CLASS_FOR_LINK);
         link.setMnemonicParsing(false);
 
         return link;
     }
 
-    private Button getNewHead(String styleClass) {
-        Button head = new Button();
+    private HeadButton getNewHead(int index, String name, HeadPosition position) {
+        HeadButton head = new HeadButton();
+
+        head.setText(name);
+        head.setHeadPosition(position);
         head.setMnemonicParsing(false);
-        head.getStyleClass().add(styleClass);
+
+        for (String style : position.getStyleClass().split(" ")) {
+            head.getStyleClass().add(style);
+        }
+
+        head.setLayoutX(chain.get(index).getLayoutX() + HEAD_X_POS_SHIFT);
+        head.setLayoutY(position.getHeadPositionY());
 
         return head;
     }
 
-    private Label getNewPointer(String imageUrl) {
+    private Label getNewPointer(int index, HeadPosition position) {
         Label pointer = new Label();
 
-        ImageView imageView = new ImageView();
-        imageView.setPickOnBounds(true);
-        imageView.setPreserveRatio(true);
-        imageView.setImage(new Image(imageUrl));
+        ImageView imageView = getNewImageView(position.getPointerImgUrl());
+        imageView.setImage(new Image(position.getPointerImgUrl()));
+
         pointer.setGraphic(imageView);
+
+        pointer.setLayoutX(chain.get(index).getLayoutX() + POINTER_X_POS_SHIFT);
+        pointer.setLayoutY(position.getPointerPositionY());
 
         return pointer;
     }
 
     private void setLinkControlBtnImage(Button button, String imageUrl) {
+        ImageView imageView = getNewImageView(imageUrl);
+        button.setGraphic(imageView);
+    }
+
+    private ImageView getNewImageView(String imageUrl) {
         ImageView imageView = new ImageView();
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
         imageView.setImage(new Image(imageUrl));
 
-        button.setGraphic(imageView);
+        return imageView;
     }
 
 }

@@ -46,6 +46,9 @@ public class MainController implements Initializable {
     private Button deleteTape;
 
     @FXML
+    private Button initialize;
+
+    @FXML
     private GridPane tapeContainer;
 
     @Override
@@ -62,10 +65,24 @@ public class MainController implements Initializable {
         content.add("1");
         content.add("0");
         content.add("1");
-        ArrayList<Integer> tmp = new ArrayList<>();
-        tmp.add(5);
-        new TapeController(tapeContainer,0, content, tmp);
+        ArrayList<Integer> heads = new ArrayList<>();
+        heads.add(0);
+        heads.add(0);
+        heads.add(1);
+        heads.add(2);
+        TapeController controller = new TapeController(tapeContainer,0, content, heads);
+        controller = new TapeController(tapeContainer,1, content, heads);
+        controller = new TapeController(tapeContainer,2, content, heads);
 
+        TapeController finalController = controller;
+        initialize.setOnMouseClicked(event -> {ArrayList<String> content2 = new ArrayList<>();
+            content2.add("a");
+            content2.add("b");
+
+            finalController.setTapeContent(content2);
+        });
+
+        controller.setTapeContentAt(-5, "W");
     }
 
     private void setCentralListener(){

@@ -97,7 +97,7 @@
                     <RowConstraints vgrow="NEVER"/>
                 </rowConstraints>
                 <BorderPane styleClass="section" GridPane.valignment="TOP" minHeight="$FIRST_ROW_DEFAULT_HEIGHT"
-                            maxHeight="$FIRST_ROW_DEFAULT_HEIGHT">
+                            maxHeight="$FIRST_ROW_DEFAULT_HEIGHT" id="infoPanel">
                     <top>
                         <Label BorderPane.alignment="CENTER" text="Information"/>
                     </top>
@@ -217,7 +217,7 @@
                                 </GridPane.margin>
                             </Button>
                             <Button GridPane.columnIndex="1" styleClass="unified-width-setting-btn" text="_Check"/>
-                            <Button fx:id="initialise" GridPane.columnIndex="2" text="_Initialise"
+                            <Button fx:id="initialize" GridPane.columnIndex="2" text="_Initialize"
                                     GridPane.halignment="RIGHT"/>
                             <BorderPane.margin>
                                 <Insets bottom="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"

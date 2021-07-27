@@ -159,8 +159,8 @@
 
 .link {
     -fx-underline: false;
-    -fx-min-width: 35;
-    -fx-max-width: 35;
+    -fx-min-width: 38;
+    -fx-max-width: 38;
     -fx-effect: none;
 }
 
@@ -169,28 +169,28 @@
     -fx-cursor: default;
 }
 
-.normal-head {
+.head {
     -fx-text-fill: #39556A;
-    -fx-background-color: #D2D2D2;
     -fx-underline: false;
     -fx-wrap-text: true;
-    -fx-effect: none;
 }
 
-.normal-Head:hover {
-    -fx-background-color: #d2d2d2;
+.head:hover {
     -fx-cursor: default;
 }
 
-.higher-Head {
-    -fx-text-fill: #39556A;
-    -fx-background-color: #bdbdbd;
-    -fx-underline: false;
-    -fx-wrap-text: true;
-    -fx-effect: none;
+.normal-head {
+    -fx-background-color: #D2D2D2;
+}
+
+.normal-head:hover {
+    -fx-background-color: #D2D2D2;
+}
+
+.higher-head {
+    -fx-background-color: #D2D2D2;
 }
 
 .higher-head:hover {
-    -fx-background-color: #bdbdbd;
-    -fx-cursor: default;
+    -fx-background-color: #D2D2D2;
 }
