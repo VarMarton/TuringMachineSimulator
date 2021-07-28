@@ -1,2 +1,0 @@
-# TuringMachineSimulator
-Turing machine simulator

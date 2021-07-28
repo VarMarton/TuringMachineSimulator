@@ -30,9 +30,5 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(e -> {
             LOGGER.info("TuringMachineSimulator has finished.");
         });
-/*
-        primaryStage.widthProperty().addListener((obs, oldVal, newVal) -> {
-            System.out.println(newVal);
-        });*/
     }
 }

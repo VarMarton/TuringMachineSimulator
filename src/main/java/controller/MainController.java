@@ -1,5 +1,8 @@
 package controller;
 
+import controller.data.InitializationController;
+import controller.gui.setting.TapeSettingsController;
+import controller.gui.tape.TapeController;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,11 +12,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import view.Tape;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -23,6 +24,7 @@ public class MainController implements Initializable {
     private boolean isLayoutChanged = false;
 
     private TapeSettingsController tapeSettingsController;
+    private InitializationController initializationController;
 
     @FXML
     private Double SECTION_MARGIN;
@@ -58,31 +60,8 @@ public class MainController implements Initializable {
         });
 
         tapeSettingsController = new TapeSettingsController(tapeSettingContainer, newTape, deleteTape);
-        newTape.setOnMouseClicked(event -> tapeSettingsController.addNewTapeSetting());
-        deleteTape.setOnMouseClicked(event -> tapeSettingsController.removeTapeSetting());
+        initializationController = new InitializationController(initialize, tapeSettingsController, tapeContainer);
 
-        ArrayList<String> content = new ArrayList<>();
-        content.add("1");
-        content.add("0");
-        content.add("1");
-        ArrayList<Integer> heads = new ArrayList<>();
-        heads.add(0);
-        heads.add(0);
-        heads.add(1);
-        heads.add(2);
-        TapeController controller = new TapeController(tapeContainer,0, content, heads);
-        controller = new TapeController(tapeContainer,1, content, heads);
-        controller = new TapeController(tapeContainer,2, content, heads);
-
-        TapeController finalController = controller;
-        initialize.setOnMouseClicked(event -> {ArrayList<String> content2 = new ArrayList<>();
-            content2.add("a");
-            content2.add("b");
-
-            finalController.setTapeContent(content2);
-        });
-
-        controller.setTapeContentAt(-5, "W");
     }
 
     private void setCentralListener(){

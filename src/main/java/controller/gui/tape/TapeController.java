@@ -1,4 +1,4 @@
-package controller;
+package controller.gui.tape;
 
 import javafx.beans.value.ObservableValue;
 import javafx.scene.input.ScrollEvent;
@@ -98,6 +98,10 @@ public class TapeController {
     public void setHead(int index, int position) {
         this.heads.set(index, position);
         this.setVisibleHeads();
+    }
+
+    public void removeTapeFromContainer() {
+        this.tapeContainer.getChildren().remove(this.tape);
     }
 
     private void tapeWidthChangeAction(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {

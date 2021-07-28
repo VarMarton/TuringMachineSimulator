@@ -1,4 +1,4 @@
-package controller;
+package controller.gui.tape;
 
 public enum ShiftingKey {
     LEFT (-1),
@@ -6,7 +6,7 @@ public enum ShiftingKey {
 
     private int value;
 
-    private ShiftingKey(int value){
+    ShiftingKey(int value){
         this.value = value;
     }
 
