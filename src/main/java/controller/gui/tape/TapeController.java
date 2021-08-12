@@ -45,12 +45,12 @@ public class TapeController {
     public String getContentAtIndex(int index) {
         String contentAtIndex = Tape.DEFAULT_LINK_CONTENT;
         try {
-            if(index >= 0) {
+            if (index >= 0) {
                 contentAtIndex = this.tapeContent.get(index);
             } else {
                 contentAtIndex = this.negativeTapeContent.get(index);
             }
-        } catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             LOGGER.warn("Getting tape content resulted IndexOutOfBoundsException so returned with default value: " + Tape.DEFAULT_LINK_CONTENT);
         }
         return contentAtIndex;
@@ -140,6 +140,13 @@ public class TapeController {
                     String oldName = this.tape.getHead(realIndex).getText();
                     String newName = oldName + ", " + i;
                     this.tape.getHead(realIndex).setText(newName);
+                    if (this.tape.isHeadExist(realIndex + 1)
+                            && HeadPosition.NORMAL.equals(this.tape.getHead(realIndex).getHeadPosition())
+                            && HeadPosition.NORMAL.equals(this.tape.getHead(realIndex + 1).getHeadPosition())) {
+                        String tmpContent = this.tape.getHead(realIndex + 1).getText();
+                        this.tape.removeHead(realIndex + 1);
+                        this.tape.addHead(realIndex + 1, tmpContent, HeadPosition.HIGHER);
+                    }
                 } else {
                     if (this.tape.isHeadExist(realIndex - 1)) {
                         if (HeadPosition.NORMAL.equals(this.tape.getHead(realIndex - 1).getHeadPosition())

@@ -30,7 +30,7 @@ public class OneTapeSettingController {
                 try {
                     headPositions.add(Integer.valueOf(headPosition.getHeadPosition()));
                 } catch (NumberFormatException e) {
-                    // TODO: Meg kell csinálni, hogy erről szóljon a felhasználónak.
+                    headPositions.add(0);   // I don't think it's necessary to handle it more strictly
                 }
             } else {
                 break;
