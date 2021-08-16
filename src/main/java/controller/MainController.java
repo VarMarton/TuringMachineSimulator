@@ -1,12 +1,15 @@
 package controller;
 
 import controller.data.InitializationController;
+import controller.exception.MissingInfoAreaException;
 import controller.gui.setting.TapeSettingsController;
 import controller.gui.tape.TapeController;
+import controller.message.MessageController;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -23,9 +26,6 @@ public class MainController implements Initializable {
     private boolean areCentralListenersSet = false;
     private boolean isLayoutChanged = false;
 
-    private TapeSettingsController tapeSettingsController;
-    private InitializationController initializationController;
-
     @FXML
     private Double SECTION_MARGIN;
     @FXML
@@ -37,6 +37,8 @@ public class MainController implements Initializable {
     private BorderPane ruleSection;
     @FXML
     private GridPane tapeSection;
+    @FXML
+    private TextArea info;
     @FXML
     private Button makeRuleSectionBigBtn;
 
@@ -59,9 +61,18 @@ public class MainController implements Initializable {
             this.makeRuleSectionBigEvent();
         });
 
-        tapeSettingsController = new TapeSettingsController(tapeSettingContainer, newTape, deleteTape);
-        initializationController = new InitializationController(initialize, tapeSettingsController, tapeContainer);
+        TapeSettingsController tapeSettingsController = new TapeSettingsController(tapeSettingContainer, newTape, deleteTape);
 
+        InitializationController initializationController = new InitializationController(tapeSettingsController, tapeContainer);
+        this.initialize.setOnMouseClicked(event -> initializationController.initialize());
+
+        MessageController messageController = MessageController.getInstance();
+        messageController.setInfoArea(info);
+        try {
+            messageController.writeStartingMessage();
+        } catch (MissingInfoAreaException e) {
+            LOGGER.error(e);
+        }
     }
 
     private void setCentralListener(){

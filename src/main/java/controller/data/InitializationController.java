@@ -9,21 +9,17 @@ import java.util.ArrayList;
 
 public class InitializationController {
 
-    private Button initializeBtn;
     private TapeSettingsController tapeSettingsController;
     private GridPane tapeContainer;
 
     private ArrayList<TapeController> tapeControllers = new ArrayList<>();
 
-    public InitializationController(Button initializeBtn, TapeSettingsController tapeSettingsController, GridPane tapeContainer) {
-        this.initializeBtn = initializeBtn;
+    public InitializationController(TapeSettingsController tapeSettingsController, GridPane tapeContainer) {
         this.tapeSettingsController = tapeSettingsController;
         this.tapeContainer = tapeContainer;
-
-        this.initializeBtn.setOnMouseClicked(event -> initialize());
     }
 
-    private void initialize() {
+    public void initialize() {
         tapeControllers.forEach(TapeController::removeTapeFromContainer);
         for (int i = 0; i < tapeSettingsController.getNumberOfTapes(); i++) {
             ArrayList<String> tapeContent = getTapeContentAsList(tapeSettingsController.getTapeContent(i));
