@@ -216,7 +216,7 @@
                                     <Insets right="$HORIZONTAL_MARGIN"/>
                                 </GridPane.margin>
                             </Button>
-                            <Button GridPane.columnIndex="1" styleClass="unified-width-setting-btn" text="_Check"/>
+                            <Button fx:id="check" GridPane.columnIndex="1" styleClass="unified-width-setting-btn" text="_Check"/>
                             <Button fx:id="initialize" GridPane.columnIndex="2" text="_Initialize"
                                     GridPane.halignment="RIGHT"/>
                             <BorderPane.margin>
@@ -251,9 +251,10 @@
                         <Insets top="$SECTION_MARGIN"/>
                     </GridPane.margin>
                 </ScrollPane>
-                <AnchorPane id="runtimeControlPanel" maxHeight="$RUNTIME_CONTROL_HEIGHT"
+                <AnchorPane fx:id="runtimeControlPanel" maxHeight="$RUNTIME_CONTROL_HEIGHT"
                             maxWidth="$RUNTIME_CONTROL_WIDTH" GridPane.rowIndex="1"
-                            GridPane.halignment="CENTER">
+                            GridPane.halignment="CENTER"
+                            disable="true">
                     <Button fx:id="restart" layoutX="20.0" layoutY="3.0"
                             styleClass="runtime-control">
                         <graphic>

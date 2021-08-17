@@ -90,13 +90,13 @@ public class TapeSetting extends GridPane {
     }
 
     private GridPane generateContentPart() {
-        GridPane contentpart = new GridPane();
+        GridPane contentPart = new GridPane();
         Label text = new Label("Content");
-        contentpart.add(text, 0, 0);
-        contentpart.add(content, 1, 0);
-        this.formatContentPart(contentpart, text, content);
+        contentPart.add(text, 0, 0);
+        contentPart.add(content, 1, 0);
+        this.formatContentPart(contentPart, text, content);
 
-        return contentpart;
+        return contentPart;
     }
 
     private void formatContentPart(GridPane root, Label text, TextField content) {

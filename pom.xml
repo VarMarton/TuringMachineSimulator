@@ -13,6 +13,9 @@
             <resource>
                 <directory>src/main/java/view</directory>
             </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
         </resources>
         <plugins>
             <plugin>
