@@ -1,15 +1,17 @@
 package controller;
 
 import controller.data.InitializationController;
-import controller.exception.MissingInfoAreaException;
+import controller.data.SettingsController;
+import exception.MissingInfoAreaException;
 import controller.gui.setting.TapeSettingsController;
-import controller.gui.tape.TapeController;
 import controller.message.MessageController;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -17,7 +19,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -25,6 +26,9 @@ public class MainController implements Initializable {
 
     private boolean areCentralListenersSet = false;
     private boolean isLayoutChanged = false;
+
+    private MessageController messageController;
+    private InitializationController initializationController;
 
     @FXML
     private Double SECTION_MARGIN;
@@ -40,20 +44,27 @@ public class MainController implements Initializable {
     @FXML
     private TextArea info;
     @FXML
+    private TextField states;
+    @FXML
+    private TextField startState;
+    @FXML
+    private TextField endStates;
+    @FXML
     private Button makeRuleSectionBigBtn;
-
     @FXML
     private GridPane tapeSettingContainer;
     @FXML
     private Button newTape;
     @FXML
     private Button deleteTape;
-
+    @FXML
+    private Button check;
     @FXML
     private Button initialize;
-
     @FXML
     private GridPane tapeContainer;
+    @FXML
+    private AnchorPane runtimeControlPanel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,11 +73,12 @@ public class MainController implements Initializable {
         });
 
         TapeSettingsController tapeSettingsController = new TapeSettingsController(tapeSettingContainer, newTape, deleteTape);
-
-        InitializationController initializationController = new InitializationController(tapeSettingsController, tapeContainer);
+        SettingsController settingsController = new SettingsController(states, startState, endStates, tapeSettingsController);
+        this.initializationController = new InitializationController(settingsController, tapeContainer, runtimeControlPanel);
+        this.check.setOnMouseClicked(event -> initializationController.check());
         this.initialize.setOnMouseClicked(event -> initializationController.initialize());
 
-        MessageController messageController = MessageController.getInstance();
+        this.messageController = MessageController.getInstance();
         messageController.setInfoArea(info);
         try {
             messageController.writeStartingMessage();

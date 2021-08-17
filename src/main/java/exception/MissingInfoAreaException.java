@@ -1,4 +1,4 @@
-package controller.exception;
+package exception;
 
 public class MissingInfoAreaException extends Exception{
 

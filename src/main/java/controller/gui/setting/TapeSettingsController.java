@@ -44,7 +44,7 @@ public class TapeSettingsController {
         try {
             tapeContent = tapeSettingControllers.get(tapeIndex).getTapeContent();
         } catch (IndexOutOfBoundsException e) {
-            LOGGER.error("Tried to get head information with tape index: " + tapeIndex, e);
+            LOGGER.error("Tried to get tape content with tape index: " + tapeIndex, e);
         }
         return tapeContent;
     }

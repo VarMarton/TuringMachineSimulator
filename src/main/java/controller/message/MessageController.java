@@ -1,6 +1,6 @@
 package controller.message;
 
-import controller.exception.MissingInfoAreaException;
+import exception.MissingInfoAreaException;
 import javafx.scene.control.TextArea;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -54,6 +54,12 @@ public class MessageController {
 
     public void addRunMessage(MessageType type, String messageText) {
         runMessages.get(type).add(messageText);
+    }
+
+    public void clearAllMessages(){
+        clearSettingMessages();
+        clearRuleMessages();
+        clearRunMessages();
     }
 
     public void clearSettingMessages() {
