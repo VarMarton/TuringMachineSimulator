@@ -56,7 +56,19 @@ public class MessageController {
         runMessages.get(type).add(messageText);
     }
 
-    public void clearAllMessages(){
+    public int countSettingMessages(MessageType type) {
+        return settingMessages.get(type).size();
+    }
+
+    public int countRuleMessages(MessageType type) {
+        return ruleMessages.get(type).size();
+    }
+
+    public int countRunMessages(MessageType type) {
+        return runMessages.get(type).size();
+    }
+
+    public void clearAllMessages() {
         clearSettingMessages();
         clearRuleMessages();
         clearRunMessages();
@@ -88,15 +100,15 @@ public class MessageController {
                     .append(getWritableMessages(runMessages))
                     .append("\n\n");
         }
-        if (countMessages(settingMessages) != 0) {
-            stringBuilder.append("**Setting messages:**\n\n")
-                    .append(getWritableMessages(settingMessages))
-                    .append("\n\n");
-        }
         if (countMessages(ruleMessages) != 0) {
             stringBuilder.append("**Rule messages:**\n\n")
                     .append(getWritableMessages(ruleMessages))
                     .append("\n");
+        }
+        if (countMessages(settingMessages) != 0) {
+            stringBuilder.append("**Setting messages:**\n\n")
+                    .append(getWritableMessages(settingMessages))
+                    .append("\n\n");
         }
         infoArea.clear();
         infoArea.setText(stringBuilder.toString());

@@ -64,8 +64,7 @@ public class SettingsController {
             messageController.addSettingMessage(WARNING, "States should contain all end states as well.");
             validStates.addAll(validEndStates);
         }
-        if (validStates.size() < 2) {
-            LOGGER.error("At least two states have to be declared! This error message indicate some hidden problem, so please contact me.");
+        if (validStates.size() < 1) {
             result = false;
         }
 
@@ -104,6 +103,19 @@ public class SettingsController {
 
     public ArrayList<Integer> getHeadPositions(int tapeIndex) {
         return tapeSettingsController.getHeadPositions(tapeIndex);
+    }
+
+    public boolean checkIfState(String stateToCheck){
+        boolean result = false;
+
+        for(String validState : validStates) {
+            if (validState.equals(stateToCheck)) {
+                result = true;
+                break;
+            }
+        }
+
+        return result;
     }
 
     private HashSet<String> produceValidStates(String originalString) {

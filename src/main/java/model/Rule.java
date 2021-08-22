@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Rule {
 
+    private boolean isValid;
+
     private String currentState;
     private ArrayList<String> currentSymbols;
 
@@ -11,7 +13,15 @@ public class Rule {
     private ArrayList<String> symbolsToWrite;
     private ArrayList<String> movements;
 
-    public Rule(){
+    public Rule() {
+    }
+
+    public boolean isValid() {
+        return isValid;
+    }
+
+    public void setValid(boolean valid) {
+        isValid = valid;
     }
 
     public String getCurrentState() {
@@ -52,5 +62,28 @@ public class Rule {
 
     public void setMovements(ArrayList<String> movements) {
         this.movements = movements;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            stringBuilder.append("[").append(currentState);
+            for (String symbol : currentSymbols) {
+                stringBuilder.append(";").append(symbol);
+            }
+            stringBuilder.append("]->[").append(nextState);
+            for (String symbol : symbolsToWrite) {
+                stringBuilder.append(";").append(symbol);
+            }
+            for (String movement : movements) {
+                stringBuilder.append(";").append(movement);
+            }
+            stringBuilder.append("]");
+        } catch (NullPointerException e) {
+            return super.toString();
+        }
+
+        return stringBuilder.toString();
     }
 }

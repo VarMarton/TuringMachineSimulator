@@ -193,7 +193,7 @@
                         </GridPane>
                     </top>
                     <center>
-                        <TextArea fx:id="rule">
+                        <TextArea fx:id="ruleInput">
                             <BorderPane.margin>
                                 <Insets bottom="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"
                                         left="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"
@@ -211,7 +211,7 @@
                             <rowConstraints>
                                 <RowConstraints vgrow="SOMETIMES"/>
                             </rowConstraints>
-                            <Button styleClass="unified-width-setting-btn" text="_New">
+                            <Button fx:id="newRule" styleClass="unified-width-setting-btn" text="_New">
                                 <GridPane.margin>
                                     <Insets right="$HORIZONTAL_MARGIN"/>
                                 </GridPane.margin>

@@ -15,14 +15,16 @@ public class InitializationController {
 
     private MessageController messageController;
     private SettingsController settingsController;
+    private RuleProcessor ruleProcessor;
 
     private GridPane tapeContainer;
     private AnchorPane runtimeControlPanel;
 
     private ArrayList<TapeController> tapeControllers = new ArrayList<>();
 
-    public InitializationController(SettingsController settingsController, GridPane tapeContainer, AnchorPane runtimeControlPanel) {
+    public InitializationController(SettingsController settingsController, RuleProcessor ruleProcessor, GridPane tapeContainer, AnchorPane runtimeControlPanel) {
         this.settingsController = settingsController;
+        this.ruleProcessor = ruleProcessor;
         this.tapeContainer = tapeContainer;
         this.runtimeControlPanel = runtimeControlPanel;
         this.messageController = MessageController.getInstance();
@@ -38,7 +40,7 @@ public class InitializationController {
     public boolean check() {
         messageController.clearAllMessages();
 
-        boolean result = settingsController.check();
+        boolean result = settingsController.check() && ruleProcessor.produceRules();
 
         try {
             messageController.writeMessages();

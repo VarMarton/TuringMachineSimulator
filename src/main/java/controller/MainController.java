@@ -1,6 +1,7 @@
 package controller;
 
 import controller.data.InitializationController;
+import controller.data.RuleProcessor;
 import controller.data.SettingsController;
 import exception.MissingInfoAreaException;
 import controller.gui.setting.TapeSettingsController;
@@ -29,6 +30,7 @@ public class MainController implements Initializable {
 
     private MessageController messageController;
     private InitializationController initializationController;
+    private RuleProcessor ruleProcessor;
 
     @FXML
     private Double SECTION_MARGIN;
@@ -58,6 +60,10 @@ public class MainController implements Initializable {
     @FXML
     private Button deleteTape;
     @FXML
+    private TextArea ruleInput;
+    @FXML
+    private Button newRule;
+    @FXML
     private Button check;
     @FXML
     private Button initialize;
@@ -74,7 +80,8 @@ public class MainController implements Initializable {
 
         TapeSettingsController tapeSettingsController = new TapeSettingsController(tapeSettingContainer, newTape, deleteTape);
         SettingsController settingsController = new SettingsController(states, startState, endStates, tapeSettingsController);
-        this.initializationController = new InitializationController(settingsController, tapeContainer, runtimeControlPanel);
+        ruleProcessor = new RuleProcessor(ruleInput, settingsController);
+        this.initializationController = new InitializationController(settingsController, ruleProcessor, tapeContainer, runtimeControlPanel);
         this.check.setOnMouseClicked(event -> initializationController.check());
         this.initialize.setOnMouseClicked(event -> initializationController.initialize());
 
@@ -85,6 +92,7 @@ public class MainController implements Initializable {
         } catch (MissingInfoAreaException e) {
             LOGGER.error(e);
         }
+        this.newRule.setOnMouseClicked(e -> ruleProcessor.addNewLine());
     }
 
     private void setCentralListener(){
