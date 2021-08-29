@@ -5,7 +5,8 @@ public enum SpecialRunControlKey {
     SPACE("SP", " "),
     LEFT_SQUARE_BRACKET("LSB", "["),
     RIGHT_SQUARE_BRACKET("RSB", "]"),
-    SEMICOLON("SC", ";");
+    SEMICOLON("SC", ";"),
+    COLON("COL", ",");
 
     private String readValue;
     private String writeValue;

@@ -38,20 +38,25 @@ public class TapeController {
         this.tape.getNextLink().setOnMouseClicked(e -> shift(ShiftingKey.RIGHT));
     }
 
+    public int getNumberOfHeads() {
+        return heads.size();
+    }
+
     public int getVirtualIndexOfHead(int indexOfHead) {
         return this.heads.get(indexOfHead);
     }
 
-    public String getContentAtIndex(int index) {
+    public String getContentAtIndex(int virtualIndex) {
         String contentAtIndex = Tape.DEFAULT_LINK_CONTENT;
         try {
-            if (index >= 0) {
-                contentAtIndex = this.tapeContent.get(index);
+            if (virtualIndex >= 0) {
+                contentAtIndex = this.tapeContent.get(virtualIndex);
             } else {
-                contentAtIndex = this.negativeTapeContent.get(index);
+                contentAtIndex = this.negativeTapeContent.get(virtualIndex);
             }
         } catch (IndexOutOfBoundsException e) {
-            LOGGER.warn("Getting tape content resulted IndexOutOfBoundsException so returned with default value: " + Tape.DEFAULT_LINK_CONTENT);
+            //LOGGER.debug("Getting tape content resulted IndexOutOfBoundsException so returned with default value: \"" + Tape.DEFAULT_LINK_CONTENT + "\"");
+            // TODO: Think about the line above
         }
         return contentAtIndex;
     }

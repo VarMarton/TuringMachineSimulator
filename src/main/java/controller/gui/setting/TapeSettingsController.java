@@ -19,7 +19,7 @@ public class TapeSettingsController {
 
     public TapeSettingsController(GridPane tapeSettingContainer, Button newTape, Button deleteTape) {
         LOGGER.debug("Constructing TapeSettingsController...");
-        LOGGER.debug("Maximum number of tapes: " + TapeController.TAPE_NAMES.length);
+        LOGGER.info("Maximum number of tapes: " + TapeController.TAPE_NAMES.length);
 
         this.tapeSettingContainer = tapeSettingContainer;
         this.newTape = newTape;

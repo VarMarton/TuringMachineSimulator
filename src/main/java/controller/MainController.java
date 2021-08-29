@@ -3,6 +3,7 @@ package controller;
 import controller.data.InitializationController;
 import controller.data.RuleProcessor;
 import controller.data.SettingsController;
+import controller.run.RunController;
 import exception.MissingInfoAreaException;
 import controller.gui.setting.TapeSettingsController;
 import controller.message.MessageController;
@@ -71,6 +72,14 @@ public class MainController implements Initializable {
     private GridPane tapeContainer;
     @FXML
     private AnchorPane runtimeControlPanel;
+    @FXML
+    private Button restart;
+    @FXML
+    private Button prevStep;
+    @FXML
+    private Button nextStep;
+    @FXML
+    private Button finish;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -81,7 +90,8 @@ public class MainController implements Initializable {
         TapeSettingsController tapeSettingsController = new TapeSettingsController(tapeSettingContainer, newTape, deleteTape);
         SettingsController settingsController = new SettingsController(states, startState, endStates, tapeSettingsController);
         ruleProcessor = new RuleProcessor(ruleInput, settingsController);
-        this.initializationController = new InitializationController(settingsController, ruleProcessor, tapeContainer, runtimeControlPanel);
+        RunController runController = new RunController(settingsController, tapeContainer, runtimeControlPanel, restart, prevStep, nextStep, finish);
+        this.initializationController = new InitializationController(settingsController, ruleProcessor, runController, runtimeControlPanel);
         this.check.setOnMouseClicked(event -> initializationController.check());
         this.initialize.setOnMouseClicked(event -> initializationController.initialize());
 

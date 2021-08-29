@@ -106,7 +106,7 @@ public class MessageController {
                     .append("\n");
         }
         if (countMessages(settingMessages) != 0) {
-            stringBuilder.append("**Setting messages:**\n\n")
+            stringBuilder.append("**Configuration messages:**\n\n")
                     .append(getWritableMessages(settingMessages))
                     .append("\n\n");
         }

@@ -1,14 +1,11 @@
 package controller.data;
 
+import controller.run.RunController;
 import exception.MissingInfoAreaException;
-import controller.gui.tape.TapeController;
 import controller.message.MessageController;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.ArrayList;
 
 public class InitializationController {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -16,23 +13,22 @@ public class InitializationController {
     private MessageController messageController;
     private SettingsController settingsController;
     private RuleProcessor ruleProcessor;
+    private RunController runController;
 
-    private GridPane tapeContainer;
     private AnchorPane runtimeControlPanel;
 
-    private ArrayList<TapeController> tapeControllers = new ArrayList<>();
-
-    public InitializationController(SettingsController settingsController, RuleProcessor ruleProcessor, GridPane tapeContainer, AnchorPane runtimeControlPanel) {
+    public InitializationController(SettingsController settingsController, RuleProcessor ruleProcessor, RunController runController, AnchorPane runtimeControlPanel) {
         this.settingsController = settingsController;
         this.ruleProcessor = ruleProcessor;
-        this.tapeContainer = tapeContainer;
+        this.runController = runController;
         this.runtimeControlPanel = runtimeControlPanel;
         this.messageController = MessageController.getInstance();
     }
 
     public void initialize() {
         if (check()) {
-            initTapes();
+            runController.createImage(ruleProcessor.getRules());
+            runController.loadImage();
             runtimeControlPanel.setDisable(false);
         }
     }
@@ -50,16 +46,6 @@ public class InitializationController {
         }
 
         return result;
-    }
-
-    private void initTapes(){
-        tapeControllers.forEach(TapeController::removeTapeFromContainer);
-        for (int i = 0; i < settingsController.getNumberOfTapes(); i++) {
-            ArrayList<String> tapeContent = settingsController.getTapeContentAsList(i);
-            ArrayList<Integer> headPositions = settingsController.getHeadPositions(i);
-            TapeController tapeController = new TapeController(tapeContainer, i, tapeContent, headPositions);
-            tapeControllers.add(tapeController);
-        }
     }
 
 }

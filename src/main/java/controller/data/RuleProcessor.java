@@ -12,11 +12,13 @@ import static controller.message.MessageType.*;
 
 public class RuleProcessor {
 
+    public static final String[] LEFT_MOVEMENT = {"L", "l", "<"};
+    public static final String[] RIGHT_MOVEMENT = {"R", "r", ">"};
+    public static final String[] NO_MOVEMENT =  {"S", "s", "V", "v"};
+
     private final String RULE_DELIMITER = "\n";
     private final String INLINE_DELIMITER = ";";
     private final SpecialRunControlKey DEFAULT_SPECIAL_RUN_CONTROL_KEY = SpecialRunControlKey.ANY;
-    private final String[] LEFT_MOVEMENT = {"L", "l", "<"};
-    private final String[] RIGHT_MOVEMENT = {"R", "r", ">"};
     private final String[] EXTRA_CHARACTERS_TO_REMOVE = {"\\[", "\\]"};
 
     private boolean warnAboutAny;
@@ -41,8 +43,8 @@ public class RuleProcessor {
     public void addNewLine() {
         Rule rule = new Rule();
         int numberOfHeads = calculateNumberOfHeads();
-        rule.setCurrentState(" ");
-        rule.setNextState(" ");
+        rule.setCurrentState("");
+        rule.setNextState("");
         ArrayList<String> placeHolder = new ArrayList<>();
         for (int i = 0; i < numberOfHeads; i++) {
             placeHolder.add(" ");
@@ -157,7 +159,7 @@ public class RuleProcessor {
                 rule.setValid(false);
             }
         } else {
-            messageController.addRuleMessage(ERROR, "At line " + index + " - syntax error at " + sideName + " side, maybe missing heads");
+            messageController.addRuleMessage(ERROR, "At line " + index + " - syntax error at " + sideName + " side, maybe heads are missing");
             rule.setValid(false);
         }
     }
@@ -191,7 +193,7 @@ public class RuleProcessor {
 
     private String correctSymbol(String symbol) {
         String result = symbol;
-        if ("".equals(symbol)) {
+        if ("".equals(symbol.trim())) {
             result = DEFAULT_SPECIAL_RUN_CONTROL_KEY.getReadValue();
         }
         return result;
@@ -226,6 +228,12 @@ public class RuleProcessor {
                 }
             }
             for (String key : RIGHT_MOVEMENT) {
+                if (key.equals(movementKey)) {
+                    found = true;
+                    break;
+                }
+            }
+            for (String key : NO_MOVEMENT) {
                 if (key.equals(movementKey)) {
                     found = true;
                     break;
