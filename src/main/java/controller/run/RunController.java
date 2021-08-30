@@ -21,7 +21,7 @@ import static controller.run.RunStatus.*;
 public class RunController {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private final int MAX_ITERATION_NUMBER = 5000;
+    private final int MAX_ITERATION_NUMBER = 1000;
 
     private SettingsController settingsController;
     private MessageController messageController;
@@ -72,7 +72,8 @@ public class RunController {
             for (int i = 1; i < indexToReach; i++) {
                 executeNextStep(false);
             }
-            executeNextStep(true);
+            RunStatus runStatus = executeNextStep(true);
+            postProdStatus(runStatus);
         }
     }
 
@@ -313,7 +314,7 @@ public class RunController {
         } else {
             if (FAILED.equals(status)) {
                 makeControlPanelRed();
-                messageController.addRunMessage(INFO, "Can not reach end state, this machine FAILED!");
+                messageController.addRunMessage(INFO, "Cannot reach end state, this machine FAILED!");
             } else if (SUCCESS.equals(status)) {
                 makeControlPanelGreen();
                 messageController.addRunMessage(INFO, "End state reached, SUCCESS!");

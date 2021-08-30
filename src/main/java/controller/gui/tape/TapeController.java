@@ -56,7 +56,6 @@ public class TapeController {
             }
         } catch (IndexOutOfBoundsException e) {
             //LOGGER.debug("Getting tape content resulted IndexOutOfBoundsException so returned with default value: \"" + Tape.DEFAULT_LINK_CONTENT + "\"");
-            // TODO: Think about the line above
         }
         return contentAtIndex;
     }
