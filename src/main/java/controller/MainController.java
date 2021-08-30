@@ -3,6 +3,7 @@ package controller;
 import controller.data.InitializationController;
 import controller.data.RuleProcessor;
 import controller.data.SettingsController;
+import controller.gui.menu.MenuController;
 import controller.run.RunController;
 import exception.MissingInfoAreaException;
 import controller.gui.setting.TapeSettingsController;
@@ -80,21 +81,18 @@ public class MainController implements Initializable {
     private Button nextStep;
     @FXML
     private Button finish;
+    @FXML
+    private Button exportBtn;
+    @FXML
+    private Button importBtn;
+    @FXML
+    private Button helpBtn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.makeRuleSectionBigBtn.setOnMouseClicked(event -> {
             this.makeRuleSectionBigEvent();
         });
-
-        TapeSettingsController tapeSettingsController = new TapeSettingsController(tapeSettingContainer, newTape, deleteTape);
-        SettingsController settingsController = new SettingsController(states, startState, endStates, tapeSettingsController);
-        ruleProcessor = new RuleProcessor(ruleInput, settingsController);
-        RunController runController = new RunController(settingsController, tapeContainer, runtimeControlPanel, restart, prevStep, nextStep, finish);
-        this.initializationController = new InitializationController(settingsController, ruleProcessor, runController, runtimeControlPanel);
-        this.check.setOnMouseClicked(event -> initializationController.check());
-        this.initialize.setOnMouseClicked(event -> initializationController.initialize());
-
         this.messageController = MessageController.getInstance();
         messageController.setInfoArea(info);
         try {
@@ -103,6 +101,15 @@ public class MainController implements Initializable {
             LOGGER.error(e);
         }
         this.newRule.setOnMouseClicked(e -> ruleProcessor.addNewLine());
+
+        TapeSettingsController tapeSettingsController = new TapeSettingsController(tapeSettingContainer, newTape, deleteTape);
+        SettingsController settingsController = new SettingsController(states, startState, endStates, tapeSettingsController);
+        ruleProcessor = new RuleProcessor(ruleInput, settingsController);
+        RunController runController = new RunController(settingsController, tapeContainer, runtimeControlPanel, restart, prevStep, nextStep, finish);
+        this.initializationController = new InitializationController(settingsController, ruleProcessor, runController, runtimeControlPanel);
+        this.check.setOnMouseClicked(event -> initializationController.check());
+        this.initialize.setOnMouseClicked(event -> initializationController.initialize());
+        MenuController menuController = new MenuController(exportBtn, importBtn, helpBtn);
     }
 
     private void setCentralListener(){

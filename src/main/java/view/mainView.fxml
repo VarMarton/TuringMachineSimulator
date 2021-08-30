@@ -37,15 +37,15 @@
                     <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES"/>
                     </rowConstraints>
-                    <Button fx:id="export" styleClass="unified-width-setting-btn" text="_Export">
+                    <Button fx:id="exportBtn" styleClass="unified-width-setting-btn" text="_Export">
                         <GridPane.margin>
                             <Insets left="$HORIZONTAL_MARGIN" right="$HORIZONTAL_MARGIN" top="$VERTICAL_MARGIN"
                                     bottom="$VERTICAL_MARGIN"/>
                         </GridPane.margin>
                     </Button>
-                    <Button fx:id="import" styleClass="unified-width-setting-btn" GridPane.columnIndex="1"
+                    <Button fx:id="importBtn" styleClass="unified-width-setting-btn" GridPane.columnIndex="1"
                             text="_Import"/>
-                    <Button fx:id="help" styleClass="unified-width-setting-btn" GridPane.columnIndex="2" text="_Help">
+                    <Button fx:id="helpBtn" styleClass="unified-width-setting-btn" GridPane.columnIndex="2" text="_Help">
                         <GridPane.margin>
                             <Insets left="$HORIZONTAL_MARGIN" right="$HORIZONTAL_MARGIN"/>
                         </GridPane.margin>
