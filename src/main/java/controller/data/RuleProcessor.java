@@ -92,6 +92,14 @@ public class RuleProcessor {
         return messageController.countRuleMessages(ERROR) == 0;
     }
 
+    public String getRawRules() {
+        return ruleInput.getText();
+    }
+
+    public void setRawRules(String rawRules) {
+        ruleInput.setText(rawRules);
+    }
+
     private HashMap<Integer, String> produceCleanedLines() {
         HashMap<Integer, String> cleanedLines = new HashMap<>();
 

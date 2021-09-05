@@ -5,6 +5,7 @@ import controller.data.RuleProcessor;
 import controller.data.SettingsController;
 import controller.gui.menu.MenuController;
 import controller.run.RunController;
+import controller.save.SaveController;
 import exception.MissingInfoAreaException;
 import controller.gui.setting.TapeSettingsController;
 import controller.message.MessageController;
@@ -109,7 +110,8 @@ public class MainController implements Initializable {
         this.initializationController = new InitializationController(settingsController, ruleProcessor, runController, runtimeControlPanel);
         this.check.setOnMouseClicked(event -> initializationController.check());
         this.initialize.setOnMouseClicked(event -> initializationController.initialize());
-        MenuController menuController = new MenuController(exportBtn, importBtn, helpBtn);
+        SaveController saveController = new SaveController(settingsController, ruleProcessor);
+        MenuController menuController = new MenuController(saveController, exportBtn, importBtn, helpBtn);
     }
 
     private void setCentralListener(){

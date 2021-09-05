@@ -2,21 +2,57 @@ package controller.gui.menu;
 
 
 import controller.message.DefaultMessage;
+import controller.save.SaveController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.stage.FileChooser;
+import lombok.extern.log4j.Log4j2;
 
+import java.io.File;
+
+@Log4j2
 public class MenuController {
 
-    private Button exportBtn;
-    private Button importBtn;
-    private Button helpBtn;
+    private final SaveController saveController;
 
-    public MenuController(Button exportBtn, Button importBtn, Button helpBtn) {
+    private final Button exportBtn;
+    private final Button importBtn;
+    private final Button helpBtn;
+
+    public MenuController(SaveController saveController, Button exportBtn, Button importBtn, Button helpBtn) {
+        this.saveController = saveController;
+
         this.exportBtn = exportBtn;
         this.importBtn = importBtn;
         this.helpBtn = helpBtn;
 
         this.helpBtn.setOnMouseClicked(e -> helpBtnAction());
+        this.exportBtn.setOnMouseClicked(e -> exportBtnAction());
+        this.importBtn.setOnMouseClicked(e -> importTbnAction());
+    }
+
+    private void exportBtnAction() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save File");
+        fileChooser.setInitialFileName("tms_exported");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Turing Machine Simulator files (*.tms)", "*.tms");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File fileToSave = fileChooser.showSaveDialog(null);
+        log.debug("Save:");
+        log.debug(fileToSave.getPath());
+        saveController.save(fileToSave.getPath());
+    }
+
+    private void importTbnAction() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Load File");
+        fileChooser.setInitialFileName("tms_exported");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Turing Machine Simulator files (*.tms)", "*.tms");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File fileToOpen = fileChooser.showOpenDialog(null);
+        log.debug("Open:");
+        log.debug(fileToOpen.getPath());
+        saveController.load(fileToOpen.getPath());
     }
 
     private void helpBtnAction() {

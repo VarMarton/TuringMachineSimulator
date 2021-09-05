@@ -49,6 +49,14 @@ public class TapeSettingsController {
         return tapeContent;
     }
 
+    public void setTapeContent(int tapeIndex, String tapeContent) {
+        try {
+            tapeSettingControllers.get(tapeIndex).setTapeContent(tapeContent);
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.error("Tried to get tape content with tape index: " + tapeIndex, e);
+        }
+    }
+
     public ArrayList<Integer> getHeadPositions(int tapeIndex) {
         ArrayList<Integer> headPositions = new ArrayList<>();
         try {
@@ -59,7 +67,15 @@ public class TapeSettingsController {
         return headPositions;
     }
 
-    private void addNewTapeSetting() {
+    public void setHeadPositions(int tapeIndex, ArrayList<Integer> positions) {
+        try {
+            this.tapeSettingControllers.get(tapeIndex).setHeadPositions(positions);
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.error("Tried to get head information with tape index: " + tapeIndex, e);
+        }
+    }
+
+    public void addNewTapeSetting() {
         OneTapeSettingController tapeSetting = new OneTapeSettingController(tapeSettingContainer,
                 tapeSettingControllers.size(),
                 TapeController.TAPE_NAMES[tapeSettingControllers.size()]);
@@ -72,7 +88,7 @@ public class TapeSettingsController {
         }
     }
 
-    private void removeTapeSetting() {
+    public void removeTapeSetting() {
         this.tapeSettingContainer.getChildren().remove(tapeSettingControllers.size() - 1);
         tapeSettingControllers.remove(tapeSettingControllers.size() - 1);
         if (tapeSettingControllers.size() == 1) {

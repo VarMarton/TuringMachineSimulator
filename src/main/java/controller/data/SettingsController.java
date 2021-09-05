@@ -77,6 +77,45 @@ public class SettingsController {
         return result;
     }
 
+    public String getRawStates() {
+        return states.getText();
+    }
+
+    public void setRawStates(String rawStates) {
+        this.states.setText(rawStates);
+    }
+
+    public String getRawStartState() {
+        return startState.getText();
+    }
+
+    public void setRawStartState(String rawStartState) {
+        this.startState.setText(rawStartState);
+    }
+
+    public String getRawEndStates() {
+        return endStates.getText();
+    }
+
+    public void setRawEndStates(String rawEndStates) {
+        this.endStates.setText(rawEndStates);
+    }
+
+    public ArrayList<String> getRawContents() {
+        ArrayList<String> contents = new ArrayList<>();
+        for (int i = 0; i < getNumberOfTapes(); i++) {
+            contents.add(tapeSettingsController.getTapeContent(i));
+        }
+        return contents;
+    }
+
+    public void setRawContents(ArrayList<String> contents) {
+        setNumberOfTapesToMatch(contents.size());
+        for (int i = 0; i < contents.size(); i++) {
+            tapeSettingsController.setTapeContent(i, contents.get(i));
+        }
+    }
+
     public HashSet<String> getValidStates() {
         return validStates;
     }
@@ -101,14 +140,29 @@ public class SettingsController {
         return contentAsList;
     }
 
+    public ArrayList<ArrayList<Integer>> getAllHeadPositions() {
+        ArrayList<ArrayList<Integer>> allHeadPositions = new ArrayList<>();
+        for (int i = 0; i < getNumberOfTapes(); i++) {
+            allHeadPositions.add(getHeadPositions(i));
+        }
+        return allHeadPositions;
+    }
+
+    public void setAllHeadPositions(ArrayList<ArrayList<Integer>> positions) {
+        setNumberOfTapesToMatch(positions.size());
+        for (int i = 0; i < positions.size(); i++) {
+            tapeSettingsController.setHeadPositions(i, positions.get(i));
+        }
+    }
+
     public ArrayList<Integer> getHeadPositions(int tapeIndex) {
         return tapeSettingsController.getHeadPositions(tapeIndex);
     }
 
-    public boolean checkIfState(String stateToCheck){
+    public boolean checkIfState(String stateToCheck) {
         boolean result = false;
 
-        for(String validState : validStates) {
+        for (String validState : validStates) {
             if (validState.equals(stateToCheck)) {
                 result = true;
                 break;
@@ -116,6 +170,18 @@ public class SettingsController {
         }
 
         return result;
+    }
+
+    private void setNumberOfTapesToMatch(int numberOfTapesToMatch) {
+        if (numberOfTapesToMatch > tapeSettingsController.getNumberOfTapes()) {
+            do {
+                tapeSettingsController.addNewTapeSetting();
+            } while (numberOfTapesToMatch != tapeSettingsController.getNumberOfTapes());
+        } else if (numberOfTapesToMatch < tapeSettingsController.getNumberOfTapes()) {
+            do {
+                tapeSettingsController.removeTapeSetting();
+            } while (numberOfTapesToMatch != tapeSettingsController.getNumberOfTapes());
+        }
     }
 
     private HashSet<String> produceValidStates(String originalString) {

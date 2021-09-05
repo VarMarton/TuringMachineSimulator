@@ -23,6 +23,10 @@ public class OneTapeSettingController {
         return tapeSetting.getContent().getText();
     }
 
+    public void setTapeContent(String tapeContent) {
+        tapeSetting.getContent().setText(tapeContent);
+    }
+
     public ArrayList<Integer> getHeadPositions() {
         ArrayList<Integer> headPositions = new ArrayList<>();
         for (HeadPositionSetting headPosition : this.headPositions) {
@@ -37,6 +41,20 @@ public class OneTapeSettingController {
             }
         }
         return headPositions;
+    }
+
+    public void setHeadPositions(ArrayList<Integer> positions) {
+        for (HeadPositionSetting headPositionSetting : headPositions) {
+            headPositionSetting.setVisible(false);
+        }
+        int size = headPositions.size();
+        if (size > positions.size()) {
+            size = positions.size();
+        }
+        for (int i = 0; i < size; i++) {
+            headPositions.get(i).setHeadPosition(positions.get(i).toString());
+            headPositions.get(i).setVisible(true);
+        }
     }
 
     private void plusBtnAction() {
