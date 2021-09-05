@@ -7,15 +7,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@Log4j2
 public class Tape extends GridPane {
-
-    private static final Logger LOGGER = LogManager.getLogger();
 
     public static final String DEFAULT_LINK_CONTENT = " ";
     public static final double OUTER_COLUMN_WIDTH = 50.0;
@@ -132,7 +130,7 @@ public class Tape extends GridPane {
         try {
             this.chain.get(index).setText(text);
         } catch (IndexOutOfBoundsException e) {
-            LOGGER.error("Tried to set link text at: " + index, e);
+            log.error("Tried to set link text at: " + index, e);
         }
     }
 

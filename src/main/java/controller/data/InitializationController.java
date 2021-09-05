@@ -4,11 +4,10 @@ import controller.run.RunController;
 import exception.MissingInfoAreaException;
 import controller.message.MessageController;
 import javafx.scene.layout.AnchorPane;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class InitializationController {
-    private static final Logger LOGGER = LogManager.getLogger();
 
     private MessageController messageController;
     private SettingsController settingsController;
@@ -41,7 +40,7 @@ public class InitializationController {
         try {
             messageController.writeMessages();
         } catch (MissingInfoAreaException e) {
-            LOGGER.error(e);
+            log.error(e);
             result = false;
         }
 

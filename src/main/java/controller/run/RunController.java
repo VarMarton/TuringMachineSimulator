@@ -8,18 +8,17 @@ import exception.MissingInfoAreaException;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import lombok.extern.log4j.Log4j2;
 import model.Rule;
 import model.RunImage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
 import static controller.message.MessageType.INFO;
 import static controller.run.RunStatus.*;
 
+@Log4j2
 public class RunController {
-    private static final Logger LOGGER = LogManager.getLogger();
 
     private final int MAX_ITERATION_NUMBER = 1000;
 
@@ -57,7 +56,7 @@ public class RunController {
 
         messageController = MessageController.getInstance();
 
-        LOGGER.info("Maximum number of iteration during running: " + MAX_ITERATION_NUMBER);
+        log.info("Maximum number of iteration during running: " + MAX_ITERATION_NUMBER);
 
         this.restart.setOnMouseClicked(e -> loadImage());
         this.prevStep.setOnMouseClicked(e -> prevStepEvent());
@@ -282,7 +281,7 @@ public class RunController {
                 multiplier = Integer.parseInt(movementArr[0]);
                 direction = movementArr[1];
             } catch (NumberFormatException e) {
-                LOGGER.error("This error should not occur so please notify the teacher or developer about it", e);
+                log.error("This error should not occur so please notify the teacher or developer about it", e);
                 multiplier = 1;
             }
         }
@@ -330,7 +329,7 @@ public class RunController {
         try {
             messageController.writeMessages();
         } catch (MissingInfoAreaException missingInfoAreaException) {
-            LOGGER.error(missingInfoAreaException);
+            log.error(missingInfoAreaException);
         }
     }
 

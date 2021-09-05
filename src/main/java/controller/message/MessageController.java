@@ -2,14 +2,13 @@ package controller.message;
 
 import exception.MissingInfoAreaException;
 import javafx.scene.control.TextArea;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@Log4j2
 public class MessageController {
-    private static final Logger LOGGER = LogManager.getLogger();
 
     private static MessageController controller;
 
@@ -130,7 +129,7 @@ public class MessageController {
     private void testTextArea() throws MissingInfoAreaException {
         if (infoArea == null) {
             MissingInfoAreaException e = new MissingInfoAreaException();
-            LOGGER.error(e);
+            log.error(e);
             throw e;
         }
     }

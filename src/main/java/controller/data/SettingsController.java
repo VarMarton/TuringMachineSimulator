@@ -6,15 +6,12 @@ import controller.message.MessageController;
 import static controller.message.MessageType.*;
 
 import javafx.scene.control.TextField;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
 public class SettingsController {
-    private static final Logger LOGGER = LogManager.getLogger();
 
     private final String STATE_DELIMITER = ",";
     private final String[] RESTRICTED_CHARACTERS = {"[", "]", ";", "-", ">", " ", "\n"};

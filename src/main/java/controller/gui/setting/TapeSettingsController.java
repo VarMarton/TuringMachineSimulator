@@ -3,14 +3,12 @@ package controller.gui.setting;
 import controller.gui.tape.TapeController;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.ArrayList;
 
+@Log4j2
 public class TapeSettingsController {
-
-    private static final Logger LOGGER = LogManager.getLogger();
 
     private final GridPane tapeSettingContainer;
     private final ArrayList<OneTapeSettingController> tapeSettingControllers;
@@ -18,21 +16,21 @@ public class TapeSettingsController {
     private final Button deleteTape;
 
     public TapeSettingsController(GridPane tapeSettingContainer, Button newTape, Button deleteTape) {
-        LOGGER.debug("Constructing TapeSettingsController...");
-        LOGGER.info("Maximum number of tapes: " + TapeController.TAPE_NAMES.length);
+        log.debug("Constructing TapeSettingsController...");
+        log.info("Maximum number of tapes: " + TapeController.TAPE_NAMES.length);
 
         this.tapeSettingContainer = tapeSettingContainer;
         this.newTape = newTape;
         this.tapeSettingControllers = new ArrayList<>();
         this.deleteTape = deleteTape;
 
-        LOGGER.debug("Adding one tapeSetting");
+        log.debug("Adding one tapeSetting");
         addNewTapeSetting();
 
         newTape.setOnMouseClicked(event -> addNewTapeSetting());
         deleteTape.setOnMouseClicked(event -> removeTapeSetting());
 
-        LOGGER.debug("Constructing TapeSettingsController has finished");
+        log.debug("Constructing TapeSettingsController has finished");
     }
 
     public int getNumberOfTapes() {
@@ -44,7 +42,7 @@ public class TapeSettingsController {
         try {
             tapeContent = tapeSettingControllers.get(tapeIndex).getTapeContent();
         } catch (IndexOutOfBoundsException e) {
-            LOGGER.error("Tried to get tape content with tape index: " + tapeIndex, e);
+            log.error("Tried to get tape content with tape index: " + tapeIndex, e);
         }
         return tapeContent;
     }
@@ -53,7 +51,7 @@ public class TapeSettingsController {
         try {
             tapeSettingControllers.get(tapeIndex).setTapeContent(tapeContent);
         } catch (IndexOutOfBoundsException e) {
-            LOGGER.error("Tried to get tape content with tape index: " + tapeIndex, e);
+            log.error("Tried to get tape content with tape index: " + tapeIndex, e);
         }
     }
 
@@ -62,7 +60,7 @@ public class TapeSettingsController {
         try {
             headPositions = this.tapeSettingControllers.get(tapeIndex).getHeadPositions();
         } catch (IndexOutOfBoundsException e) {
-            LOGGER.error("Tried to get head information with tape index: " + tapeIndex, e);
+            log.error("Tried to get head information with tape index: " + tapeIndex, e);
         }
         return headPositions;
     }
@@ -71,7 +69,7 @@ public class TapeSettingsController {
         try {
             this.tapeSettingControllers.get(tapeIndex).setHeadPositions(positions);
         } catch (IndexOutOfBoundsException e) {
-            LOGGER.error("Tried to get head information with tape index: " + tapeIndex, e);
+            log.error("Tried to get head information with tape index: " + tapeIndex, e);
         }
     }
 

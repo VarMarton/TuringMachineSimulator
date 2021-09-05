@@ -3,16 +3,12 @@ package controller.gui.tape;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import view.HeadPosition;
 import view.Tape;
 
 import java.util.ArrayList;
 
 public class TapeController {
-
-    private static final Logger LOGGER = LogManager.getLogger();
 
     public static final String[] TAPE_NAMES = {"A", "B", "C", "D", "E"};
 

@@ -19,14 +19,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+@Log4j2
 public class MainController implements Initializable {
-    private static final Logger LOGGER = LogManager.getLogger();
 
     private boolean areCentralListenersSet = false;
     private boolean isLayoutChanged = false;
@@ -99,7 +98,7 @@ public class MainController implements Initializable {
         try {
             messageController.writeStartingMessage();
         } catch (MissingInfoAreaException e) {
-            LOGGER.error(e);
+            log.error(e);
         }
         this.newRule.setOnMouseClicked(e -> ruleProcessor.addNewLine());
 
