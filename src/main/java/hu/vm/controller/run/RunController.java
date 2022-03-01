@@ -9,8 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import lombok.extern.log4j.Log4j2;
-import hu.vm.model.Rule;
-import hu.vm.model.RunImage;
+import hu.vm.entity.Rule;
+import hu.vm.entity.RunImage;
 
 import java.util.ArrayList;
 

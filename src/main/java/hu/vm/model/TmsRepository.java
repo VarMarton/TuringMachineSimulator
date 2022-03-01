@@ -1,4 +1,4 @@
-package hu.vm.controller.save;
+package hu.vm.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,7 +6,7 @@ import hu.vm.controller.data.RuleProcessor;
 import hu.vm.controller.data.SettingsController;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import hu.vm.model.SaveImage;
+import hu.vm.entity.SaveImage;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ import java.util.List;
 
 @Log4j2
 @RequiredArgsConstructor
-public class SaveController {
+public class TmsRepository {
 
     private final SettingsController settingsController;
     private final RuleProcessor ruleProcessor;

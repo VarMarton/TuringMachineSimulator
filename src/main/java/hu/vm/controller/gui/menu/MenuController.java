@@ -2,7 +2,7 @@ package hu.vm.controller.gui.menu;
 
 
 import hu.vm.controller.message.DefaultMessage;
-import hu.vm.controller.save.SaveController;
+import hu.vm.model.TmsRepository;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
@@ -13,14 +13,14 @@ import java.io.File;
 @Log4j2
 public class MenuController {
 
-    private final SaveController saveController;
+    private final TmsRepository tmsRepository;
 
     private final Button exportBtn;
     private final Button importBtn;
     private final Button helpBtn;
 
-    public MenuController(SaveController saveController, Button exportBtn, Button importBtn, Button helpBtn) {
-        this.saveController = saveController;
+    public MenuController(TmsRepository tmsRepository, Button exportBtn, Button importBtn, Button helpBtn) {
+        this.tmsRepository = tmsRepository;
 
         this.exportBtn = exportBtn;
         this.importBtn = importBtn;
@@ -40,7 +40,7 @@ public class MenuController {
         File fileToSave = fileChooser.showSaveDialog(null);
         log.debug("Save:");
         log.debug(fileToSave.getPath());
-        saveController.save(fileToSave.getPath());
+        tmsRepository.save(fileToSave.getPath());
     }
 
     private void importTbnAction() {
@@ -52,7 +52,7 @@ public class MenuController {
         File fileToOpen = fileChooser.showOpenDialog(null);
         log.debug("Open:");
         log.debug(fileToOpen.getPath());
-        saveController.load(fileToOpen.getPath());
+        tmsRepository.load(fileToOpen.getPath());
     }
 
     private void helpBtnAction() {

@@ -5,7 +5,7 @@ import hu.vm.controller.data.RuleProcessor;
 import hu.vm.controller.data.SettingsController;
 import hu.vm.controller.gui.menu.MenuController;
 import hu.vm.controller.run.RunController;
-import hu.vm.controller.save.SaveController;
+import hu.vm.model.TmsRepository;
 import hu.vm.exception.MissingInfoAreaException;
 import hu.vm.controller.gui.setting.TapeSettingsController;
 import hu.vm.controller.message.MessageController;
@@ -109,8 +109,8 @@ public class MainController implements Initializable {
         this.initializationController = new InitializationController(settingsController, ruleProcessor, runController, runtimeControlPanel);
         this.check.setOnMouseClicked(event -> initializationController.check());
         this.initialize.setOnMouseClicked(event -> initializationController.initialize());
-        SaveController saveController = new SaveController(settingsController, ruleProcessor);
-        MenuController menuController = new MenuController(saveController, exportBtn, importBtn, helpBtn);
+        TmsRepository tmsRepository = new TmsRepository(settingsController, ruleProcessor);
+        MenuController menuController = new MenuController(tmsRepository, exportBtn, importBtn, helpBtn);
     }
 
     private void setCentralListener(){

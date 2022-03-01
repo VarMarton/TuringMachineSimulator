@@ -3,7 +3,7 @@ package hu.vm.controller.data;
 import hu.vm.controller.message.MessageController;
 import hu.vm.controller.run.SpecialRunControlKey;
 import javafx.scene.control.TextArea;
-import hu.vm.model.Rule;
+import hu.vm.entity.Rule;
 
 import java.util.ArrayList;
 import java.util.HashMap;

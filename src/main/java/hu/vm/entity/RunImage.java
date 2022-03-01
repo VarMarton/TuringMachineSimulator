@@ -1,4 +1,4 @@
-package hu.vm.model;
+package hu.vm.entity;
 
 import lombok.Getter;
 import lombok.Setter;
