@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 public class TapeSetting extends GridPane {
 
-    private final String STYLE_CLASS_TAPE_CONTAINER = "tape-container";
-    private final String STYLE_CLASS_TAPE_SETTING = "tape-setting";
+    private static final String STYLE_CLASS_TAPE_CONTAINER = "tape-container";
+    private static final String STYLE_CLASS_TAPE_SETTING = "tape-setting";
 
-    private final String ICON_PLUS_URL = "icons/plus.png";
-    private final String ICON_MINUS_URL = "icons/minus.png";
+    private static final String ICON_PLUS_URL = "icons/plus.png";
+    private static final String ICON_MINUS_URL = "icons/minus.png";
 
     private final String name;
     private final Label nameLbl = new Label();

@@ -97,7 +97,7 @@ public class TmsRepository {
     private String convertBinaryStringLinesToString(List<String> input) {
         StringBuilder output = new StringBuilder();
         for (String line : input) {
-            String s = String.valueOf((char)Integer.parseInt(line, 2));
+            String s = String.valueOf((char) Integer.parseInt(line, 2));
             output.append(s);
         }
         return output.toString();

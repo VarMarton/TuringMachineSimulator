@@ -64,6 +64,39 @@ public class RunController {
         this.finish.setOnMouseClicked(e -> finishStepEvent());
     }
 
+    public void createImage(ArrayList<Rule> rules) {
+        this.image = new RunImage();
+        image.setValidStates(settingsController.getValidStates());
+        image.setValidStartState(settingsController.getValidStartState());
+        image.setValidEndStates(settingsController.getValidEndStates());
+        image.setRules(rules);
+        image.setNumberOfTapes(settingsController.getNumberOfTapes());
+        for (int i = 0; i < image.getNumberOfTapes(); i++) {
+            image.addTapeContent(settingsController.getTapeContentAsList(i));
+            image.addHeadPosition(settingsController.getHeadPositions(i));
+        }
+    }
+
+    public void loadImage() {
+        tapeControllers.forEach(TapeController::removeTapeFromContainer);
+        tapeControllers.clear();
+        for (int i = 0; i < image.getNumberOfTapes(); i++) {
+            TapeController tapeController = new TapeController(tapeContainer,
+                    i,
+                    getCopyOfImageContent(i),
+                    getCopyOfImageHeads(i));
+            tapeControllers.add(tapeController);
+        }
+
+        currentState = image.getValidStartState();
+        runIndex = 0;
+        nextStep.setDisable(false);
+        finish.setDisable(false);
+        makeControlPanelDefault();
+        messageController.clearRunMessages();
+        writeRunMessages();
+    }
+
     private void prevStepEvent() {
         int indexToReach = runIndex - 1;
         loadImage();
@@ -99,39 +132,6 @@ public class RunController {
             runStatus = FAILED;
         }
         postProdStatus(runStatus);
-    }
-
-    public void createImage(ArrayList<Rule> rules) {
-        this.image = new RunImage();
-        image.setValidStates(settingsController.getValidStates());
-        image.setValidStartState(settingsController.getValidStartState());
-        image.setValidEndStates(settingsController.getValidEndStates());
-        image.setRules(rules);
-        image.setNumberOfTapes(settingsController.getNumberOfTapes());
-        for (int i = 0; i < image.getNumberOfTapes(); i++) {
-            image.addTapeContent(settingsController.getTapeContentAsList(i));
-            image.addHeadPosition(settingsController.getHeadPositions(i));
-        }
-    }
-
-    public void loadImage() {
-        tapeControllers.forEach(TapeController::removeTapeFromContainer);
-        tapeControllers.clear();
-        for (int i = 0; i < image.getNumberOfTapes(); i++) {
-            TapeController tapeController = new TapeController(tapeContainer,
-                    i,
-                    getCopyOfImageContent(i),
-                    getCopyOfImageHeads(i));
-            tapeControllers.add(tapeController);
-        }
-
-        currentState = image.getValidStartState();
-        runIndex = 0;
-        nextStep.setDisable(false);
-        finish.setDisable(false);
-        makeControlPanelDefault();
-        messageController.clearRunMessages();
-        writeRunMessages();
     }
 
     private ArrayList<String> getCopyOfImageContent(int index) {

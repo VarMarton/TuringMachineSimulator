@@ -31,5 +31,6 @@ public class DefaultMessage {
             "\t] = " + SpecialRunControlKey.RIGHT_SQUARE_BRACKET.getReadValue() + "\n" +
             "\t; = " + SpecialRunControlKey.SEMICOLON.getReadValue() + "\n" +
             "\t, = " + SpecialRunControlKey.COLON.getReadValue() + "\n\n" +
-            "Thank you for using Turing Machine Simulator!";
+            "Thank you for using Turing Machine Simulator!\n\n" +
+            "(2022" + (char) 169 + " , Varga Márton)";
 }

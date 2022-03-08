@@ -39,3 +39,6 @@ hs_err_pid*
 
 
 target
+
+# config prop
+tms-config.properties

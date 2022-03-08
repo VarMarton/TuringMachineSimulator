@@ -90,9 +90,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.makeRuleSectionBigBtn.setOnMouseClicked(event -> {
-            this.makeRuleSectionBigEvent();
-        });
+        this.makeRuleSectionBigBtn.setOnMouseClicked(event -> this.makeRuleSectionBigEvent());
         this.messageController = MessageController.getInstance();
         messageController.setInfoArea(info);
         try {
@@ -110,22 +108,7 @@ public class MainController implements Initializable {
         this.check.setOnMouseClicked(event -> initializationController.check());
         this.initialize.setOnMouseClicked(event -> initializationController.initialize());
         TmsRepository tmsRepository = new TmsRepository(settingsController, ruleProcessor);
-        MenuController menuController = new MenuController(tmsRepository, exportBtn, importBtn, helpBtn);
-    }
-
-    private void setCentralListener(){
-        this.center.heightProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
-            if (this.isLayoutChanged) {
-                this.restoreLayout();
-            }
-        });
-
-        this.center.widthProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
-            if (this.isLayoutChanged) {
-                this.restoreLayout();
-            }
-        });
-        this.areCentralListenersSet = true;
+        new MenuController(tmsRepository, exportBtn, importBtn, helpBtn);
     }
 
     private void makeRuleSectionBigEvent(){
