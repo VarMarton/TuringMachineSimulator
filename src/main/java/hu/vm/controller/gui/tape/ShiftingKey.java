@@ -1,16 +1,14 @@
 package hu.vm.controller.gui.tape;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum ShiftingKey {
-    LEFT (-1),
-    RIGHT (1);
+    LEFT(-1),
+    RIGHT(1);
 
-    private int value;
+    private final int value;
 
-    ShiftingKey(int value){
-        this.value = value;
-    }
-
-    public int getValue() {
-        return value;
-    }
 }

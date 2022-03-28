@@ -10,19 +10,25 @@ import javafx.scene.layout.RowConstraints;
 
 public class HeadPositionSetting extends GridPane {
 
-    private static String STYLE_CLASS_FOR_HEAD_POS = "head-position-setting";
+    public static final String DEFAULT_HEAD_POSITION_CONTENT = "0";
+    private static final String STYLE_CLASS_FOR_HEAD_POS = "head-position-setting";
 
-    private Label textLbl;
-    private TextField positionSetter;
+    private final Label textLbl;
+    private final TextField positionSetter;
 
     public HeadPositionSetting(String text) {
         this.getStyleClass().add(STYLE_CLASS_FOR_HEAD_POS);
+
         positionSetter = new TextField();
-        positionSetter.setText("0");
+        positionSetter.setText(DEFAULT_HEAD_POSITION_CONTENT);
+
         textLbl = new Label(text + " :");
+
         this.add(textLbl, 0, 0);
         this.add(positionSetter, 1, 0);
+
         formatHeadPositionSetting();
+
         this.setVisible(false);
     }
 

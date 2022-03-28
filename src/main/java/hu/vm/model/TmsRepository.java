@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hu.vm.controller.data.RuleProcessor;
 import hu.vm.controller.data.SettingsController;
+import hu.vm.entity.SaveImage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import hu.vm.entity.SaveImage;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Log4j2
@@ -62,7 +62,7 @@ public class TmsRepository {
                 .heads(settingsController.getAllHeadPositions())
                 .contents(settingsController.getRawContents())
                 .rules(ruleProcessor.getRawRules())
-                .signature(getSignature())
+                .signature(provideSignature())
                 .build();
     }
 
@@ -103,7 +103,7 @@ public class TmsRepository {
         return output.toString();
     }
 
-    private String getSignature() {
+    private String provideSignature() {
         String signature;
         if (currentSaveImage != null && StringUtils.isNotEmpty(currentSaveImage.getSignature())) {
             signature = currentSaveImage.getSignature();
@@ -114,8 +114,6 @@ public class TmsRepository {
     }
 
     private String createSignature() {
-        Date date = new Date();
-        Timestamp timestamp = new Timestamp(date.getTime());
-        return timestamp.toString();
+        return Timestamp.from(Instant.now()).toString();
     }
 }

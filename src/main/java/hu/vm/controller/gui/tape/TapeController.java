@@ -1,10 +1,10 @@
 package hu.vm.controller.gui.tape;
 
+import hu.vm.view.HeadPosition;
+import hu.vm.view.Tape;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
-import hu.vm.view.HeadPosition;
-import hu.vm.view.Tape;
 
 import java.util.ArrayList;
 
@@ -12,11 +12,12 @@ public class TapeController {
 
     public static final String[] TAPE_NAMES = {"A", "B", "C", "D", "E"};
 
-    private GridPane tapeContainer;
-    private Tape tape;
+    private final GridPane tapeContainer;
+    private final Tape tape;
+
+    private final ArrayList<String> negativeTapeContent = new ArrayList<>();
 
     private ArrayList<String> tapeContent;
-    private ArrayList<String> negativeTapeContent = new ArrayList<>();
     private ArrayList<Integer> heads;
 
     private int virtualIndexOfRealMiddle = 0;   // With every shifting it will change

@@ -4,13 +4,13 @@ import hu.vm.controller.data.RuleProcessor;
 import hu.vm.controller.data.SettingsController;
 import hu.vm.controller.gui.tape.TapeController;
 import hu.vm.controller.message.MessageController;
+import hu.vm.entity.Rule;
+import hu.vm.entity.RunImage;
 import hu.vm.exception.MissingInfoAreaException;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import lombok.extern.log4j.Log4j2;
-import hu.vm.entity.Rule;
-import hu.vm.entity.RunImage;
 
 import java.util.ArrayList;
 
@@ -20,22 +20,22 @@ import static hu.vm.controller.run.RunStatus.*;
 @Log4j2
 public class RunController {
 
-    private final int MAX_ITERATION_NUMBER = 1000;
+    private static final int MAX_ITERATION_NUMBER = 1000;
+    private static final String ERROR_STYLE = "-fx-background-color: rgba(153,25,25,0.49);";
+    private static final String FINISHED_STYLE = "-fx-background-color: rgba(100,153,25,0.49);";
+    private static final String NORMAL_STYLE = "-fx-background-color: #39556A;";
 
-    private SettingsController settingsController;
-    private MessageController messageController;
+    private final SettingsController settingsController;
+    private final MessageController messageController;
 
-    private GridPane tapeContainer;
-    private AnchorPane runtimeControlPanel;
+    private final GridPane tapeContainer;
+    private final AnchorPane runtimeControlPanel;
+    private final Button nextStep;
+    private final Button finish;
 
-    private Button restart;
-    private Button prevStep;
-    private Button nextStep;
-    private Button finish;
+    private final ArrayList<TapeController> tapeControllers = new ArrayList<>();
 
-    private ArrayList<TapeController> tapeControllers = new ArrayList<>();
     private RunImage image;
-
     private int runIndex = 0;
     private String currentState;
 
@@ -49,8 +49,6 @@ public class RunController {
         this.settingsController = settingsController;
         this.tapeContainer = tapeContainer;
         this.runtimeControlPanel = runtimeControlPanel;
-        this.restart = restart;
-        this.prevStep = prevStep;
         this.nextStep = nextStep;
         this.finish = finish;
 
@@ -58,8 +56,8 @@ public class RunController {
 
         log.info("Maximum number of iteration during running: " + MAX_ITERATION_NUMBER);
 
-        this.restart.setOnMouseClicked(e -> loadImage());
-        this.prevStep.setOnMouseClicked(e -> prevStepEvent());
+        restart.setOnMouseClicked(e -> loadImage());
+        prevStep.setOnMouseClicked(e -> prevStepEvent());
         this.nextStep.setOnMouseClicked(e -> nextStepEvent());
         this.finish.setOnMouseClicked(e -> finishStepEvent());
     }
@@ -135,11 +133,11 @@ public class RunController {
     }
 
     private ArrayList<String> getCopyOfImageContent(int index) {
-        return new ArrayList<String>(image.getTapeContents().get(index));
+        return new ArrayList<>(image.getTapeContents().get(index));
     }
 
     private ArrayList<Integer> getCopyOfImageHeads(int index) {
-        return new ArrayList<Integer>(image.getHeadPositions().get(index));
+        return new ArrayList<>(image.getHeadPositions().get(index));
     }
 
     private RunStatus executeNextStep(boolean showMessages) {
@@ -207,9 +205,9 @@ public class RunController {
             for (int i = 0; i < symbolsFromRule.size(); i++) {
                 if (!SpecialRunControlKey.ANY.getReadValue().equals(symbolsFromRule.get(i))) {
                     result = false;
-                    for (SpecialRunControlKey srck : SpecialRunControlKey.values()) {
-                        if (srck.getReadValue().equals(symbolsFromRule.get(i))
-                                && srck.getWriteValue().equals(symbolsFromTapes.get(i))) {
+                    for (SpecialRunControlKey specialRunControlKey : SpecialRunControlKey.values()) {
+                        if (specialRunControlKey.getReadValue().equals(symbolsFromRule.get(i))
+                                && specialRunControlKey.getWriteValue().equals(symbolsFromTapes.get(i))) {
                             result = true;
                             break;
                         }
@@ -240,12 +238,12 @@ public class RunController {
     private void writeSymbol(int headIndex, String symbol) {
         for (TapeController tapeController : tapeControllers) {
             if (tapeController.getNumberOfHeads() > headIndex) {
-                for (SpecialRunControlKey srck : SpecialRunControlKey.values()) {
-                    if (srck.getReadValue().equals(symbol)) {
-                        if (SpecialRunControlKey.ANY.equals(srck)) {
+                for (SpecialRunControlKey specialRunControlKey : SpecialRunControlKey.values()) {
+                    if (specialRunControlKey.getReadValue().equals(symbol)) {
+                        if (SpecialRunControlKey.ANY.equals(specialRunControlKey)) {
                             symbol = tapeController.getContentAtIndex(tapeController.getVirtualIndexOfHead(headIndex));
                         } else {
-                            symbol = srck.getWriteValue();
+                            symbol = specialRunControlKey.getWriteValue();
                         }
                         break;
                     }
@@ -334,14 +332,14 @@ public class RunController {
     }
 
     private void makeControlPanelRed() {
-        runtimeControlPanel.setStyle("-fx-background-color: rgba(153,25,25,0.49);");
+        runtimeControlPanel.setStyle(ERROR_STYLE);
     }
 
     private void makeControlPanelGreen() {
-        runtimeControlPanel.setStyle("-fx-background-color: rgba(100,153,25,0.49);");
+        runtimeControlPanel.setStyle(FINISHED_STYLE);
     }
 
     private void makeControlPanelDefault() {
-        runtimeControlPanel.setStyle("-fx-background-color: #39556A;");
+        runtimeControlPanel.setStyle(NORMAL_STYLE);
     }
 }

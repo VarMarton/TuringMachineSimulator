@@ -1,15 +1,15 @@
 package hu.vm.controller.gui.setting;
 
-import javafx.scene.layout.GridPane;
 import hu.vm.view.HeadPositionSetting;
 import hu.vm.view.TapeSetting;
+import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
 
 public class OneTapeSettingController {
 
-    private TapeSetting tapeSetting;
-    private ArrayList<HeadPositionSetting> headPositions;
+    private final TapeSetting tapeSetting;
+    private final ArrayList<HeadPositionSetting> headPositions;
 
     public OneTapeSettingController(GridPane root, int index, String nameToDisplay) {
         tapeSetting = new TapeSetting(nameToDisplay);

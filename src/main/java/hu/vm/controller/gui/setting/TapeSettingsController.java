@@ -17,7 +17,7 @@ public class TapeSettingsController {
 
     public TapeSettingsController(GridPane tapeSettingContainer, Button newTape, Button deleteTape) {
         log.debug("Constructing TapeSettingsController...");
-        log.info("Maximum number of tapes: " + TapeController.TAPE_NAMES.length);
+        log.info("Maximum number of tapes: {}", TapeController.TAPE_NAMES.length);
 
         this.tapeSettingContainer = tapeSettingContainer;
         this.newTape = newTape;
@@ -42,7 +42,7 @@ public class TapeSettingsController {
         try {
             tapeContent = tapeSettingControllers.get(tapeIndex).getTapeContent();
         } catch (IndexOutOfBoundsException e) {
-            log.error("Tried to get tape content with tape index: " + tapeIndex, e);
+            log.error("Tried to get tape content with tape index: {}", tapeIndex, e);
         }
         return tapeContent;
     }
@@ -51,7 +51,7 @@ public class TapeSettingsController {
         try {
             tapeSettingControllers.get(tapeIndex).setTapeContent(tapeContent);
         } catch (IndexOutOfBoundsException e) {
-            log.error("Tried to get tape content with tape index: " + tapeIndex, e);
+            log.error("Tried to set tape content with tape index: {}", tapeIndex, e);
         }
     }
 
@@ -60,7 +60,7 @@ public class TapeSettingsController {
         try {
             headPositions = this.tapeSettingControllers.get(tapeIndex).getHeadPositions();
         } catch (IndexOutOfBoundsException e) {
-            log.error("Tried to get head information with tape index: " + tapeIndex, e);
+            log.error("Tried to get head position with tape index: {}", tapeIndex, e);
         }
         return headPositions;
     }
@@ -69,7 +69,7 @@ public class TapeSettingsController {
         try {
             this.tapeSettingControllers.get(tapeIndex).setHeadPositions(positions);
         } catch (IndexOutOfBoundsException e) {
-            log.error("Tried to get head information with tape index: " + tapeIndex, e);
+            log.error("Tried to set head position with tape index: {}", tapeIndex, e);
         }
     }
 

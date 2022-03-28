@@ -1,20 +1,19 @@
 package hu.vm.controller.data;
 
+import hu.vm.controller.message.MessageController;
 import hu.vm.controller.run.RunController;
 import hu.vm.exception.MissingInfoAreaException;
-import hu.vm.controller.message.MessageController;
 import javafx.scene.layout.AnchorPane;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class InitializationController {
 
-    private MessageController messageController;
-    private SettingsController settingsController;
-    private RuleProcessor ruleProcessor;
-    private RunController runController;
-
-    private AnchorPane runtimeControlPanel;
+    private final MessageController messageController;
+    private final SettingsController settingsController;
+    private final RuleProcessor ruleProcessor;
+    private final RunController runController;
+    private final AnchorPane runtimeControlPanel;
 
     public InitializationController(SettingsController settingsController, RuleProcessor ruleProcessor, RunController runController, AnchorPane runtimeControlPanel) {
         this.settingsController = settingsController;
@@ -25,6 +24,8 @@ public class InitializationController {
     }
 
     public void initialize() {
+        log.debug("Initializing...");
+
         if (check()) {
             runController.createImage(ruleProcessor.getRules());
             runController.loadImage();
@@ -33,6 +34,8 @@ public class InitializationController {
     }
 
     public boolean check() {
+        log.debug("Initializing...");
+
         messageController.clearAllMessages();
 
         boolean result = settingsController.check() && ruleProcessor.produceRules();

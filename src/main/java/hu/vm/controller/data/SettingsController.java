@@ -2,26 +2,25 @@ package hu.vm.controller.data;
 
 import hu.vm.controller.gui.setting.TapeSettingsController;
 import hu.vm.controller.message.MessageController;
-
-import static hu.vm.controller.message.MessageType.*;
-
 import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import static hu.vm.controller.message.MessageType.*;
+
 public class SettingsController {
 
-    private final String STATE_DELIMITER = ",";
-    private final String[] RESTRICTED_CHARACTERS = {"[", "]", ";", "-", ">", " ", "\n"};
+    private static final String STATE_DELIMITER = ",";
+    private static final String[] RESTRICTED_CHARACTERS = {"[", "]", ";", "-", ">", " ", "\n"};
 
-    private MessageController messageController;
+    private final MessageController messageController;
 
-    private TextField states;
-    private TextField startState;
-    private TextField endStates;
-    private TapeSettingsController tapeSettingsController;
+    private final TextField states;
+    private final TextField startState;
+    private final TextField endStates;
+    private final TapeSettingsController tapeSettingsController;
 
     private HashSet<String> validStates;
     private String validStartState;
@@ -46,7 +45,7 @@ public class SettingsController {
 
         if (tmpStartStates.size() == 1) {
             validStartState = tmpStartStates.toArray(new String[1])[0];
-            if (!isHashSetContains(validStates, validStartState)) {
+            if (isHashSetNotContains(validStates, validStartState)) {
                 messageController.addSettingMessage(WARNING, "States should contain start state as well.");
                 validStates.add(validStartState);
             }
@@ -195,20 +194,20 @@ public class SettingsController {
 
     private boolean isHashSetContains(HashSet<String> set, HashSet<String> toSearch) {
         for (String stringInToSearch : toSearch) {
-            if (!isHashSetContains(set, stringInToSearch)) {
+            if (isHashSetNotContains(set, stringInToSearch)) {
                 return false;
             }
         }
         return true;
     }
 
-    private boolean isHashSetContains(HashSet<String> set, String toSearch) {
+    private boolean isHashSetNotContains(HashSet<String> set, String toSearch) {
         for (String stringInSet : set) {
             if (stringInSet.equals(toSearch)) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
 }

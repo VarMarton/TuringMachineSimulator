@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import lombok.Getter;
 
 import java.util.ArrayList;
 
@@ -21,34 +22,22 @@ public class TapeSetting extends GridPane {
 
     private final String name;
     private final Label nameLbl = new Label();
+    @Getter
     private final TextField content = new TextField();
+    @Getter
     private final Button plusBtn = new Button();
+    @Getter
     private final Button minusBtn = new Button();
+    @Getter
     private final ArrayList<HeadPositionSetting> headPositions = new ArrayList<>();
 
     public TapeSetting(String name) {
         this.name = name;
         this.getStyleClass().add(STYLE_CLASS_TAPE_CONTAINER);
-        this.nameLbl.setText("Tape \"" + this.name + "\"");
+        this.nameLbl.setText("Tape \"" + name + "\"");
 
         this.generateBasicParts();
         this.formatBasicParts();
-    }
-
-    public TextField getContent() {
-        return content;
-    }
-
-    public Button getPlusBtn() {
-        return plusBtn;
-    }
-
-    public Button getMinusBtn() {
-        return minusBtn;
-    }
-
-    public ArrayList<HeadPositionSetting> getHeadPositions() {
-        return headPositions;
     }
 
     private void generateBasicParts() {

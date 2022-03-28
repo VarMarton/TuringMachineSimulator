@@ -1,6 +1,6 @@
 package hu.vm.exception;
 
-public class MissingInfoAreaException extends Exception{
+public class MissingInfoAreaException extends Exception {
 
     @Override
     public String getMessage() {

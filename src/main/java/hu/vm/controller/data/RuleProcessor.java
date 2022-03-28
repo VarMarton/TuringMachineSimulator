@@ -2,8 +2,9 @@ package hu.vm.controller.data;
 
 import hu.vm.controller.message.MessageController;
 import hu.vm.controller.run.SpecialRunControlKey;
-import javafx.scene.control.TextArea;
 import hu.vm.entity.Rule;
+import javafx.scene.control.TextArea;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,30 +15,27 @@ public class RuleProcessor {
 
     public static final String[] LEFT_MOVEMENT = {"L", "l", "<"};
     public static final String[] RIGHT_MOVEMENT = {"R", "r", ">"};
-    public static final String[] NO_MOVEMENT =  {"S", "s", "V", "v"};
+    public static final String[] NO_MOVEMENT = {"S", "s", "V", "v"};
 
-    private final String RULE_DELIMITER = "\n";
-    private final String INLINE_DELIMITER = ";";
-    private final SpecialRunControlKey DEFAULT_SPECIAL_RUN_CONTROL_KEY = SpecialRunControlKey.ANY;
-    private final String[] EXTRA_CHARACTERS_TO_REMOVE = {"\\[", "\\]"};
+    private static final String RULE_DELIMITER = "\n";
+    private static final String INLINE_DELIMITER = ";";
+    private static final SpecialRunControlKey DEFAULT_SPECIAL_RUN_CONTROL_KEY = SpecialRunControlKey.ANY;
+    private static final String[] EXTRA_CHARACTERS_TO_REMOVE = {"\\[", "\\]"};
+
+    private final TextArea ruleInput;
+    private final SettingsController settingsController;
+    private final MessageController messageController;
+
+    @Getter
+    private ArrayList<Rule> rules;
 
     private boolean warnAboutAny;
     private boolean warnAboutMovementMultiplication;
-
-    private TextArea ruleInput;
-    private SettingsController settingsController;
-    private MessageController messageController;
-
-    private ArrayList<Rule> rules;
 
     public RuleProcessor(TextArea ruleInput, SettingsController settingsController) {
         this.ruleInput = ruleInput;
         this.settingsController = settingsController;
         this.messageController = MessageController.getInstance();
-    }
-
-    public ArrayList<Rule> getRules() {
-        return rules;
     }
 
     public void addNewLine() {
@@ -57,7 +55,7 @@ public class RuleProcessor {
         StringBuilder newText = new StringBuilder();
         newText.append(text);
 
-        if (text.length() > 0 && !"\n".equals(text.charAt(text.length() - 1))) {
+        if (text.length() > 0) {
             newText.append("\n");
         }
 
@@ -76,15 +74,15 @@ public class RuleProcessor {
 
         HashMap<Integer, String> lines = produceCleanedLines();
 
-        lines.forEach((index, line) -> {
-            rules.add(createRuleFromLine(index, line, numberOfHeads));
-        });
+        lines.forEach((index, line) -> rules.add(createRuleFromLine(index, line, numberOfHeads)));
 
         if (warnAboutAny) {
-            messageController.addRuleMessage(WARNING, "Using ANY keyword is only a service of this program, mathematically it is incorrect!");
+            messageController.addRuleMessage(WARNING,
+                    "Using ANY keyword is only a service of this program, mathematically it is incorrect!");
         }
         if (warnAboutMovementMultiplication) {
-            messageController.addRuleMessage(WARNING, "Using movement multiplication is only a service of this program, mathematically it is incorrect!");
+            messageController.addRuleMessage(WARNING,
+                    "Using movement multiplication is only a service of this program, mathematically it is incorrect!");
         }
 
         writeOutValidatedRules(rules);
@@ -132,7 +130,8 @@ public class RuleProcessor {
             processLeftSide(rule, index, parts[0], numberOfHeads);
             processRightSide(rule, index, parts[1], numberOfHeads);
         } else {
-            messageController.addRuleMessage(ERROR, "At line " + index + " - syntax error, the correct formula: [...]->[...]");
+            messageController.addRuleMessage(ERROR,
+                    "At line " + index + " - syntax error, the correct formula: [...]->[...]");
             rule.setValid(false);
         }
 
@@ -163,11 +162,13 @@ public class RuleProcessor {
                     processMovements(rule, index, parts, numberOfMovements);
                 }
             } else {
-                messageController.addRuleMessage(ERROR, "At line " + index + " - " + parts[0] + " is not a valid state");
+                messageController.addRuleMessage(ERROR,
+                        "At line " + index + " - " + parts[0] + " is not a valid state");
                 rule.setValid(false);
             }
         } else {
-            messageController.addRuleMessage(ERROR, "At line " + index + " - syntax error at " + sideName + " side, maybe heads are missing");
+            messageController.addRuleMessage(ERROR,
+                    "At line " + index + " - syntax error at " + sideName + " side, maybe heads are missing");
             rule.setValid(false);
         }
     }
@@ -179,7 +180,8 @@ public class RuleProcessor {
             if (checkSymbol(parts[i])) {
                 symbols.add(parts[i]);
             } else {
-                messageController.addRuleMessage(ERROR, "At line " + index + " - " + parts[i] + " is not a valid symbol");
+                messageController.addRuleMessage(ERROR,
+                        "At line " + index + " - " + parts[i] + " is not a valid symbol");
                 rule.setValid(false);
             }
         }
@@ -192,7 +194,8 @@ public class RuleProcessor {
             if (checkMovement(parts[i])) {
                 movements.add(parts[i]);
             } else {
-                messageController.addRuleMessage(ERROR, "At line " + index + " - " + (i - 1 - numberOfMovements) + ". head movement is invalid");
+                messageController.addRuleMessage(ERROR,
+                        "At line " + index + " - " + (i - 1 - numberOfMovements) + ". head movement is invalid");
                 rule.setValid(false);
             }
         }
@@ -214,7 +217,8 @@ public class RuleProcessor {
     private boolean checkMovement(String movement) {
         boolean result = true;
 
-        if (movement.length() == 0 || (movement.length() > 1 && !movement.contains("*")) || movement.split("\\*").length > 2) {
+        if (movement.length() == 0 || (movement.length() > 1 && !movement.contains("*")) ||
+                movement.split("\\*").length > 2) {
             result = false;
         } else {
             String[] movementParts = movement.split("\\*");

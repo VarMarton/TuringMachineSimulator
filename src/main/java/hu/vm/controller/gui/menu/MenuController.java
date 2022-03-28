@@ -20,22 +20,14 @@ public class MenuController {
 
     private final TmsRepository tmsRepository;
 
-    private final Button exportBtn;
-    private final Button importBtn;
-    private final Button helpBtn;
-
-    private Properties config;
+    private final Properties config;
 
     public MenuController(TmsRepository tmsRepository, Button exportBtn, Button importBtn, Button helpBtn) {
         this.tmsRepository = tmsRepository;
 
-        this.exportBtn = exportBtn;
-        this.importBtn = importBtn;
-        this.helpBtn = helpBtn;
-
-        this.helpBtn.setOnMouseClicked(e -> helpBtnAction());
-        this.exportBtn.setOnMouseClicked(e -> exportBtnAction());
-        this.importBtn.setOnMouseClicked(e -> importBtnAction());
+        helpBtn.setOnMouseClicked(e -> helpBtnAction());
+        exportBtn.setOnMouseClicked(e -> exportBtnAction());
+        importBtn.setOnMouseClicked(e -> importBtnAction());
 
         this.config = new Properties();
 
@@ -43,7 +35,7 @@ public class MenuController {
     }
 
     private void openConfigFile() {
-        try (OutputStream outputStream = new FileOutputStream(CONFIG_FILE, true);
+        try (OutputStream ignored = new FileOutputStream(CONFIG_FILE, true);
              InputStream inputStream = new FileInputStream(CONFIG_FILE)) {
             config.load(inputStream);
         } catch (IOException e) {
@@ -64,7 +56,8 @@ public class MenuController {
         fileChooser.setTitle("Save File");
         fileChooser.setInitialFileName("tms_exported");
         setFileChooserInitialDirectory(fileChooser);
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Turing Machine Simulator files (*.tms)", "*.tms");
+        FileChooser.ExtensionFilter extFilter = new FileChooser
+                .ExtensionFilter("Turing Machine Simulator files (*.tms)", "*.tms");
         fileChooser.getExtensionFilters().add(extFilter);
         File fileToSave = fileChooser.showSaveDialog(null);
         if (fileToSave != null) {
@@ -84,12 +77,19 @@ public class MenuController {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Turing Machine Simulator files (*.tms)", "*.tms");
         fileChooser.getExtensionFilters().add(extFilter);
         File fileToOpen = fileChooser.showOpenDialog(null);
-        if (fileToOpen != null) {
+
+        loadFile(fileToOpen);
+    }
+
+    public void loadFile(File fileToOpen) {
+        if (fileToOpen != null && fileToOpen.exists()) {
             log.debug("Open:");
             log.debug(fileToOpen.getPath());
             tmsRepository.load(fileToOpen.getPath());
             config.setProperty(LAST_OPENED_PATH, fileToOpen.getParent());
             saveConfigFile();
+        } else {
+            log.warn("Could not open file: {}", fileToOpen);
         }
     }
 

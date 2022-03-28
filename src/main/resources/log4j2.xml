@@ -2,7 +2,7 @@
 <Configuration status="ERROR">
 
     <Properties>
-        <Property name="log-name">log</Property>
+        <Property name="log-name">tms-log</Property>
         <Property name="log-extension">txt</Property>
         <Property name="log-path">log</Property>
     </Properties>

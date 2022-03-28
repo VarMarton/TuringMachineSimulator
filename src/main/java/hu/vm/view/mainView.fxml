@@ -45,7 +45,8 @@
                     </Button>
                     <Button fx:id="importBtn" styleClass="unified-width-setting-btn" GridPane.columnIndex="1"
                             text="_Import"/>
-                    <Button fx:id="helpBtn" styleClass="unified-width-setting-btn" GridPane.columnIndex="2" text="_Help">
+                    <Button fx:id="helpBtn" styleClass="unified-width-setting-btn" GridPane.columnIndex="2"
+                            text="_Help">
                         <GridPane.margin>
                             <Insets left="$HORIZONTAL_MARGIN" right="$HORIZONTAL_MARGIN"/>
                         </GridPane.margin>
@@ -186,7 +187,8 @@
                             </rowConstraints>
                             <Button fx:id="makeRuleSectionBigBtn" text="[ ]">
                                 <GridPane.margin>
-                                    <Insets top="$VERTICAL_MARGIN" bottom="$VERTICAL_MARGIN" left="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"/>
+                                    <Insets top="$VERTICAL_MARGIN" bottom="$VERTICAL_MARGIN"
+                                            left="$SETTINGS_SECTION_BTN_HOLDER_MARGIN"/>
                                 </GridPane.margin>
                             </Button>
                             <Label GridPane.columnIndex="1" GridPane.halignment="CENTER" text="Rules"/>
@@ -216,7 +218,8 @@
                                     <Insets right="$HORIZONTAL_MARGIN"/>
                                 </GridPane.margin>
                             </Button>
-                            <Button fx:id="check" GridPane.columnIndex="1" styleClass="unified-width-setting-btn" text="_Check"/>
+                            <Button fx:id="check" GridPane.columnIndex="1" styleClass="unified-width-setting-btn"
+                                    text="_Check"/>
                             <Button fx:id="initialize" GridPane.columnIndex="2" text="_Initialize"
                                     GridPane.halignment="RIGHT"/>
                             <BorderPane.margin>

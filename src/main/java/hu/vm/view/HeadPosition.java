@@ -1,5 +1,10 @@
 package hu.vm.view;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum HeadPosition {
 
     NORMAL(54.0, 83.0, "icons/normalPointer.png", "head normal-head"),
@@ -10,26 +15,4 @@ public enum HeadPosition {
     private final String pointerImgUrl;
     private final String styleClass;
 
-    HeadPosition(Double headPositionY, Double pointerPositionY, String pointerImgUrl, String styleClass) {
-        this.headPositionY = headPositionY;
-        this.pointerPositionY = pointerPositionY;
-        this.pointerImgUrl = pointerImgUrl;
-        this.styleClass = styleClass;
-    }
-
-    public Double getHeadPositionY() {
-        return headPositionY;
-    }
-
-    public Double getPointerPositionY() {
-        return pointerPositionY;
-    }
-
-    public String getPointerImgUrl() {
-        return pointerImgUrl;
-    }
-
-    public String getStyleClass() {
-        return styleClass;
-    }
 }

@@ -1,5 +1,10 @@
 package hu.vm.controller.run;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum SpecialRunControlKey {
     ANY("ANY", "ANY"),
     SPACE("SP", " "),
@@ -8,19 +13,7 @@ public enum SpecialRunControlKey {
     SEMICOLON("SC", ";"),
     COLON("COL", ",");
 
-    private String readValue;
-    private String writeValue;
+    private final String readValue;
+    private final String writeValue;
 
-    SpecialRunControlKey(String readValue, String writeValue) {
-        this.readValue = readValue;
-        this.writeValue = writeValue;
-    }
-
-    public String getReadValue() {
-        return readValue;
-    }
-
-    public String getWriteValue() {
-        return writeValue;
-    }
 }

@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.ArrayList;
@@ -19,30 +21,35 @@ public class Tape extends GridPane {
     public static final double OUTER_COLUMN_WIDTH = 50.0;
     public static final double LINK_WIDTH = 38.0;
 
-    private final String STYLE_CLASS_FOR_TAPE = "tape";
-    private final String STYLE_CLASS_FOR_LINK = "link";
+    private static final String STYLE_CLASS_FOR_TAPE = "tape";
+    private static final String STYLE_CLASS_FOR_LINK = "link";
 
-    private final double DEFAULT_ROW_HEIGHT = 105.0;
-    private final double DEFAULT_HEAD_WIDTH = 31.0; // DO NOT DELETE - It is not used however can be used to calculate manually HEAD_X_POS_SHIFT and POINTER_X_POS_SHIFT
-    private final double HEAD_X_POS_SHIFT = 3.5;    // LINK_WIDTH / 2 - defaultHeadWidth / 2
-    private final double POINTER_X_POS_SHIFT = 9; // Similar to HEAD_X_POS_SHIFT calculation
-    private final double SIDE_MARGIN = 10.0;
+    private static final double DEFAULT_ROW_HEIGHT = 105.0;
+    private static final double DEFAULT_HEAD_WIDTH = 31.0; // DO NOT DELETE - It is not used however can be used to calculate manually HEAD_X_POS_SHIFT and POINTER_X_POS_SHIFT
+    private static final double HEAD_X_POS_SHIFT = 3.5;    // LINK_WIDTH / 2 - defaultHeadWidth / 2
+    private static final double POINTER_X_POS_SHIFT = 9; // Similar to HEAD_X_POS_SHIFT calculation
+    private static final double SIDE_MARGIN = 10.0;
 
-    private final double DEFAULT_SPACE = 0.0;
+    private static final double DEFAULT_SPACE = 0.0;
 
-    private final String PREV_LINK_IMG_URL = "icons/prevLink.png";
-    private final String NEXT_LINK_IMG_URL = "icons/nextLink.png";
+    private static final String PREV_LINK_IMG_URL = "icons/prevLink.png";
+    private static final String NEXT_LINK_IMG_URL = "icons/nextLink.png";
 
-    private Label name = new Label();
-    private Button prevLink = new Button();
-    private Button nextLink = new Button();
-    private ArrayList<Button> chain = new ArrayList<>();
-    private HashMap<Integer, HeadButton> heads = new HashMap<>();
-    private HashMap<Integer, Label> pointers = new HashMap<>();
+    private final Label name = new Label();
+    @Getter
+    private final Button prevLink = new Button();
+    @Getter
+    private final Button nextLink = new Button();
+    private final ArrayList<Button> chain = new ArrayList<>();
+    private final HashMap<Integer, HeadButton> heads = new HashMap<>();
+    private final HashMap<Integer, Label> pointers = new HashMap<>();
+
     private AnchorPane headPane;
     private AnchorPane chainPane;
-    private Double space;
 
+    private Double space;
+    @Getter
+    @Setter
     private int numberOfVisibleLinks;
 
     public Tape(String name) {
@@ -54,14 +61,6 @@ public class Tape extends GridPane {
         this.setControlParts();
 
         GridPane.setMargin(this, new Insets(0, SIDE_MARGIN, 0, SIDE_MARGIN));
-    }
-
-    public int getNumberOfVisibleLinks() {
-        return numberOfVisibleLinks;
-    }
-
-    public void setNumberOfVisibleLinks(int numberOfVisibleLinks) {
-        this.numberOfVisibleLinks = numberOfVisibleLinks;
     }
 
     public void addHead(int index, String name, HeadPosition position) {
@@ -79,12 +78,8 @@ public class Tape extends GridPane {
     }
 
     public void removeAllHeads() {
-        heads.forEach((index, head) -> {
-            this.headPane.getChildren().remove(head);
-        });
-        pointers.forEach((index, pointer) -> {
-            this.headPane.getChildren().remove(pointer);
-        });
+        heads.forEach((index, head) -> this.headPane.getChildren().remove(head));
+        pointers.forEach((index, pointer) -> this.headPane.getChildren().remove(pointer));
         heads.clear();
         pointers.clear();
     }
@@ -134,14 +129,6 @@ public class Tape extends GridPane {
         }
     }
 
-    public Button getPrevLink() {
-        return prevLink;
-    }
-
-    public Button getNextLink() {
-        return nextLink;
-    }
-
     private void setOwnRowConstraints() {
         RowConstraints rowConstraints = new RowConstraints();
         rowConstraints.setPrefHeight(DEFAULT_ROW_HEIGHT);
@@ -182,8 +169,8 @@ public class Tape extends GridPane {
         GridPane.setHalignment(this.prevLink, HPos.CENTER);
         GridPane.setHalignment(this.nextLink, HPos.CENTER);
 
-        this.setLinkControlBtnImage(this.prevLink, this.PREV_LINK_IMG_URL);
-        this.setLinkControlBtnImage(this.nextLink, this.NEXT_LINK_IMG_URL);
+        this.setLinkControlBtnImage(this.prevLink, PREV_LINK_IMG_URL);
+        this.setLinkControlBtnImage(this.nextLink, NEXT_LINK_IMG_URL);
     }
 
     private void setLinkButtons(double space) {
@@ -197,7 +184,7 @@ public class Tape extends GridPane {
 
     private Button getNewLink() {
         Button link = new Button(DEFAULT_LINK_CONTENT);
-        link.getStyleClass().add(this.STYLE_CLASS_FOR_LINK);
+        link.getStyleClass().add(STYLE_CLASS_FOR_LINK);
         link.setMnemonicParsing(false);
 
         return link;
