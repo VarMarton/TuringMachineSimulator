@@ -35,6 +35,9 @@ public class TmsRepository {
             String toSaveBytes = convertStringToBinaryString(toSave);
             byte[] byteToSave = toSaveBytes.getBytes(StandardCharsets.UTF_8);
             Path file = Paths.get(path);
+            if (Files.exists(file)) {
+                Files.delete(file);
+            }
             Files.write(file, byteToSave, StandardOpenOption.CREATE);
         } catch (IOException e) {
             log.error(e);
